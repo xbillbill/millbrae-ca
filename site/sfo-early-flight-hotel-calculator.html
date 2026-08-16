@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Calculate when to wake up for an early SFO flight, how much sleep an airport hotel could add, and the cost per extra hour using editable travel times.">
+  <meta name="theme-color" content="#14352d">
+  <meta property="og:title" content="SFO Early Flight Hotel Calculator">
+  <meta property="og:description" content="Compare the wake-up time from home with a nearby airport hotel and price each extra hour of sleep.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://www.millbrae.ca/sfo-early-flight-hotel-calculator.html">
+  <meta property="og:site_name" content="Millbrae Local">
+  <meta property="og:image" content="https://www.millbrae.ca/millbrae-sfo-social.jpg">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Editorial illustration of Millbrae rail, local storefronts, and SFO">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://www.millbrae.ca/millbrae-sfo-social.jpg">
+  <meta name="twitter:image:alt" content="Editorial illustration of Millbrae rail, local storefronts, and SFO">
+  <link rel="canonical" href="https://www.millbrae.ca/sfo-early-flight-hotel-calculator.html">
+  <title>SFO Early Flight Hotel Calculator: Is a Hotel Worth It? (2026)</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="guide.css">
+  <link rel="stylesheet" href="early-flight.css">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Article","headline":"SFO Early Flight Hotel Calculator","datePublished":"2026-08-16","dateModified":"2026-08-16","author":{"@type":"Organization","name":"Millbrae Local"},"publisher":{"@type":"Organization","name":"Millbrae Local"},"mainEntityOfPage":"https://www.millbrae.ca/sfo-early-flight-hotel-calculator.html","about":["early flight from SFO","SFO airport hotel","airport hotel calculator","SFO arrival time"]},{"@type":"WebApplication","name":"SFO Early Flight Hotel Calculator","url":"https://www.millbrae.ca/sfo-early-flight-hotel-calculator.html","applicationCategory":"TravelApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}]}</script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="Millbrae Local home"><span>✳</span> Millbrae Local</a>
+    <nav aria-label="Main navigation"><a href="restaurants-in-millbrae.html">Restaurants</a><a href="hotels-near-sfo-millbrae.html" aria-current="page">Hotels</a><a href="sfo-tools.html">SFO tools</a><a href="advertise.html">Advertise</a></nav>
+    <a class="button button-small" href="#calculator">Compare wake times</a>
+  </header>
+
+  <main><article>
+    <header class="guide-hero early-flight-hero wrap">
+      <p class="eyebrow">Millbrae travel desk · Updated August 16, 2026</p>
+      <h1>Early SFO flight: how much sleep would a hotel actually buy?</h1>
+      <p class="lede">Put both mornings on a timeline. Compare waking at home with waking near the airport, then price the extra sleep before booking a room.</p>
+      <div class="quick-links" aria-label="Guide sections"><a href="#calculator">Calculator</a><a href="#method">How it works</a><a href="#faq">FAQ</a><a href="hotels-near-sfo-millbrae.html">Compare hotels</a></div>
+      <p class="editorial-note"><strong>Independent planning tool:</strong> No hotel paid to appear. SFO says most domestic travelers should arrive two hours before departure and most international travelers three hours before; airline guidance controls. Every timing input below is editable.</p>
+    </header>
+
+    <section id="calculator" class="early-calculator-band">
+      <div class="wrap calculator-layout">
+        <div class="calculator-copy">
+          <p class="eyebrow">Editable sleep-and-cost calculator</p>
+          <h2>Price the later alarm.</h2>
+          <p>Start with your flight time. Use the real door-to-terminal time from home and the real hotel transfer—not the distance on a map.</p>
+          <div class="calculator-warning"><strong>Timing aid, not airline advice:</strong> Check your airline, terminal, security needs, baggage cutoff, traffic, and hotel transfer hours. Add your own buffer to any input.</div>
+        </div>
+        <form class="early-flight-calculator" data-early-flight-calculator>
+          <div class="primary-inputs">
+            <label>Flight departure<input name="flightTime" type="time" value="06:30" required></label>
+            <label>Arrive before flight (minutes)<input name="arrivalLead" type="number" min="0" max="600" step="5" value="120" inputmode="numeric"></label>
+            <label>Home to terminal (minutes)<input name="homeTravel" type="number" min="0" max="600" step="5" value="90" inputmode="numeric"></label>
+            <label>Hotel to terminal (minutes)<input name="hotelTransfer" type="number" min="0" max="300" step="5" value="15" inputmode="numeric"></label>
+          </div>
+          <details>
+            <summary>Edit preparation and hotel cost assumptions</summary>
+            <div class="assumption-grid">
+              <label>Prep time at home (minutes)<input name="homePrep" type="number" min="0" max="300" step="5" value="30" inputmode="numeric"></label>
+              <label>Prep time at hotel (minutes)<input name="hotelPrep" type="number" min="0" max="300" step="5" value="20" inputmode="numeric"></label>
+              <label>Added hotel-plan cost<input name="hotelExtraCost" type="number" min="0" max="10000" step="1" placeholder="Optional" inputmode="decimal"></label>
+            </div>
+          </details>
+          <div class="timeline-grid">
+            <section class="timeline-plan"><h3>Leave from home</h3><div><span>Wake up</span><output data-result="home-wake">2:30 AM</output></div><div><span>Leave</span><output data-result="home-leave">3:00 AM</output></div></section>
+            <section class="timeline-plan"><h3>Stay near SFO</h3><div><span>Wake up</span><output data-result="hotel-wake">3:55 AM</output></div><div><span>Leave hotel</span><output data-result="hotel-leave">4:15 AM</output></div></section>
+          </div>
+          <div class="result-strip">
+            <div><span>Later wake-up</span><output data-result="sleep">1 hr 25 min</output><small>Based on entered travel and prep times</small></div>
+            <div><span>Cost per extra hour</span><output data-result="cost-hour">Enter added cost</output><small>Use the incremental hotel-plan cost</small></div>
+          </div>
+          <p class="calculator-verdict" data-calculator-verdict role="status" data-state="waiting">The hotel plan moves wake-up 1 hr 25 min later. Enter the added cost to price each extra hour.</p>
+          <p class="calculation-note">Target terminal arrival: <strong><output data-result="arrival">4:30 AM</output></strong>. “Added hotel-plan cost” means hotel and changed transportation minus costs you would pay anyway.</p>
+        </form>
+      </div>
+    </section>
+
+    <section class="guide-section wrap early-sponsor-section">
+      <div class="guide-main"><p class="eyebrow">For airport hotels and transportation</p><h2>Put a useful offer beside the overnight decision.</h2><p>A founding feature can add one clearly labeled offer and direct booking link. Calculator math and editorial guidance remain independent from paid placement.</p><div class="answer-grid"><div><strong>Founding feature</strong><p>Prominent placement and direct booking call to action for $99/month.</p><a href="advertise.html">Review the launch plan →</a></div><div><strong>Travel category sponsor</strong><p>One relevant category-exclusive placement for $249/month.</p><a href="advertise.html#inventory">Review open inventory →</a></div></div></div>
+      <aside class="sponsor-slot"><p class="tag">OPEN FOUNDING POSITION</p><h3>An airport hotel or transfer service could be featured here.</h3><p>Reach travelers while they are pricing the comfort of an overnight stay.</p><a class="button" href="advertise.html#preview">Preview a placement →</a><small>No business currently sponsors this calculator.</small></aside>
+    </section>
+
+    <section id="method" class="method-band"><div class="wrap method-layout">
+      <div><p class="eyebrow">How the math works</p><h2>One arrival target, two mornings.</h2><p class="source-links"><a href="https://www.flysfo.com/passengers/travel-tips" target="_blank" rel="noopener">SFO travel timing guidance →</a><br><br><a href="https://www.flysfo.com/passengers/ground-transportation/hotel-shuttles" target="_blank" rel="noopener">SFO hotel shuttle guidance →</a></p></div>
+      <div class="method-grid"><div><strong>1. Set terminal arrival</strong><p>Departure minus your airline's recommended lead time.</p></div><div><strong>2. Build the home morning</strong><p>Subtract door-to-terminal travel and preparation.</p></div><div><strong>3. Build the hotel morning</strong><p>Subtract the hotel transfer and hotel preparation.</p></div><div><strong>4. Price the difference</strong><p>Divide the incremental hotel-plan cost by extra sleep hours.</p></div></div>
+    </div></section>
+
+    <section id="faq" class="guide-section wrap faq-section"><div><p class="eyebrow">Before booking</p><h2>Common questions.</h2></div><div class="faq-list">
+      <details open><summary>How early should I arrive at SFO?</summary><p>SFO says most airlines recommend arriving two hours before domestic departures and three hours before international departures. Check directly with your airline and replace the calculator default when its guidance differs.</p></details>
+      <details><summary>Does a nearby hotel guarantee more sleep?</summary><p>No. A slow or on-call transfer can erase the advantage. Use the actual pickup schedule, transfer time, walking time, and a missed-shuttle buffer.</p></details>
+      <details><summary>What cost should I enter?</summary><p>Enter only the added cost of the hotel plan: the room and changed transportation, minus parking, rideshare, or other costs you would have paid in the home plan.</p></details>
+      <details><summary>Where can I compare nearby options?</summary><p>Use the <a href="hotels-near-sfo-millbrae.html">Millbrae hotel comparison</a>, check the <a href="millbrae-hotels-sfo-shuttle.html">current shuttle guide</a>, or compare room-and-parking bundles in the <a href="sfo-park-and-fly-hotel-calculator.html">park-and-fly calculator</a>.</p></details>
+    </div></section>
+  </article></main>
+  <footer class="site-footer wrap"><span>© 2026 Millbrae Local</span><span>Independent calculator · Confirm airline and hotel timing</span><span><a href="advertise.html">Advertise</a></span></footer>
+  <script type="module" src="early-flight-calculator.js"></script>
+</body>
+</html>

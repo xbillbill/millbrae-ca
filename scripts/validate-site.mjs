@@ -88,9 +88,14 @@ const rideshareFile = 'sfo-parking-vs-rideshare-calculator.html';
 const inboundRideshareLinks = [...pages.entries()].filter(([file, html]) => file !== rideshareFile && html.includes(`href="${rideshareFile}`));
 if (inboundRideshareLinks.length < 3) fail(rideshareFile, `expected at least 3 internal entry points, found ${inboundRideshareLinks.length}`);
 
+const earlyFlightFile = 'sfo-early-flight-hotel-calculator.html';
+const inboundEarlyFlightLinks = [...pages.entries()].filter(([file, html]) => file !== earlyFlightFile && html.includes(`href="${earlyFlightFile}`));
+if (inboundEarlyFlightLinks.length < 3) fail(earlyFlightFile, `expected at least 3 internal entry points, found ${inboundEarlyFlightLinks.length}`);
+
 const toolsFile = 'sfo-tools.html';
 const toolsHtml = pages.get(toolsFile) || '';
 const requiredTools = [
+  'sfo-early-flight-hotel-calculator.html',
   'sfo-parking-vs-rideshare-calculator.html',
   'sfo-airport-parking-millbrae.html',
   'sfo-park-and-fly-hotel-calculator.html',

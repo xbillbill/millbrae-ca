@@ -13,6 +13,7 @@ const CONTEXTS = Object.freeze({
   dining: 'RESTAURANT GUIDE',
   shuttle: 'HOTEL SHUTTLE GUIDE',
   parkfly: 'PARK-AND-FLY CALCULATOR',
+  earlyflight: 'EARLY FLIGHT HOTEL CALCULATOR',
   rideshare: 'PARKING VS RIDESHARE',
   station: 'STATION & SFO GUIDE',
   tools: 'SFO TRAVEL TOOLS HUB'

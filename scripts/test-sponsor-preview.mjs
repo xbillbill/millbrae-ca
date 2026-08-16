@@ -34,6 +34,7 @@ assert.equal(limited.cta.length, 28);
 assert.equal(limited.context, 'PARKING CALCULATOR');
 
 const expandedContexts = {
+  earlyflight: 'EARLY FLIGHT HOTEL CALCULATOR',
   shuttle: 'HOTEL SHUTTLE GUIDE',
   parkfly: 'PARK-AND-FLY CALCULATOR',
   rideshare: 'PARKING VS RIDESHARE',

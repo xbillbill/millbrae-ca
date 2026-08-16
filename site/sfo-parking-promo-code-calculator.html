@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Calculate SFO parking coupon savings from free days, percentage discounts, taxes, and fees—then verify the estimate against the final checkout quote.">
+  <meta name="theme-color" content="#14352d">
+  <meta property="og:title" content="SFO Parking Promo Code &amp; Coupon Calculator">
+  <meta property="og:description" content="Compare the advertised parking discount with the final checkout total before reserving near SFO.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://www.millbrae.ca/sfo-parking-promo-code-calculator.html">
+  <meta property="og:site_name" content="Millbrae Local">
+  <meta property="og:image" content="https://www.millbrae.ca/millbrae-sfo-social.jpg">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Editorial illustration of Millbrae rail, local storefronts, and SFO">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://www.millbrae.ca/millbrae-sfo-social.jpg">
+  <meta name="twitter:image:alt" content="Editorial illustration of Millbrae rail, local storefronts, and SFO">
+  <link rel="canonical" href="https://www.millbrae.ca/sfo-parking-promo-code-calculator.html">
+  <title>SFO Parking Promo Code &amp; Coupon Calculator (2026)</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="guide.css">
+  <link rel="stylesheet" href="parking-discount.css">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Article","headline":"SFO Parking Promo Code and Coupon Calculator","datePublished":"2026-08-16","dateModified":"2026-08-16","author":{"@type":"Organization","name":"Millbrae Local"},"publisher":{"@type":"Organization","name":"Millbrae Local"},"mainEntityOfPage":"https://www.millbrae.ca/sfo-parking-promo-code-calculator.html","about":["SFO parking promo code","SFO parking coupon","airport parking discount","ParkSFO coupon"]},{"@type":"WebApplication","name":"SFO Parking Discount Calculator","url":"https://www.millbrae.ca/sfo-parking-promo-code-calculator.html","applicationCategory":"TravelApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}]}</script>
+</head>
+<body>
+  <header class="site-header"><a class="brand" href="index.html" aria-label="Millbrae Local home"><span>✳</span> Millbrae Local</a><nav aria-label="Main navigation"><a href="restaurants-in-millbrae.html">Restaurants</a><a href="hotels-near-sfo-millbrae.html">Hotels</a><a href="sfo-tools.html" aria-current="page">SFO tools</a><a href="advertise.html">Advertise</a></nav><a class="button button-small" href="#calculator">Calculate savings</a></header>
+
+  <main><article>
+    <header class="guide-hero discount-hero wrap">
+      <p class="eyebrow">Millbrae travel desk · Offers checked August 16, 2026</p>
+      <h1>SFO parking promo code: calculate the checkout savings.</h1>
+      <p class="lede">“Two days free plus 10% off” sounds simple until minimum stays, paid-day math, taxes, fees, and blackout rules hit the total. Estimate the offer, then compare it with checkout.</p>
+      <div class="quick-links" aria-label="Guide sections"><a href="#calculator">Calculator</a><a href="#current">Current official paths</a><a href="#rules">Coupon rules</a><a href="#faq">FAQ</a></div>
+      <p class="editorial-note"><strong>No mystery codes:</strong> This page does not publish unverified coupon codes. SFO says online promotions appear only sometimes. ParkSFO currently publishes free-day and percentage offers, but its listed rates exclude taxes and fees. Always use the final checkout total.</p>
+    </header>
+
+    <section id="calculator" class="discount-calculator-band"><div class="wrap calculator-layout">
+      <div class="calculator-copy"><p class="eyebrow">Editable coupon calculator</p><h2>Test the headline against the bill.</h2><p>Enter the exact free-day and percentage terms shown by the operator. Add taxes and fees from checkout, then paste the final quote to expose any difference.</p><div class="calculator-warning"><strong>Estimate only:</strong> The calculator applies free days first, then the percentage to paid parking days. An operator may calculate its offer differently or restrict dates and products; the checkout quote controls.</div></div>
+      <form class="discount-calculator" data-parking-discount-calculator>
+        <div class="discount-inputs">
+          <label>Parking days<input name="parkingDays" type="number" min="1" max="60" step="1" value="5" inputmode="numeric"></label>
+          <label>Listed daily rate<input name="dailyRate" type="number" min="0" max="500" step="0.01" value="20.95" inputmode="decimal"></label>
+          <label>Free parking days<input name="freeDays" type="number" min="0" max="60" step="1" value="2" inputmode="numeric"></label>
+          <label>Additional percent off<input name="percentOff" type="number" min="0" max="100" step="1" value="10" inputmode="decimal"></label>
+          <label>Taxes and fees<input name="taxesAndFees" type="number" min="0" max="10000" step="0.01" value="0" inputmode="decimal"></label>
+          <label>Final checkout quote<input name="finalQuote" type="number" min="0" max="10000" step="0.01" placeholder="Enter to verify" inputmode="decimal"></label>
+        </div>
+        <div class="discount-results">
+          <div><span>Base total</span><output data-result="base">$104.75</output><small>All entered days + entered fees</small></div>
+          <div><span>Coupon estimate</span><output data-result="estimate">$56.57</output><small>Free days, percentage, then fees</small></div>
+          <div><span>Estimated savings</span><output data-result="savings">$48.19</output><small>Base total − coupon estimate</small></div>
+          <div><span>Effective daily rate</span><output data-result="effective">$11.31</output><small>Estimated total ÷ all parking days</small></div>
+          <div><span>Final checkout quote</span><output data-result="quote">Enter checkout quote</output><small>The authoritative comparison number</small></div>
+        </div>
+        <p class="calculator-verdict" data-calculator-verdict role="status" data-state="waiting">The entered offer estimates $48.19 in savings. Enter the final checkout quote before choosing it.</p>
+        <p class="calculation-note" data-calculator-summary>5 parking days; 2 free; 3 paid; 10% off paid-day subtotal; $0.00 entered taxes and fees.</p>
+      </form>
+    </div></section>
+
+    <section id="current" class="guide-section wrap discount-sponsor-section"><div class="guide-main"><p class="eyebrow">Current official savings paths</p><h2>Check the operator—not a code dump.</h2><p>SFO's support page says to check its booking site for promotions available during the stay. ParkSFO currently publishes offers ranging from one free day for a three-day stay through five free days for a 14-day stay, plus some combined percentage offers. Terms and availability can change.</p><div class="answer-grid"><div><strong>Official SFO booking</strong><p>Promotional availability and the final rate vary by dates and garage.</p><a href="https://parking.flysfo.com/" target="_blank" rel="noopener">Check SFO's live booking quote →</a></div><div><strong>ParkSFO coupons</strong><p>Check minimum stays, blackout treatment, taxes, fees, and the final total.</p><a href="https://www.parksfo.com/coupons/" target="_blank" rel="noopener">Check ParkSFO's current coupons →</a></div></div></div><aside class="sponsor-slot"><p class="tag">OPEN FOUNDING POSITION</p><h3>A parking operator could put a verified offer here.</h3><p>Reach travelers already comparing discount terms and final reservation totals.</p><a class="button" href="advertise.html#preview">Preview a placement →</a><small>No business currently sponsors this calculator.</small></aside></section>
+
+    <section id="rules" class="discount-rules"><div class="wrap rules-layout"><div><p class="eyebrow">Official SFO booking rules</p><h2>Four details can erase the advertised win.</h2><p class="source-links-local"><a href="https://support.flysfo.com/hc/en-us/articles/4946897619603-Do-you-offer-any-promotions-for-booking-parking-online" target="_blank" rel="noopener">SFO promotion guidance →</a><br><br><a href="https://www.flysfo.com/fil/node/10614" target="_blank" rel="noopener">SFO booking terms →</a></p></div><div class="rules-grid">
+      <div><strong>New bookings only</strong><p>SFO says promotional rates are not retroactive and are not guaranteed until booking is completed.</p></div><div><strong>No combining offers</strong><p>SFO says promotional codes cannot be combined with other discounts.</p></div><div><strong>Arrival deadline</strong><p>A code can expire by booking date and also restrict the eligible parking-arrival date.</p></div><div><strong>Overstay at posted rate</strong><p>Time beyond the pre-purchased booking is charged at the current posted rate.</p></div>
+    </div></div></section>
+
+    <section id="faq" class="guide-section wrap faq-section"><div><p class="eyebrow">Before reserving</p><h2>Common questions.</h2></div><div class="faq-list">
+      <details open><summary>Does SFO always have a parking promo code?</summary><p>No. SFO says it sometimes offers online promotions and directs travelers to check the booking site for their stay. A third-party code listing is not proof that a code works for your dates.</p></details>
+      <details><summary>How does the calculator combine free days and percent off?</summary><p>It removes the entered free days, applies the percentage to the remaining paid-day subtotal, then adds the entered taxes and fees. Compare that estimate with checkout because the operator's calculation order can differ.</p></details>
+      <details><summary>Why are taxes and fees separate?</summary><p>ParkSFO's published self-parking rate excludes taxes and fees. Enter the amounts shown at checkout instead of treating the listed daily rate as the final price.</p></details>
+      <details><summary>How do I compare the discounted quote with other options?</summary><p>Use the <a href="sfo-airport-parking-millbrae.html">full SFO parking calculator</a> for BART, official SFO, and private-lot totals, or the <a href="sfo-parking-vs-rideshare-calculator.html">parking vs rideshare calculator</a> for a door-to-door comparison.</p></details>
+    </div></section>
+  </article></main>
+  <footer class="site-footer wrap"><span>© 2026 Millbrae Local</span><span>Independent calculator · Final operator checkout total controls</span><span><a href="advertise.html">Advertise</a></span></footer>
+  <script type="module" src="parking-discount-calculator.js"></script>
+</body>
+</html>

@@ -13,7 +13,7 @@ assert.equal(parkingCategory.plan, 'Category sponsor');
 assert.equal(parkingCategory.price, '$249 / month');
 assert.equal(parkingCategory.primary.label, 'SFO parking calculator');
 assert.equal(parkingCategory.context, 'parking');
-assert.deepEqual(parkingCategory.alternates, ['Parking vs rideshare', 'Park-and-fly calculator', 'SFO travel tools hub']);
+assert.deepEqual(parkingCategory.alternates, ['Parking discount calculator', 'Parking vs rideshare', 'Park-and-fly calculator', 'SFO travel tools hub']);
 
 const restaurantListing = getSponsorFit({ business: 'restaurant', goal: 'listing' });
 assert.equal(restaurantListing.plan, 'Community listing');

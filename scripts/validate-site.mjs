@@ -96,9 +96,14 @@ const layoverFile = 'sfo-layover-hotel-calculator.html';
 const inboundLayoverLinks = [...pages.entries()].filter(([file, html]) => file !== layoverFile && html.includes(`href="${layoverFile}`));
 if (inboundLayoverLinks.length < 3) fail(layoverFile, `expected at least 3 internal entry points, found ${inboundLayoverLinks.length}`);
 
+const parkingDiscountFile = 'sfo-parking-promo-code-calculator.html';
+const inboundParkingDiscountLinks = [...pages.entries()].filter(([file, html]) => file !== parkingDiscountFile && html.includes(`href="${parkingDiscountFile}`));
+if (inboundParkingDiscountLinks.length < 3) fail(parkingDiscountFile, `expected at least 3 internal entry points, found ${inboundParkingDiscountLinks.length}`);
+
 const toolsFile = 'sfo-tools.html';
 const toolsHtml = pages.get(toolsFile) || '';
 const requiredTools = [
+  'sfo-parking-promo-code-calculator.html',
   'sfo-layover-hotel-calculator.html',
   'sfo-early-flight-hotel-calculator.html',
   'sfo-parking-vs-rideshare-calculator.html',

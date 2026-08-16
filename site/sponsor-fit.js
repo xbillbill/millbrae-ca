@@ -7,7 +7,7 @@ const BUSINESSES = Object.freeze({
   }),
   parking: Object.freeze({
     primary: Object.freeze({ label: 'SFO parking calculator', href: 'sfo-airport-parking-millbrae.html' }),
-    alternates: Object.freeze(['Parking vs rideshare', 'Park-and-fly calculator', 'SFO travel tools hub']),
+    alternates: Object.freeze(['Parking discount calculator', 'Parking vs rideshare', 'Park-and-fly calculator', 'SFO travel tools hub']),
     context: 'parking',
     reason: 'Start beside a live parking-cost comparison, where a rate, transfer detail, or promotion can answer the decision directly.'
   }),

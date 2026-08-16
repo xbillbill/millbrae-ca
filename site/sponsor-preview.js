@@ -9,6 +9,7 @@ const LIMITS = Object.freeze({ business: 50, offer: 90, cta: 28 });
 
 const CONTEXTS = Object.freeze({
   parking: 'PARKING CALCULATOR',
+  discount: 'PARKING DISCOUNT CALCULATOR',
   hotels: 'HOTEL GUIDE',
   dining: 'RESTAURANT GUIDE',
   shuttle: 'HOTEL SHUTTLE GUIDE',

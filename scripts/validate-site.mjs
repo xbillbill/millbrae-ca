@@ -74,6 +74,22 @@ const rideshareFile = 'sfo-parking-vs-rideshare-calculator.html';
 const inboundRideshareLinks = [...pages.entries()].filter(([file, html]) => file !== rideshareFile && html.includes(`href="${rideshareFile}`));
 if (inboundRideshareLinks.length < 3) fail(rideshareFile, `expected at least 3 internal entry points, found ${inboundRideshareLinks.length}`);
 
+const toolsFile = 'sfo-tools.html';
+const toolsHtml = pages.get(toolsFile) || '';
+const requiredTools = [
+  'sfo-parking-vs-rideshare-calculator.html',
+  'sfo-airport-parking-millbrae.html',
+  'sfo-park-and-fly-hotel-calculator.html',
+  'millbrae-hotels-sfo-shuttle.html',
+  'hotels-near-sfo-millbrae.html',
+  'millbrae-station-sfo-guide.html'
+];
+for (const requiredTool of requiredTools) {
+  if (!toolsHtml.includes(`href="${requiredTool}"`)) fail(toolsFile, `missing tool link ${requiredTool}`);
+}
+const inboundToolsLinks = [...pages.entries()].filter(([file, html]) => file !== toolsFile && html.includes(`href="${toolsFile}`));
+if (inboundToolsLinks.length < 8) fail(toolsFile, `expected at least 8 internal entry points, found ${inboundToolsLinks.length}`);
+
 if (failures.length) {
   console.error(`Site validation failed (${failures.length}):`);
   failures.forEach((failure) => console.error(`- ${failure}`));

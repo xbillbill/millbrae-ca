@@ -1,7 +1,7 @@
 const BUSINESSES = Object.freeze({
   hotel: Object.freeze({
     primary: Object.freeze({ label: 'Hotels near SFO', href: 'hotels-near-sfo-millbrae.html' }),
-    alternates: Object.freeze(['Early-flight hotel calculator', 'Hotel shuttle guide', 'Park-and-fly calculator', 'SFO travel tools hub']),
+    alternates: Object.freeze(['Layover hotel calculator', 'Early-flight hotel calculator', 'Hotel shuttle guide', 'Park-and-fly calculator', 'SFO travel tools hub']),
     context: 'hotels',
     reason: 'Start beside travelers comparing where to stay, then expand only if another decision page proves relevant.'
   }),

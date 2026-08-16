@@ -6,7 +6,7 @@ assert.equal(defaults.plan, 'Founding feature');
 assert.equal(defaults.price, '$99 / month');
 assert.deepEqual(defaults.primary, { label: 'Hotels near SFO', href: 'hotels-near-sfo-millbrae.html' });
 assert.equal(defaults.context, 'hotels');
-assert.deepEqual(defaults.alternates, ['Early-flight hotel calculator', 'Hotel shuttle guide', 'Park-and-fly calculator', 'SFO travel tools hub']);
+assert.deepEqual(defaults.alternates, ['Layover hotel calculator', 'Early-flight hotel calculator', 'Hotel shuttle guide', 'Park-and-fly calculator', 'SFO travel tools hub']);
 
 const parkingCategory = getSponsorFit({ business: 'parking', goal: 'category' });
 assert.equal(parkingCategory.plan, 'Category sponsor');

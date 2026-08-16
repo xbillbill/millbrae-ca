@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Calculate usable hotel and rest time during an SFO overnight or daytime layover after deplaning, transfers, check-in, airport return, and flight buffers.">
+  <meta name="theme-color" content="#14352d">
+  <meta property="og:title" content="SFO Layover Hotel Calculator: Usable Room Time">
+  <meta property="og:description" content="Turn an SFO layover into a realistic hotel timeline and price each usable hour of rest.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://www.millbrae.ca/sfo-layover-hotel-calculator.html">
+  <meta property="og:site_name" content="Millbrae Local">
+  <meta property="og:image" content="https://www.millbrae.ca/millbrae-sfo-social.jpg">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Editorial illustration of Millbrae rail, local storefronts, and SFO">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://www.millbrae.ca/millbrae-sfo-social.jpg">
+  <meta name="twitter:image:alt" content="Editorial illustration of Millbrae rail, local storefronts, and SFO">
+  <link rel="canonical" href="https://www.millbrae.ca/sfo-layover-hotel-calculator.html">
+  <title>SFO Overnight Layover Hotel Calculator: Usable Room Time (2026)</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="guide.css">
+  <link rel="stylesheet" href="layover.css">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Article","headline":"SFO Overnight Layover Hotel Calculator","datePublished":"2026-08-16","dateModified":"2026-08-16","author":{"@type":"Organization","name":"Millbrae Local"},"publisher":{"@type":"Organization","name":"Millbrae Local"},"mainEntityOfPage":"https://www.millbrae.ca/sfo-layover-hotel-calculator.html","about":["SFO overnight layover","SFO airport hotel","SFO day room","airport layover calculator"]},{"@type":"WebApplication","name":"SFO Layover Hotel Time and Cost Calculator","url":"https://www.millbrae.ca/sfo-layover-hotel-calculator.html","applicationCategory":"TravelApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}]}</script>
+</head>
+<body>
+  <header class="site-header"><a class="brand" href="index.html" aria-label="Millbrae Local home"><span>✳</span> Millbrae Local</a><nav aria-label="Main navigation"><a href="restaurants-in-millbrae.html">Restaurants</a><a href="hotels-near-sfo-millbrae.html" aria-current="page">Hotels</a><a href="sfo-tools.html">SFO tools</a><a href="advertise.html">Advertise</a></nav><a class="button button-small" href="#calculator">Calculate room time</a></header>
+
+  <main><article>
+    <header class="guide-hero layover-hero wrap">
+      <p class="eyebrow">Millbrae travel desk · Updated August 16, 2026</p>
+      <h1>SFO layover hotel: how many usable room hours remain?</h1>
+      <p class="lede">A 10-hour layover is not a 10-hour hotel stay. Build the complete exit, transfer, check-in, rest, and airport-return timeline before paying for a room.</p>
+      <div class="quick-links" aria-label="Guide sections"><a href="#calculator">Calculator</a><a href="#options">SFO rest options</a><a href="#faq">FAQ</a><a href="hotels-near-sfo-millbrae.html">Compare hotels</a></div>
+      <p class="editorial-note"><strong>Independent planning tool:</strong> No hotel paid to appear. SFO is open 24 hours, but only ticketed passengers may remain between 6:00 PM and 8:00 AM, and checkpoint hours vary. Confirm airline, immigration, baggage, hotel, and transfer requirements for your itinerary.</p>
+    </header>
+
+    <section id="calculator" class="layover-calculator-band"><div class="wrap calculator-layout">
+      <div class="calculator-copy"><p class="eyebrow">Editable layover calculator</p><h2>Protect the real rest window.</h2><p>Start with scheduled arrival and departure. Then replace every buffer with the conservative number that fits your terminal, bags, passport, hotel, and transfer.</p><div class="calculator-warning"><strong>Not a connection guarantee:</strong> Delays, immigration, bag recheck, terminal changes, shuttle waits, and security can erase room time. Your airline's connection and check-in rules control.</div></div>
+      <form class="layover-calculator" data-layover-calculator>
+        <div class="core-inputs">
+          <label>SFO arrival<input name="arrivalTime" type="time" value="20:00" required></label>
+          <label>Next flight<input name="departureTime" type="time" value="06:30" required></label>
+          <label>Departure day<select name="departureDay"><option value="next" selected>Next day</option><option value="same">Same day</option></select></label>
+          <label>Arrival process (minutes)<input name="arrivalProcess" type="number" min="0" max="600" step="5" value="60" inputmode="numeric"></label>
+          <label>Airport to hotel (minutes)<input name="outboundTravel" type="number" min="0" max="300" step="5" value="25" inputmode="numeric"></label>
+          <label>Hotel to airport (minutes)<input name="returnTravel" type="number" min="0" max="300" step="5" value="25" inputmode="numeric"></label>
+        </div>
+        <details><summary>Edit room and departure assumptions</summary><div class="assumption-grid">
+          <label>Check-in + settle (minutes)<input name="settleTime" type="number" min="0" max="300" step="5" value="20" inputmode="numeric"></label>
+          <label>Wake + pack (minutes)<input name="packTime" type="number" min="0" max="300" step="5" value="20" inputmode="numeric"></label>
+          <label>Arrive before flight (minutes)<input name="departureLead" type="number" min="0" max="600" step="5" value="120" inputmode="numeric"></label>
+          <label>Hotel room total<input name="hotelCost" type="number" min="0" max="10000" step="1" placeholder="Optional" inputmode="decimal"></label>
+        </div></details>
+        <div class="time-path">
+          <div><span>Reach hotel</span><output data-result="hotel-arrival">9:25 PM</output></div><div><span>Rest window starts</span><output data-result="lights-out">9:45 PM</output></div><div><span>Wake up</span><output data-result="wake-hotel">3:45 AM · next day</output></div><div><span>Leave hotel</span><output data-result="leave-hotel">4:05 AM · next day</output></div><div><span>Back at SFO</span><output data-result="airport-return">4:30 AM · next day</output></div><div><span>Total layover</span><output data-result="layover">10 hr 30 min</output></div>
+        </div>
+        <div class="result-grid"><div><span>Time at hotel</span><output data-result="room">6 hr 40 min</output><small>Arrival through departure</small></div><div><span>Usable rest window</span><output data-result="rest">6 hr</output><small>After settle and pack time</small></div><div><span>Cost per rest hour</span><output data-result="cost-hour">Enter hotel cost</output><small>Room total ÷ usable rest hours</small></div><div><span>Connection buffer</span><output>Editable</output><small>Use airline-specific guidance</small></div></div>
+        <p class="calculator-verdict" data-calculator-verdict role="status" data-state="waiting">This plan leaves 6 hr for rest and 6 hr 40 min at the hotel. Enter the room cost to price the rest window.</p>
+        <p class="calculation-note">“Arrival process” can include deplaning, immigration, bags, customs, and recheck. Transfer fields should include waiting—not just drive time.</p>
+      </form>
+    </div></section>
+
+    <section class="guide-section wrap layover-sponsor-section"><div class="guide-main"><p class="eyebrow">For airport hotels and rest services</p><h2>Put a bookable option beside usable room time.</h2><p>A founding feature can add one clearly labeled offer and direct booking link. Calculator math and official-source guidance remain independent from paid placement.</p><div class="answer-grid"><div><strong>Founding feature</strong><p>Prominent placement and direct booking call to action for $99/month.</p><a href="advertise.html">Review the launch plan →</a></div><div><strong>Travel category sponsor</strong><p>One relevant category-exclusive placement for $249/month.</p><a href="advertise.html#inventory">Review open inventory →</a></div></div></div><aside class="sponsor-slot"><p class="tag">OPEN FOUNDING POSITION</p><h3>A hotel, day room, or transfer service could be featured here.</h3><p>Reach travelers deciding whether their layover leaves enough private rest time.</p><a class="button" href="advertise.html#preview">Preview a placement →</a><small>No business currently sponsors this calculator.</small></aside></section>
+
+    <section id="options" class="layover-options"><div class="wrap option-layout"><div><p class="eyebrow">Official SFO starting points</p><h2>Three ways to protect the layover.</h2></div><div class="option-grid">
+      <article><p class="tag">ON AIRPORT</p><h3>Grand Hyatt at SFO</h3><p>SFO says its on-airport hotel connects directly to AirTrain, reducing road-transfer uncertainty.</p><a href="https://www.flysfo.com/about/construction/completed-projects/hotel" target="_blank" rel="noopener">Check SFO's hotel page →</a></article>
+      <article><p class="tag">PRE-SECURITY</p><h3>Freshen Up</h3><p>SFO lists 24-hour nap rooms and showers in International Terminal G. Contact it for current rates and availability.</p><a href="https://www.flysfo.com/passengers/services/nap-rooms-shower-facilities" target="_blank" rel="noopener">Check SFO's listing →</a></article>
+      <article><p class="tag">AIRPORT AREA</p><h3>Hotel shuttle</h3><p>SFO directs travelers to confirm shuttle availability with the hotel. Waiting belongs in both transfer inputs.</p><a href="millbrae-hotels-sfo-shuttle.html">Compare Millbrae shuttles →</a></article>
+    </div></div></section>
+
+    <section id="faq" class="guide-section wrap faq-section"><div><p class="eyebrow">Before leaving the terminal</p><h2>Common questions.</h2></div><div class="faq-list">
+      <details open><summary>Can I stay inside SFO overnight?</summary><p>SFO says the airport is open 24 hours, but only ticketed passengers are permitted from 6:00 PM to 8:00 AM. Security checkpoints close after the last flight in the boarding area they serve, so verify whether your itinerary lets you remain or return airside.</p></details>
+      <details><summary>How much arrival time should I subtract?</summary><p>Include deplaning plus any immigration, baggage claim, customs, bag recheck, or terminal navigation. A domestic carry-on connection may be faster than an international self-transfer; use the conservative itinerary-specific number.</p></details>
+      <details><summary>How early should I return for the next flight?</summary><p>SFO says to check the airline directly. Most airlines suggest two hours for domestic departures and three hours for international departures; enter the rule that applies to your flight.</p></details>
+      <details><summary>Where can I compare nearby hotels?</summary><p>Compare <a href="hotels-near-sfo-millbrae.html">Millbrae hotels near SFO</a>, verify <a href="millbrae-hotels-sfo-shuttle.html">hotel shuttle schedules</a>, or use the <a href="sfo-early-flight-hotel-calculator.html">early-flight hotel calculator</a> when the trip starts at home.</p></details>
+    </div></section>
+  </article></main>
+  <footer class="site-footer wrap"><span>© 2026 Millbrae Local</span><span>Independent calculator · Verify airline, hotel, and transfer rules</span><span><a href="advertise.html">Advertise</a></span></footer>
+  <script type="module" src="layover-calculator.js"></script>
+</body>
+</html>

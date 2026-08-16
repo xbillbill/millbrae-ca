@@ -14,6 +14,7 @@ const CONTEXTS = Object.freeze({
   shuttle: 'HOTEL SHUTTLE GUIDE',
   parkfly: 'PARK-AND-FLY CALCULATOR',
   earlyflight: 'EARLY FLIGHT HOTEL CALCULATOR',
+  layover: 'LAYOVER HOTEL CALCULATOR',
   rideshare: 'PARKING VS RIDESHARE',
   station: 'STATION & SFO GUIDE',
   tools: 'SFO TRAVEL TOOLS HUB'

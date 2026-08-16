@@ -66,6 +66,10 @@ const shuttleFile = 'millbrae-hotels-sfo-shuttle.html';
 const inboundShuttleLinks = [...pages.entries()].filter(([file, html]) => file !== shuttleFile && html.includes(`href="${shuttleFile}`));
 if (inboundShuttleLinks.length < 3) fail(shuttleFile, `expected at least 3 internal entry points, found ${inboundShuttleLinks.length}`);
 
+const parkFlyFile = 'sfo-park-and-fly-hotel-calculator.html';
+const inboundParkFlyLinks = [...pages.entries()].filter(([file, html]) => file !== parkFlyFile && html.includes(`href="${parkFlyFile}`));
+if (inboundParkFlyLinks.length < 3) fail(parkFlyFile, `expected at least 3 internal entry points, found ${inboundParkFlyLinks.length}`);
+
 if (failures.length) {
   console.error(`Site validation failed (${failures.length}):`);
   failures.forEach((failure) => console.error(`- ${failure}`));

@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Compare an SFO park-and-fly hotel package with a room plus separate airport parking. Enter live quotes, parking days, transfer costs, credits, and extra-day rates.">
+  <meta name="theme-color" content="#14352d">
+  <meta property="og:title" content="SFO Park and Fly Hotel Break-Even Calculator">
+  <meta property="og:description" content="Find the all-in cost and break-even price of an SFO hotel-and-parking package using editable assumptions.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://www.millbrae.ca/sfo-park-and-fly-hotel-calculator.html">
+  <link rel="canonical" href="https://www.millbrae.ca/sfo-park-and-fly-hotel-calculator.html">
+  <title>SFO Park and Fly Hotel Calculator: Package vs Parking (2026)</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="guide.css">
+  <link rel="stylesheet" href="park-fly.css">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Article","headline":"SFO Park and Fly Hotel Break-Even Calculator","datePublished":"2026-08-16","dateModified":"2026-08-16","author":{"@type":"Organization","name":"Millbrae Local"},"publisher":{"@type":"Organization","name":"Millbrae Local"},"mainEntityOfPage":"https://www.millbrae.ca/sfo-park-and-fly-hotel-calculator.html","about":["SFO Park and Fly","SFO hotel parking","Millbrae airport hotels","airport parking calculator"]},{"@type":"WebApplication","name":"SFO Park and Fly Hotel Break-Even Calculator","url":"https://www.millbrae.ca/sfo-park-and-fly-hotel-calculator.html","applicationCategory":"TravelApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}]}</script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="Millbrae Local home"><span>✳</span> Millbrae Local</a>
+    <nav aria-label="Main navigation">
+      <a href="restaurants-in-millbrae.html">Restaurants</a>
+      <a href="hotels-near-sfo-millbrae.html" aria-current="page">Hotels</a>
+      <a href="millbrae-station-sfo-guide.html">SFO guide</a>
+      <a href="advertise.html">Advertise</a>
+    </nav>
+    <a class="button button-small" href="#calculator">Compare live quotes</a>
+  </header>
+
+  <main>
+    <article>
+      <header class="guide-hero park-fly-hero wrap">
+        <p class="eyebrow">Millbrae travel desk · Offers checked August 16, 2026</p>
+        <h1>SFO Park and Fly: find the package break-even price.</h1>
+        <p class="lede">A room bundled with airport parking can beat separate bookings—but only after extra parking days, transportation, credits, taxes, and fees are on the same line.</p>
+        <div class="quick-links" aria-label="Guide sections">
+          <a href="#offers">Current offers</a><a href="#calculator">Calculator</a><a href="#check">What to check</a><a href="#faq">FAQ</a>
+        </div>
+        <p class="editorial-note"><strong>Independent calculator:</strong> No hotel paid to appear. Package details come from official hotel websites. Links currently go directly to hotels or public agencies; Millbrae Local receives no booking commission.</p>
+      </header>
+
+      <section id="offers" class="offer-section wrap">
+        <div class="offer-heading">
+          <div><p class="eyebrow">Three Millbrae starting points</p><h2>Use the offer—not the package name.</h2></div>
+          <p>Inventory and final prices vary by date. Open the official booking path and enter the after-tax quote below.</p>
+        </div>
+        <div class="offer-grid">
+          <article>
+            <p class="tag">UP TO 10 PARKING DAYS</p>
+            <h3>The Dylan Hotel at SFO</h3>
+            <p>The official offer includes one room night, up to 10 days of parking, and a $25 transportation credit. Its promotion lists $11 for each additional parking day and runs through December 31, 2026.</p>
+            <a href="https://www.dylansfo.com/promos" target="_blank" rel="noopener">Check the official offer →</a>
+          </article>
+          <article>
+            <p class="tag">7 PARKING DAYS · RIDESHARE CREDIT</p>
+            <h3>El Rancho Inn</h3>
+            <p>The hotel's Park, Sleep &amp; Fly offer advertises seven free parking days and a $30 rideshare reimbursement credit. Confirm the live room total and any additional-day charge.</p>
+            <a href="https://www.elranchoinn.com/specials-offers" target="_blank" rel="noopener">Check the official offer →</a>
+          </article>
+          <article>
+            <p class="tag">EXTENDED PARKING · DETAILS BY DATE</p>
+            <h3>Fairfield Inn &amp; Suites</h3>
+            <p>Marriott lists Park Stay and Go packages with accommodations and extended parking, but the public overview does not state a universal included-day allowance. Use the terms shown for your dates.</p>
+            <a href="https://www.marriott.com/en-us/hotels/sfome-fairfield-inn-and-suites-san-francisco-airport-millbrae/overview/" target="_blank" rel="noopener">Check official rates and terms →</a>
+          </article>
+        </div>
+      </section>
+
+      <section id="calculator" class="package-calculator-band">
+        <div class="wrap calculator-layout">
+          <div class="calculator-copy">
+            <p class="eyebrow">Editable break-even calculator</p>
+            <h2>Compare two complete plans.</h2>
+            <p>Enter the final package and room-only totals from live booking screens. The starting assumptions use Dylan's published parking allowance and credit, plus SFO's current $27 long-term parking rate; change every field when comparing another offer.</p>
+            <div class="calculator-warning"><strong>Not a booking quote:</strong> Include all taxes, destination fees, resort fees, and required transportation costs. Do not count a credit unless you expect to qualify for it.</div>
+          </div>
+          <form class="park-fly-calculator" data-park-fly-calculator>
+            <div class="quote-grid">
+              <label>Parking days<input name="parkingDays" type="number" min="1" max="60" step="1" value="7" inputmode="numeric"></label>
+              <label>Park-and-fly package total<input name="packageQuote" type="number" min="0" max="10000" step="0.01" placeholder="Enter live total" inputmode="decimal"></label>
+              <label>Comparable room-only total<input name="roomOnlyQuote" type="number" min="0" max="10000" step="0.01" placeholder="Enter live total" inputmode="decimal"></label>
+              <label>Separate parking / day<input name="separateParkingRate" type="number" min="0" max="500" step="0.01" value="27.00" inputmode="decimal"></label>
+            </div>
+            <details>
+              <summary>Edit package and transfer assumptions</summary>
+              <div class="assumption-grid">
+                <label>Parking days included<input name="includedDays" type="number" min="0" max="60" step="1" value="10" inputmode="numeric"></label>
+                <label>Extra parking / day<input name="extraDayRate" type="number" min="0" max="500" step="0.01" value="11.00" inputmode="decimal"></label>
+                <label>Package transfer total<input name="packageTransfer" type="number" min="0" max="1000" step="0.01" value="0" inputmode="decimal"></label>
+                <label>Package transport credit<input name="transportCredit" type="number" min="0" max="1000" step="0.01" value="25.00" inputmode="decimal"></label>
+                <label>Separate-plan transfer total<input name="separateTransfer" type="number" min="0" max="1000" step="0.01" value="0" inputmode="decimal"></label>
+              </div>
+            </details>
+            <div class="result-grid">
+              <div><span>Package all-in</span><output data-result="package">Enter package quote</output><small>Quote + extra days + transfer after credit</small></div>
+              <div><span>Room + separate parking</span><output data-result="alternative">Enter room quote</output><small>Room quote + parking + entered transfer</small></div>
+              <div><span>Separate parking only</span><output data-result="parking">$189.00</output><small>Without the hotel room</small></div>
+              <div><span>Break-even package quote</span><output data-result="break-even">Enter room quote</output><small>Highest package quote before it costs more</small></div>
+            </div>
+            <p class="calculator-verdict" data-calculator-verdict role="status" data-state="waiting">Enter both live quotes to calculate the difference.</p>
+            <p class="calculation-note" data-calculator-summary>7 parking days; 0 beyond the package allowance; $0.00 in package extras.</p>
+          </form>
+        </div>
+      </section>
+
+      <section class="guide-section wrap park-fly-sponsor-section">
+        <div class="guide-main">
+          <p class="eyebrow">For hotels, parking lots, and travel services</p>
+          <h2>Put a live offer beside the break-even decision.</h2>
+          <p>A founding feature can add a clearly labeled offer and direct booking link. Calculator math and editorial facts remain independent from paid placement.</p>
+          <div class="answer-grid">
+            <div><strong>Founding feature</strong><p>Prominent placement and a direct booking call to action for $99/month.</p><a href="advertise.html">Review the launch plan →</a></div>
+            <div><strong>Travel category sponsor</strong><p>One category-exclusive placement with a custom offer for $249/month.</p><a href="advertise.html">Review sponsor terms →</a></div>
+          </div>
+        </div>
+        <aside class="sponsor-slot">
+          <p class="tag">OPEN FOUNDING POSITION</p>
+          <h3>A hotel or parking offer could be featured here.</h3>
+          <p>Reach travelers while they are calculating the package's actual value.</p>
+          <a class="button" href="advertise.html">Review launch terms →</a>
+          <small>No business currently sponsors this calculator.</small>
+        </aside>
+      </section>
+
+      <section id="check" class="decision-band">
+        <div class="wrap decision-layout">
+          <div><p class="eyebrow">Before booking</p><h2>Five terms can reverse the result.</h2></div>
+          <div class="decision-list-checks">
+            <div><strong>Included parking clock</strong><p>Confirm whether the allowance means calendar days, nights, or 24-hour periods.</p></div>
+            <div><strong>Extra-day rate</strong><p>Price every day beyond the package allowance, including a late return.</p></div>
+            <div><strong>Transfer mechanics</strong><p>A reimbursement credit is not the same as a complimentary shuttle.</p></div>
+            <div><strong>Cancellation window</strong><p>Package rates can have stricter cancellation terms than ordinary room rates.</p></div>
+            <div><strong>Parking eligibility</strong><p>Book the named parking package; an ordinary room reservation may not allow extended parking.</p></div>
+            <div><strong>All-in quote</strong><p>Use totals after taxes and mandatory fees on both sides of the comparison.</p></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="faq" class="guide-section wrap faq-section">
+        <div><p class="eyebrow">Calculator help</p><h2>Common questions.</h2></div>
+        <div class="faq-list">
+          <details open><summary>What is the break-even package quote?</summary><p>It is the highest package room quote that keeps the package's all-in cost equal to the entered room-only, separate-parking, and transfer plan. A lower package quote favors the package; a higher one favors the separate plan.</p></details>
+          <details><summary>Does “free parking” mean the package is cheaper?</summary><p>No. The parking is bundled into the package price. Compare the final package quote with the room-only quote plus every separate parking and transfer cost.</p></details>
+          <details><summary>Why does the calculator start with $27 per day?</summary><p>SFO currently lists a $27 maximum per 24 hours for Long-Term Parking, including taxes and fees. Replace it with the final rate from any parking option you are actually considering.</p></details>
+          <details><summary>Can I compare BART or an off-airport lot instead?</summary><p>Yes. Use the <a href="sfo-airport-parking-millbrae.html">SFO parking calculator</a> to get the separate parking-and-transfer total, then enter the relevant daily and transfer assumptions here.</p></details>
+        </div>
+      </section>
+    </article>
+  </main>
+
+  <footer class="site-footer wrap"><span>© 2026 Millbrae Local</span><span>Independent calculator · Verify live hotel, parking, and transfer terms</span><span><a href="advertise.html">Advertise</a></span></footer>
+  <script type="module" src="park-fly-calculator.js"></script>
+</body>
+</html>

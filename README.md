@@ -8,7 +8,7 @@ A no-cost local discovery and founding-partner lead-generation publication for `
 - Founding partners pay for featured placement and qualified local attention.
 - The contact form opens a prefilled email to `bill.wang@bavi.work`, so lead delivery has no service cost.
 - Launch pricing is $99/month for featured businesses and $249/month for an exclusive category sponsor.
-- High-intent restaurant, hotel, airport-transit, parking, and hotel-shuttle guides create sponsor inventory around real decisions.
+- High-intent restaurant, hotel, airport-transit, parking, hotel-shuttle, and park-and-fly tools create sponsor inventory around real decisions.
 
 ## Run locally
 

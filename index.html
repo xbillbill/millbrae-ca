@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A practical guide to eating, exploring, and getting things done in Millbrae, California.">
+  <meta name="theme-color" content="#14352d">
+  <title>Millbrae Local — Your shortcut to a better day in town</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="Millbrae Local home"><span>✳</span> Millbrae Local</a>
+    <nav aria-label="Main navigation">
+      <a href="#discover">Discover</a>
+      <a href="#spots">Local spots</a>
+      <a href="#list">Get listed</a>
+    </nav>
+    <a class="button button-small" href="#list">Reach local customers</a>
+  </header>
+
+  <main id="top">
+    <section class="hero wrap">
+      <div class="hero-copy">
+        <p class="eyebrow">Made for Millbrae, by people who love Millbrae</p>
+        <h1>Your shortcut to a better day in town.</h1>
+        <p class="lede">Find a good meal, a useful service, or your next neighborhood favorite — without scrolling through a dozen tabs.</p>
+        <div class="hero-actions">
+          <a class="button" href="#discover">Explore the guide <span>↘</span></a>
+          <a class="text-link" href="#list">Own a local business? Get discovered →</a>
+        </div>
+      </div>
+      <div class="hero-card" aria-label="Millbrae local facts">
+        <div class="sun">☼</div>
+        <p class="card-label">TODAY IN MILLBRAE</p>
+        <p class="card-title">A little city with<br><em>excellent timing.</em></p>
+        <div class="card-bottom"><span>✦ Easy by BART</span><span>✦ Close to SFO</span></div>
+      </div>
+    </section>
+
+    <section id="discover" class="section wrap">
+      <div class="section-heading">
+        <div><p class="eyebrow">Start here</p><h2>What are you looking for?</h2></div>
+        <p class="section-note">Curated shortcuts for locals, visitors, and people passing through.</p>
+      </div>
+      <div class="category-grid">
+        <a class="category category-food" href="#spots"><span class="category-icon">◒</span><span><b>Eat & drink</b><small>Worth leaving home for</small></span><strong>↗</strong></a>
+        <a class="category category-do" href="#spots"><span class="category-icon">✣</span><span><b>Get things done</b><small>Services that save you time</small></span><strong>↗</strong></a>
+        <a class="category category-go" href="#spots"><span class="category-icon">⌁</span><span><b>Go & explore</b><small>Easy plans for your day</small></span><strong>↗</strong></a>
+      </div>
+    </section>
+
+    <section id="spots" class="section section-tinted">
+      <div class="wrap">
+        <div class="section-heading"><div><p class="eyebrow">The local shortlist</p><h2>Good places, less guesswork.</h2></div><a class="text-link" href="#list">Suggest a spot →</a></div>
+        <div class="spot-grid">
+          <article class="spot-card"><div class="spot-image image-coffee"><span>☕</span></div><div class="spot-content"><p class="tag">COFFEE · BREAKFAST</p><h3>Start the morning well</h3><p>A short list of neighborhood coffee, pastries, and easy breakfast options is coming next.</p><a href="#list">Recommend a business →</a></div></article>
+          <article class="spot-card featured"><div class="spot-image image-dinner"><span>✦</span></div><div class="spot-content"><p class="tag">DINNER · DATE NIGHT</p><h3>Make tonight easy</h3><p>Help your next favorite restaurant get found by locals who are ready to make plans.</p><a href="#list">Claim this category →</a></div></article>
+          <article class="spot-card"><div class="spot-image image-weekend"><span>◎</span></div><div class="spot-content"><p class="tag">WEEKEND · OUTDOORS</p><h3>One good hour outside</h3><p>Simple ideas for parks, walks, and low-effort adventures around the Peninsula.</p><a href="#list">Partner with us →</a></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="list" class="section wrap list-section">
+      <div class="list-panel">
+        <div><p class="eyebrow">For local businesses</p><h2>Be the answer<br>when someone asks.</h2><p>Millbrae Local is opening a small number of founding partner spots for businesses that want more qualified local attention.</p><ul><li>Featured placement in a relevant guide</li><li>Direct inquiry link to your business</li><li>Founding partner pricing held for 12 months</li></ul></div>
+        <form class="interest-form" id="interest-form">
+          <label for="name">Your name</label><input id="name" name="name" required autocomplete="name" placeholder="Alex Chen">
+          <label for="business">Business name</label><input id="business" name="business" required placeholder="Your business">
+          <label for="email">Best email</label><input id="email" name="email" type="email" required autocomplete="email" placeholder="you@example.com">
+          <label for="note">What do you offer?</label><textarea id="note" name="note" rows="3" placeholder="Tell us what locals should know."></textarea>
+          <button class="button" type="submit">Request founding partner info <span>→</span></button>
+          <p class="form-note">No payment today. We’ll reply with details.</p>
+          <p class="success" id="success" role="status" hidden>Thanks — your interest is noted. We’ll be in touch.</p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer wrap"><span>© 2026 Millbrae Local</span><span>Built for the neighborhood.</span><a href="mailto:bill.wang@bavi.work">Contact</a></footer>
+  <script src="script.js"></script>
+</body>
+</html>

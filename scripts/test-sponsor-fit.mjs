@@ -2,15 +2,15 @@ import assert from 'node:assert/strict';
 import { getSponsorFit } from '../site/sponsor-fit.js';
 
 const defaults = getSponsorFit();
-assert.equal(defaults.plan, 'Founding feature');
-assert.equal(defaults.price, '$99 / month');
+assert.equal(defaults.plan, 'Future featured placement');
+assert.equal(defaults.price, 'Not open');
 assert.deepEqual(defaults.primary, { label: 'Hotels near SFO', href: 'hotels-near-sfo-millbrae.html' });
 assert.equal(defaults.context, 'hotels');
 assert.deepEqual(defaults.alternates, ['Layover hotel calculator', 'Early-flight hotel calculator', 'Hotel shuttle guide', 'Park-and-fly calculator', 'SFO travel tools hub']);
 
 const parkingCategory = getSponsorFit({ business: 'parking', goal: 'category' });
-assert.equal(parkingCategory.plan, 'Category sponsor');
-assert.equal(parkingCategory.price, '$249 / month');
+assert.equal(parkingCategory.plan, 'Future category sponsor');
+assert.equal(parkingCategory.price, 'Not open');
 assert.equal(parkingCategory.primary.label, 'SFO parking calculator');
 assert.equal(parkingCategory.context, 'parking');
 assert.deepEqual(parkingCategory.alternates, ['Parking discount calculator', 'Parking vs rideshare', 'Park-and-fly calculator', 'SFO travel tools hub']);

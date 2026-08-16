@@ -1,13 +1,14 @@
 # Millbrae Local
 
-A no-cost local discovery and founding-partner lead-generation publication for `millbrae.ca`.
+A no-cost local discovery publication and self-service community business directory for `millbrae.ca`.
 
 ## Monetization model
 
 - Free organic discovery content builds a local audience.
-- Founding partners pay for featured placement and qualified local attention.
-- The contact form opens a prefilled email to `bill.wang@bavi.work`, so lead delivery has no service cost.
-- Launch pricing is $99/month for featured businesses and $249/month for an exclusive category sponsor.
+- Eligible Millbrae businesses can publish and maintain a basic community listing at no charge.
+- Social sign-in and server-side policy checks keep publishing self-service without collecting application email.
+- Paid placement remains separate from free community listings and will be selected category by category.
+- Paid self-service placement is deferred until the first chargeable category is selected from real directory demand.
 - High-intent restaurant, hotel, airport-transit, parking, hotel-shuttle, and park-and-fly tools create sponsor inventory around real decisions.
 
 ## Run locally
@@ -24,3 +25,7 @@ Open <http://localhost:8000>.
 Pushes to `main` deploy the `site/` directory to GitHub Pages. The deployment workflow then submits every sitemap URL to IndexNow.
 
 Analytics are intentionally deferred until a privacy-conscious provider is selected.
+
+## Self-service listings
+
+The listing application uses Google social sign-in, a Lambda Function URL, and a provisioned DynamoDB table. Production configuration lives in `site/aws-config.js`; the infrastructure template documents the deployed no-cost architecture. See [docs/self-service-listings.md](docs/self-service-listings.md) for the policy, guardrails, and verification checklist.

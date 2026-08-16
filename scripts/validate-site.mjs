@@ -1,7 +1,8 @@
 import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 
-const root = resolve(import.meta.dirname, '..', 'site');
+const projectRoot = resolve(import.meta.dirname, '..');
+const root = join(projectRoot, 'site');
 const htmlFiles = readdirSync(root).filter((file) => file.endsWith('.html')).sort();
 const failures = [];
 const pages = new Map(htmlFiles.map((file) => [file, readFileSync(join(root, file), 'utf8')]));
@@ -44,7 +45,8 @@ for (const [file, html] of pages) {
     const raw = link[1];
     if (/^(?:https?:|mailto:|tel:|data:)/i.test(raw)) continue;
 
-    const [pathPart, hash] = raw.split('#');
+    const [rawPath, hash] = raw.split('#');
+    const pathPart = rawPath.split('?')[0];
     const targetFile = pathPart || file;
     const targetPath = resolve(dirname(join(root, file)), targetFile);
     if (!existsSync(targetPath)) {
@@ -129,6 +131,35 @@ if (inboundToolsLinks.length < 8) fail(toolsFile, `expected at least 8 internal 
 const advertiseHtml = pages.get('advertise.html') || '';
 if (!advertiseHtml.includes('data-sponsor-fit-tool')) fail('advertise.html', 'missing sponsor-fit recommender');
 if (!advertiseHtml.includes('data-sponsor-preview-tool')) fail('advertise.html', 'missing sponsor preview');
+if (!advertiseHtml.includes('href="list-your-business.html"')) fail('advertise.html', 'free listing must use self-service flow');
+
+const directoryHtml = pages.get('community.html') || '';
+if (!directoryHtml.includes('data-listing-grid')) fail('community.html', 'missing dynamic listing directory');
+if (!directoryHtml.includes('src="community-listings.js')) fail('community.html', 'missing directory controller');
+
+const listingFormHtml = pages.get('list-your-business.html') || '';
+if (!listingFormHtml.includes('data-provider-buttons')) fail('list-your-business.html', 'missing social sign-in controls');
+if (!listingFormHtml.includes('data-listing-form')) fail('list-your-business.html', 'missing self-service listing form');
+if (!listingFormHtml.includes('name="authorizedToList"')) fail('list-your-business.html', 'missing representative attestation');
+if (!listingFormHtml.includes('name="accurateAndLawful"')) fail('list-your-business.html', 'missing content attestation');
+if (/mailto:/i.test(listingFormHtml)) fail('list-your-business.html', 'self-service flow must not depend on email');
+if (/type="email"/i.test(listingFormHtml)) fail('list-your-business.html', 'self-service flow must not collect email');
+
+const awsConfig = readFileSync(join(root, 'aws-config.js'), 'utf8');
+for (const setting of ['enabled', 'apiBaseUrl', 'googleClientId']) {
+  if (!awsConfig.includes(setting)) fail('aws-config.js', `missing ${setting} configuration`);
+}
+
+const infrastructurePath = join(projectRoot, 'infrastructure', 'template.yaml');
+if (!existsSync(infrastructurePath)) {
+  fail('infrastructure/template.yaml', 'missing AWS self-service stack');
+} else {
+  const infrastructure = readFileSync(infrastructurePath, 'utf8');
+  if (!/BillingMode: PROVISIONED[\s\S]*ReadCapacityUnits: 1[\s\S]*WriteCapacityUnits: 1/.test(infrastructure)) fail('infrastructure/template.yaml', 'DynamoDB must stay provisioned at 1 read and 1 write unit');
+  if (!infrastructure.includes('ReservedConcurrentExecutions: 2')) fail('infrastructure/template.yaml', 'missing Lambda concurrency guardrail');
+  if (infrastructure.includes('AWS::Cognito')) fail('infrastructure/template.yaml', 'direct Google SSO should not provision Cognito');
+  if (!infrastructure.includes('RetentionInDays: 3')) fail('infrastructure/template.yaml', 'missing short log retention');
+}
 
 const parkingHtml = pages.get('sfo-airport-parking-millbrae.html') || '';
 if (!parkingHtml.includes('<title>SFO Parking Cost: 3, 5, 7 &amp; 14 Days + Calculator (2026)</title>')) fail('sfo-airport-parking-millbrae.html', 'missing exact-duration search title');

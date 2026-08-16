@@ -33,19 +33,19 @@ const BUSINESSES = Object.freeze({
 
 const GOALS = Object.freeze({
   single: Object.freeze({
-    plan: 'Founding feature',
-    price: '$99 / month',
-    summary: 'One prominent, clearly labeled placement at a focused customer decision.'
+    plan: 'Future featured placement',
+    price: 'Not open',
+    summary: 'A possible clearly labeled placement at a focused customer decision after a category is selected.'
   }),
   category: Object.freeze({
-    plan: 'Category sponsor',
-    price: '$249 / month',
-    summary: 'One relevant business category reserved across an agreed scope, with exact pages confirmed before publishing.'
+    plan: 'Future category sponsor',
+    price: 'Not open',
+    summary: 'A possible category sponsorship after directory demand identifies the first category to launch.'
   }),
   listing: Object.freeze({
     plan: 'Community listing',
     price: '$0',
-    summary: 'An editorially reviewed business name and direct link, without paid placement or guaranteed inclusion.'
+    summary: 'A self-service business listing that publishes after automated identity and content-policy checks.'
   })
 });
 

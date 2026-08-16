@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Browse free community-submitted business listings in Millbrae, California, with direct website and phone links.">
+  <meta name="theme-color" content="#14352d">
+  <meta property="og:title" content="Millbrae Community Business Directory">
+  <meta property="og:description" content="A free, self-service directory for eligible local businesses in Millbrae, California.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.millbrae.ca/community.html">
+  <meta property="og:site_name" content="Millbrae Local">
+  <meta property="og:image" content="https://www.millbrae.ca/millbrae-sfo-social.jpg">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Editorial illustration of Millbrae rail, local storefronts, and SFO">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://www.millbrae.ca/millbrae-sfo-social.jpg">
+  <meta name="twitter:image:alt" content="Editorial illustration of Millbrae rail, local storefronts, and SFO">
+  <link rel="canonical" href="https://www.millbrae.ca/community.html">
+  <title>Millbrae Community Business Directory | Millbrae Local</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="community.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="Millbrae Local home"><span>✳</span> Millbrae Local</a>
+    <nav aria-label="Main navigation"><a href="community.html" aria-current="page">Directory</a><a href="restaurants-in-millbrae.html">Restaurants</a><a href="sfo-tools.html">SFO tools</a><a href="advertise.html">Advertise</a></nav>
+    <a class="button button-small" href="list-your-business.html">Add your business</a>
+  </header>
+  <main>
+    <section class="directory-hero wrap">
+      <p class="eyebrow">Free community directory</p>
+      <h1>Millbrae businesses, directly from the people behind them.</h1>
+      <p class="lede">Browse basic local business details maintained by verified representatives. Community listings are free and clearly separate from future paid placements.</p>
+      <div class="directory-actions"><a class="button" href="list-your-business.html">List your business free →</a><a class="text-link" href="#directory">Browse listings ↓</a></div>
+    </section>
+    <section class="trust-strip"><div class="wrap trust-grid"><div><strong>Verified sign-in</strong><span>Every publisher uses an approved social identity.</span></div><div><strong>Millbrae only</strong><span>Listings require a 94030 business address.</span></div><div><strong>Owner maintained</strong><span>Representatives can edit or remove their own listing.</span></div></div></section>
+    <section class="directory-section wrap" id="directory">
+      <div class="directory-meta"><div><p class="eyebrow">Community listings</p><h2>Find a local business</h2><p class="directory-status" data-directory-status aria-live="polite">Loading community listings…</p></div><span class="directory-count" data-listing-count>Loading</span></div>
+      <div class="listing-grid" data-listing-grid></div>
+    </section>
+  </main>
+  <footer class="site-footer wrap"><span>© 2026 Millbrae Local</span><span>Community-submitted listings · Verify details with each business</span><span><a href="list-your-business.html">Add or manage a listing</a> · <a href="advertise.html">Advertise</a></span></footer>
+  <script type="module" src="community-listings.js?v=20260816"></script>
+</body>
+</html>

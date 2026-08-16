@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "test": "node scripts/test-parking-calculator.mjs && node scripts/test-parking-discount-calculator.mjs && node scripts/test-park-fly-calculator.mjs && node scripts/test-rideshare-calculator.mjs && node scripts/test-early-flight-calculator.mjs && node scripts/test-layover-calculator.mjs && node scripts/test-sponsor-fit.mjs && node scripts/test-sponsor-preview.mjs && node scripts/validate-site.mjs",
+    "test": "node scripts/test-parking-calculator.mjs && node scripts/test-parking-discount-calculator.mjs && node scripts/test-park-fly-calculator.mjs && node scripts/test-rideshare-calculator.mjs && node scripts/test-early-flight-calculator.mjs && node scripts/test-layover-calculator.mjs && node scripts/test-sponsor-fit.mjs && node scripts/test-sponsor-preview.mjs && node scripts/test-listing-policy.mjs && node scripts/test-backend-listing-policy.mjs && node scripts/validate-site.mjs",
     "test:site": "node scripts/validate-site.mjs"
   }
 }

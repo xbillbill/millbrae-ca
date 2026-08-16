@@ -1,0 +1,108 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Millbrae Local no-cost self-service community listings
+
+Parameters:
+  SiteOrigin:
+    Type: String
+    Default: https://www.millbrae.ca
+  GoogleClientId:
+    Type: String
+
+Resources:
+  ListingsTable:
+    Type: AWS::DynamoDB::Table
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
+    Properties:
+      BillingMode: PROVISIONED
+      ProvisionedThroughput:
+        ReadCapacityUnits: 1
+        WriteCapacityUnits: 1
+      AttributeDefinitions:
+        - AttributeName: ownerId
+          AttributeType: S
+        - AttributeName: directoryPk
+          AttributeType: S
+        - AttributeName: directorySk
+          AttributeType: S
+      KeySchema:
+        - AttributeName: ownerId
+          KeyType: HASH
+      GlobalSecondaryIndexes:
+        - IndexName: directory-index
+          KeySchema:
+            - AttributeName: directoryPk
+              KeyType: HASH
+            - AttributeName: directorySk
+              KeyType: RANGE
+          Projection:
+            ProjectionType: ALL
+          ProvisionedThroughput:
+            ReadCapacityUnits: 1
+            WriteCapacityUnits: 1
+      SSESpecification:
+        SSEEnabled: true
+      TimeToLiveSpecification:
+        AttributeName: expiresAt
+        Enabled: true
+
+  ListingsFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: millbrae-local-listings
+      CodeUri: ../backend/
+      Handler: index.handler
+      Runtime: nodejs22.x
+      Architectures:
+        - arm64
+      MemorySize: 128
+      Timeout: 5
+      ReservedConcurrentExecutions: 2
+      Environment:
+        Variables:
+          TABLE_NAME: !Ref ListingsTable
+          GOOGLE_CLIENT_ID: !Ref GoogleClientId
+          DAILY_UPDATE_LIMIT: '10'
+      Policies:
+        - Statement:
+            - Effect: Allow
+              Action:
+                - dynamodb:GetItem
+                - dynamodb:PutItem
+                - dynamodb:DeleteItem
+                - dynamodb:UpdateItem
+                - dynamodb:Query
+              Resource:
+                - !GetAtt ListingsTable.Arn
+                - !Sub ${ListingsTable.Arn}/index/directory-index
+      FunctionUrlConfig:
+        AuthType: NONE
+        Cors:
+          AllowOrigins:
+            - !Ref SiteOrigin
+            - http://localhost:8000
+          AllowMethods:
+            - GET
+            - PUT
+            - DELETE
+          AllowHeaders:
+            - authorization
+            - content-type
+          MaxAge: 600
+
+  ListingsFunctionLogGroup:
+    Type: AWS::Logs::LogGroup
+    DeletionPolicy: Delete
+    UpdateReplacePolicy: Delete
+    Properties:
+      LogGroupName: !Sub /aws/lambda/${ListingsFunction}
+      RetentionInDays: 3
+
+Outputs:
+  ApiBaseUrl:
+    Description: Paste this value into site/aws-config.js
+    Value: !GetAtt ListingsFunctionUrl.FunctionUrl
+  GoogleClientId:
+    Description: Public Google web client ID used by the site and Lambda
+    Value: !Ref GoogleClientId

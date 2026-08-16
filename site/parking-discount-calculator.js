@@ -12,7 +12,7 @@ export function calculateParkingDiscount(values = {}) {
   const parkingDays = Math.max(1, Math.ceil(nonNegative(values.parkingDays, 5)));
   const dailyRate = nonNegative(values.dailyRate, 20.95);
   const freeDays = Math.min(parkingDays, Math.floor(nonNegative(values.freeDays, 2)));
-  const percentOff = Math.min(100, nonNegative(values.percentOff, 10));
+  const percentOff = Math.min(100, nonNegative(values.percentOff, 5));
   const taxesAndFees = nonNegative(values.taxesAndFees);
   const finalQuote = optionalAmount(values.finalQuote);
   const paidDays = parkingDays - freeDays;
@@ -90,5 +90,15 @@ if (calculator) {
 
   calculator.addEventListener('submit', (event) => event.preventDefault());
   calculator.addEventListener('input', render);
+  document.querySelectorAll('[data-discount-preset]').forEach((preset) => {
+    preset.addEventListener('click', () => {
+      calculator.elements.parkingDays.value = preset.dataset.days;
+      calculator.elements.freeDays.value = preset.dataset.freeDays;
+      calculator.elements.percentOff.value = preset.dataset.percentOff;
+      calculator.elements.taxesAndFees.value = '0';
+      calculator.elements.finalQuote.value = '';
+      render();
+    });
+  });
   render();
 }

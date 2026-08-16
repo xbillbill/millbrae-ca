@@ -3,13 +3,13 @@ import { calculateParkingDiscount } from '../site/parking-discount-calculator.js
 
 const defaults = calculateParkingDiscount({
   parkingDays: 5, dailyRate: 20.95, freeDays: 2,
-  percentOff: 10, taxesAndFees: 0, finalQuote: ''
+  percentOff: 5, taxesAndFees: 0, finalQuote: ''
 });
 assert.equal(defaults.paidDays, 3);
 assert.equal(defaults.baseSubtotal, 104.75);
-assert.equal(defaults.couponEstimate, 56.565);
-assert.equal(defaults.estimatedSavings, 48.185);
-assert.ok(Math.abs(defaults.effectiveDailyRate - 11.313) < 1e-9);
+assert.ok(Math.abs(defaults.couponEstimate - 59.7075) < 1e-9);
+assert.ok(Math.abs(defaults.estimatedSavings - 45.0425) < 1e-9);
+assert.ok(Math.abs(defaults.effectiveDailyRate - 11.9415) < 1e-9);
 assert.equal(defaults.finalQuote, null);
 
 const withFees = calculateParkingDiscount({

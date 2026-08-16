@@ -99,6 +99,13 @@ if (inboundLayoverLinks.length < 3) fail(layoverFile, `expected at least 3 inter
 const parkingDiscountFile = 'sfo-parking-promo-code-calculator.html';
 const inboundParkingDiscountLinks = [...pages.entries()].filter(([file, html]) => file !== parkingDiscountFile && html.includes(`href="${parkingDiscountFile}`));
 if (inboundParkingDiscountLinks.length < 3) fail(parkingDiscountFile, `expected at least 3 internal entry points, found ${inboundParkingDiscountLinks.length}`);
+const parkingDiscountHtml = pages.get(parkingDiscountFile) || '';
+const discountPresets = new Map([[3, '$41.90'], [5, '$59.71'], [7, '$94.28'], [8, '$99.51'], [10, '$125.70'], [14, '$188.55']]);
+for (const [days, total] of discountPresets) {
+  if (!parkingDiscountHtml.includes(`data-offer-stay="${days}"`)) fail(parkingDiscountFile, `missing ${days}-day official offer row`);
+  if (!parkingDiscountHtml.includes(`<strong>${total}</strong>`)) fail(parkingDiscountFile, `missing ${days}-day offer subtotal ${total}`);
+}
+if (!parkingDiscountHtml.includes('name="percentOff" type="number" min="0" max="100" step="1" value="5"')) fail(parkingDiscountFile, 'default offer must use the eligible 5-day 2-free + 5% terms');
 
 const toolsFile = 'sfo-tools.html';
 const toolsHtml = pages.get(toolsFile) || '';

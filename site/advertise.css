@@ -1,0 +1,81 @@
+.sales-hero {
+  max-width: 860px;
+  margin-left: max(24px, calc((100% - 1120px) / 2));
+  padding: 100px 0 90px;
+}
+
+.sales-hero h1 {
+  margin: 0;
+  font: 600 clamp(52px, 7vw, 86px) / .96 Fraunces, serif;
+  letter-spacing: -.055em;
+}
+
+.sales-hero .lede { max-width: 680px; }
+
+.proof-section {
+  padding: 44px 0 25px;
+  background: var(--ink);
+  color: white;
+}
+
+.proof-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.proof-grid div {
+  padding-left: 20px;
+  border-left: 1px solid #668078;
+}
+
+.proof-grid strong,
+.proof-grid span { display: block; }
+.proof-grid strong { color: var(--lime); font: 500 35px Fraunces, serif; }
+.proof-grid span { margin-top: 5px; color: #d0dcd8; font-size: 11px; }
+.source-note { margin-top: 28px; color: #9db1aa; font-size: 10px; }
+.source-note a { text-decoration: underline; }
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: stretch;
+  gap: 16px;
+}
+
+.price-card {
+  display: flex;
+  flex-direction: column;
+  padding: 30px 27px;
+  border: 1px solid var(--line);
+  background: var(--paper);
+}
+
+.price-card h3 { margin: 13px 0 2px; font: 500 26px Fraunces, serif; }
+.price { margin: 8px 0 18px; font: 600 42px Fraunces, serif; }
+.price small { font: 500 13px 'DM Sans'; }
+.price-card ul { min-height: 136px; padding-left: 18px; color: var(--muted); font-size: 12px; line-height: 2; }
+.price-card .button { margin-top: auto; }
+.price-featured { border: 3px solid var(--ink); box-shadow: 8px 9px 0 var(--lime); }
+.button-outline { border: 1px solid var(--ink); background: transparent; color: var(--ink); }
+.button-outline:hover { color: white; }
+.terms-note { max-width: 740px; margin: 24px auto 0; color: var(--muted); font-size: 10px; text-align: center; }
+
+.sales-copy {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 70px;
+}
+
+.sales-copy h2 { margin: 0; font: 600 42px / .98 Fraunces, serif; letter-spacing: -.045em; }
+.sales-copy > div:nth-child(2) { color: var(--muted); font-size: 14px; }
+.sales-copy .text-link { display: inline-block; margin-top: 12px; color: var(--ink); }
+
+@media (max-width: 760px) {
+  .sales-hero { width: min(100% - 48px, 1120px); margin-inline: auto; padding: 60px 0; }
+  .proof-grid { grid-template-columns: 1fr 1fr; }
+  .pricing-grid,
+  .sales-copy { grid-template-columns: 1fr; }
+  .price-card ul { min-height: auto; }
+  .sales-copy { gap: 25px; }
+}

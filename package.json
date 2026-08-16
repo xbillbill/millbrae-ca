@@ -3,6 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "test": "node scripts/test-parking-calculator.mjs"
+    "test": "node scripts/test-parking-calculator.mjs && node scripts/validate-site.mjs",
+    "test:site": "node scripts/validate-site.mjs"
   }
 }

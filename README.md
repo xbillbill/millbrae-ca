@@ -1,6 +1,6 @@
 # Millbrae Local
 
-The first no-cost MVP for `millbrae.ca`: a local discovery and founding-partner lead-generation landing page.
+A no-cost local discovery and founding-partner lead-generation publication for `millbrae.ca`.
 
 ## Monetization model
 
@@ -8,6 +8,7 @@ The first no-cost MVP for `millbrae.ca`: a local discovery and founding-partner 
 - Founding partners pay for featured placement and qualified local attention.
 - The contact form opens a prefilled email to `bill.wang@bavi.work`, so lead delivery has no service cost.
 - Launch pricing is $99/month for featured businesses and $249/month for an exclusive category sponsor.
+- High-intent restaurant, hotel, airport-transit, parking, and hotel-shuttle guides create sponsor inventory around real decisions.
 
 ## Run locally
 
@@ -18,8 +19,8 @@ python3 -m http.server 8000
 
 Open <http://localhost:8000>.
 
-## Before launch
+## Publishing
 
-1. Replace editorial placeholders with verified local businesses and original reporting.
-2. Verify DNS and GitHub Pages delivery for `www.millbrae.ca`.
-3. Add analytics only after choosing a privacy-conscious provider.
+Pushes to `main` deploy the `site/` directory to GitHub Pages. The deployment workflow then submits every sitemap URL to IndexNow.
+
+Analytics are intentionally deferred until a privacy-conscious provider is selected.

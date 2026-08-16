@@ -20,4 +20,4 @@ Open <http://localhost:8000>.
 
 1. Connect the form to an approved inbox or CRM; no paid provider has been added.
 2. Replace placeholder guide copy with verified local businesses and original editorial content.
-3. Confirm whether the production domain is `millbrae.ca` or the typo `millbrea.ca`.
+3. Confirm DNS for `www.millbrae.ca` points to GitHub Pages.

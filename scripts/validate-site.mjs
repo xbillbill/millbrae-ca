@@ -1,10 +1,12 @@
-import { existsSync, readdirSync, readFileSync } from 'node:fs';
+import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 
 const root = resolve(import.meta.dirname, '..', 'site');
 const htmlFiles = readdirSync(root).filter((file) => file.endsWith('.html')).sort();
 const failures = [];
 const pages = new Map(htmlFiles.map((file) => [file, readFileSync(join(root, file), 'utf8')]));
+const socialImageUrl = 'https://www.millbrae.ca/millbrae-sfo-social.jpg';
+const socialImagePath = join(root, 'millbrae-sfo-social.jpg');
 
 const fail = (file, message) => failures.push(`${file}: ${message}`);
 const matches = (text, pattern) => [...text.matchAll(pattern)];
@@ -19,6 +21,12 @@ for (const [file, html] of pages) {
   if (descriptions.length !== 1) fail(file, `expected one meta description, found ${descriptions.length}`);
   if (canonicals.length !== 1) fail(file, `expected one canonical URL, found ${canonicals.length}`);
   if (h1s.length !== 1) fail(file, `expected one h1, found ${h1s.length}`);
+  if (!html.includes(`<meta property="og:image" content="${socialImageUrl}">`)) fail(file, 'missing canonical Open Graph image');
+  if (!html.includes('<meta property="og:image:width" content="1200">')) fail(file, 'missing Open Graph image width');
+  if (!html.includes('<meta property="og:image:height" content="630">')) fail(file, 'missing Open Graph image height');
+  if (!html.includes('<meta name="twitter:card" content="summary_large_image">')) fail(file, 'missing large Twitter card');
+  if (!html.includes(`<meta name="twitter:image" content="${socialImageUrl}">`)) fail(file, 'missing Twitter image');
+  if (!html.includes('<meta name="twitter:image:alt" content="')) fail(file, 'missing Twitter image alt text');
 
   const ids = matches(html, /\sid="([^"]+)"/gi).map((match) => match[1]);
   const duplicateIds = ids.filter((id, index) => ids.indexOf(id) !== index);
@@ -50,6 +58,12 @@ for (const [file, html] of pages) {
       if (!new RegExp(`\\sid="${escapedHash}"`).test(targetHtml)) fail(file, `missing anchor ${raw}`);
     }
   }
+}
+
+if (!existsSync(socialImagePath)) {
+  fail('millbrae-sfo-social.jpg', 'missing social preview asset');
+} else if (statSync(socialImagePath).size > 500_000) {
+  fail('millbrae-sfo-social.jpg', 'social preview asset exceeds 500 KB');
 }
 
 const sitemap = readFileSync(join(root, 'sitemap.xml'), 'utf8');

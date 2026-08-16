@@ -32,3 +32,8 @@ jobs:
       - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v4
+      - name: Notify IndexNow
+        continue-on-error: true
+        env:
+          INDEXNOW_KEY: 89b3a3b469952e904139d28e962e99a8
+        run: node scripts/submit-indexnow.mjs

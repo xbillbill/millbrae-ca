@@ -61,6 +61,62 @@
 .button-outline:hover { color: white; }
 .terms-note { max-width: 740px; margin: 24px auto 0; color: var(--muted); font-size: 10px; text-align: center; }
 
+.inventory-section {
+  padding: 82px 0;
+  background: var(--ink);
+  color: white;
+}
+
+.inventory-heading { align-items: end; }
+.inventory-heading h2,
+.preview-intro h2 { margin: 0; font: 600 42px / .98 Fraunces, serif; letter-spacing: -.045em; }
+.inventory-heading .section-note { color: #b8c9c3; }
+
+.inventory-table {
+  margin-top: 34px;
+  border-top: 1px solid #668078;
+}
+
+.inventory-row {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr 1.4fr .45fr;
+  gap: 24px;
+  align-items: center;
+  min-height: 64px;
+  border-bottom: 1px solid #46635a;
+  color: #d0dcd8;
+  font-size: 12px;
+}
+
+.inventory-row a { color: white; text-decoration: underline; text-underline-offset: 4px; }
+.inventory-header { min-height: 43px; color: #91aaa2; font-size: 9px; font-weight: 700; letter-spacing: .11em; text-transform: uppercase; }
+.status-open { display: inline-block; padding: 5px 9px; border-radius: 99px; background: var(--lime); color: var(--ink); font-size: 9px; letter-spacing: .08em; text-transform: uppercase; }
+.inventory-note { max-width: 760px; margin: 22px 0 0; color: #9db1aa; font-size: 10px; line-height: 1.6; }
+
+.preview-section {
+  display: grid;
+  grid-template-columns: .72fr 1.28fr;
+  gap: 70px;
+  align-items: start;
+}
+
+.preview-intro > p:not(.eyebrow):not(.privacy-note) { color: var(--muted); font-size: 13px; line-height: 1.7; }
+.privacy-note { margin-top: 20px; padding: 13px 15px; border-left: 4px solid var(--lime); background: #eef3e8; color: var(--ink); font-size: 11px; line-height: 1.5; }
+.preview-layout { display: grid; grid-template-columns: .9fr 1.1fr; gap: 18px; align-items: stretch; }
+.preview-controls { display: grid; gap: 13px; padding: 22px; border: 1px solid var(--line); background: white; }
+.preview-controls label { color: var(--muted); font-size: 9px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; }
+.preview-controls input,
+.preview-controls select { width: 100%; margin-top: 7px; padding: 11px 12px; border: 1px solid var(--line); border-radius: 0; background: var(--paper); color: var(--ink); font: 500 12px 'DM Sans', sans-serif; text-transform: none; }
+.preview-controls input:focus,
+.preview-controls select:focus { outline: 3px solid color-mix(in srgb, var(--lime) 55%, transparent); outline-offset: 1px; }
+
+.sponsor-preview-card { display: flex; flex-direction: column; justify-content: center; min-height: 360px; padding: 32px; border: 3px solid var(--ink); background: var(--orange); box-shadow: 9px 10px 0 var(--ink); color: var(--ink); }
+.preview-tag { margin: 0 0 22px; font-size: 8px; font-weight: 700; letter-spacing: .11em; }
+.sponsor-preview-card h3 { margin: 0; font: 600 34px / 1 Fraunces, serif; letter-spacing: -.035em; overflow-wrap: anywhere; }
+.sponsor-preview-card > p:not(.preview-tag) { min-height: 68px; margin: 16px 0 22px; font-size: 13px; line-height: 1.55; overflow-wrap: anywhere; }
+.preview-button { align-self: flex-start; pointer-events: none; }
+.sponsor-preview-card small { margin-top: 22px; font-size: 8px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+
 .sales-copy {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -75,7 +131,17 @@
   .sales-hero { width: min(100% - 48px, 1120px); margin-inline: auto; padding: 60px 0; }
   .proof-grid { grid-template-columns: 1fr 1fr; }
   .pricing-grid,
-  .sales-copy { grid-template-columns: 1fr; }
+  .sales-copy,
+  .preview-section,
+  .preview-layout { grid-template-columns: 1fr; }
   .price-card ul { min-height: auto; }
   .sales-copy { gap: 25px; }
+  .inventory-section { padding: 62px 0; }
+  .inventory-heading { align-items: start; }
+  .inventory-table { border-top: 0; }
+  .inventory-header { display: none; }
+  .inventory-row { grid-template-columns: 1fr; gap: 8px; margin-bottom: 13px; padding: 20px; border: 1px solid #46635a; }
+  .inventory-row [data-label]::before { display: block; margin-bottom: 3px; color: #91aaa2; content: attr(data-label); font-size: 8px; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; }
+  .preview-section { gap: 35px; }
+  .sponsor-preview-card { min-height: 310px; }
 }

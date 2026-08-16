@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="See Millbrae Local advertising plans, current sponsor inventory, and a private in-browser placement preview.">
+  <meta name="description" content="See Millbrae Local advertising plans, open sponsor inventory, a private plan recommender, and an in-browser placement preview.">
   <meta name="theme-color" content="#14352d">
   <meta property="og:title" content="Advertise on Millbrae Local">
-  <meta property="og:description" content="Transparent launch plans, open sponsor inventory, and a private placement preview for Millbrae businesses.">
+  <meta property="og:description" content="Transparent launch plans, open sponsor inventory, and private recommendation and preview tools for Millbrae businesses.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.millbrae.ca/advertise.html">
   <link rel="canonical" href="https://www.millbrae.ca/advertise.html">
@@ -52,6 +52,28 @@
         <article class="price-card"><p class="tag">CATEGORY EXCLUSIVE</p><h3>Category sponsor</h3><p class="price">$249 <small>/ month</small></p><ul><li>One sponsor per category</li><li>Top placement and sponsor label</li><li>Custom offer or promotion</li><li>Monthly click summary once available</li></ul><a class="button button-outline" href="mailto:bill.wang@bavi.work?subject=Millbrae%20Local%20category%20sponsorship">Ask about availability</a></article>
       </div>
       <p class="terms-note">Launch pricing is an introductory offer, subject to editorial fit and written confirmation. No payment is collected on this website. We do not guarantee traffic, clicks, or sales.</p>
+    </section>
+
+    <section class="fit-section" id="fit">
+      <div class="wrap">
+        <div class="section-heading fit-heading"><div><p class="eyebrow">Sponsor-fit finder</p><h2>Start with one clear recommendation.</h2></div><p class="section-note">Choose your business and goal. The result is guidance—not a reservation or performance forecast.</p></div>
+        <div class="fit-layout">
+          <div class="fit-controls" data-sponsor-fit-tool>
+            <label>Business type<select data-fit-input="business"><option value="hotel">Hotel or lodging</option><option value="parking">Parking operator</option><option value="restaurant">Restaurant or event venue</option><option value="transport">Airport transportation</option><option value="local">Local service or attraction</option></select></label>
+            <label>Primary goal<select data-fit-input="goal"><option value="single">Own one high-intent moment</option><option value="category">Reserve category exclusivity</option><option value="listing">Start with a free listing</option></select></label>
+            <p class="fit-privacy"><strong>Private by design:</strong> your choices stay on this page.</p>
+          </div>
+          <aside class="fit-result" aria-live="polite">
+            <div class="fit-result-head"><p class="tag">RECOMMENDED START</p><span data-fit-price>$99 / month</span></div>
+            <h3 data-fit-plan>Founding feature</h3>
+            <p data-fit-summary>One prominent, clearly labeled placement at a focused customer decision.</p>
+            <div class="fit-placement"><small>BEST STARTING PLACEMENT</small><a data-fit-primary href="hotels-near-sfo-millbrae.html">Hotels near SFO →</a></div>
+            <p class="fit-alternates"><strong>Also relevant:</strong> <span data-fit-alternates>Hotel shuttle guide · Park-and-fly calculator · SFO travel tools hub</span></p>
+            <p class="fit-reason" data-fit-reason>Start beside travelers comparing where to stay, then expand only if another decision page proves relevant.</p>
+            <button class="button" type="button" data-apply-fit>Preview this recommendation <span>↓</span></button>
+          </aside>
+        </div>
+      </div>
     </section>
 
     <section class="inventory-section" id="inventory">
@@ -102,7 +124,7 @@
           <label>Business name<input type="text" data-preview-input="business" maxlength="50" value="Your Millbrae Business"></label>
           <label>Offer headline<input type="text" data-preview-input="offer" maxlength="90" value="A clear reason for nearby customers to choose you."></label>
           <label>Call to action<input type="text" data-preview-input="cta" maxlength="28" value="View this offer"></label>
-          <label>Guide context<select data-preview-input="context"><option value="parking">Parking calculator</option><option value="hotels">Hotel guide</option><option value="dining">Restaurant guide</option><option value="station">Station &amp; SFO guide</option></select></label>
+          <label>Guide context<select data-preview-input="context"><option value="parking">Parking calculator</option><option value="hotels">Hotel guide</option><option value="dining">Restaurant guide</option><option value="shuttle">Hotel shuttle guide</option><option value="parkfly">Park-and-fly calculator</option><option value="rideshare">Parking vs rideshare</option><option value="station">Station &amp; SFO guide</option><option value="tools">SFO travel tools hub</option></select></label>
         </div>
         <aside class="sponsor-preview-card" aria-label="Sponsored placement preview" aria-live="polite">
           <p class="preview-tag">FEATURED PARTNER · <span data-preview-context>PARKING CALCULATOR</span></p>
@@ -123,6 +145,7 @@
   </main>
 
   <footer class="site-footer wrap"><span>© 2026 Millbrae Local</span><span>Independent local guide · Not affiliated with the City of Millbrae</span><span><a href="index.html">Home</a> · <a href="mailto:bill.wang@bavi.work">Contact</a></span></footer>
+  <script type="module" src="sponsor-fit.js"></script>
   <script type="module" src="sponsor-preview.js"></script>
 </body>
 </html>

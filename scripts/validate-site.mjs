@@ -90,6 +90,10 @@ for (const requiredTool of requiredTools) {
 const inboundToolsLinks = [...pages.entries()].filter(([file, html]) => file !== toolsFile && html.includes(`href="${toolsFile}`));
 if (inboundToolsLinks.length < 8) fail(toolsFile, `expected at least 8 internal entry points, found ${inboundToolsLinks.length}`);
 
+const advertiseHtml = pages.get('advertise.html') || '';
+if (!advertiseHtml.includes('data-sponsor-fit-tool')) fail('advertise.html', 'missing sponsor-fit recommender');
+if (!advertiseHtml.includes('data-sponsor-preview-tool')) fail('advertise.html', 'missing sponsor preview');
+
 if (failures.length) {
   console.error(`Site validation failed (${failures.length}):`);
   failures.forEach((failure) => console.error(`- ${failure}`));

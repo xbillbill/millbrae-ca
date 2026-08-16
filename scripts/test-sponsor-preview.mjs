@@ -33,4 +33,14 @@ assert.equal(limited.offer.length, 90);
 assert.equal(limited.cta.length, 28);
 assert.equal(limited.context, 'PARKING CALCULATOR');
 
+const expandedContexts = {
+  shuttle: 'HOTEL SHUTTLE GUIDE',
+  parkfly: 'PARK-AND-FLY CALCULATOR',
+  rideshare: 'PARKING VS RIDESHARE',
+  tools: 'SFO TRAVEL TOOLS HUB'
+};
+for (const [context, label] of Object.entries(expandedContexts)) {
+  assert.equal(buildSponsorPreview({ context }).context, label);
+}
+
 console.log('Sponsor preview tests: OK');

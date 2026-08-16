@@ -11,7 +11,11 @@ const CONTEXTS = Object.freeze({
   parking: 'PARKING CALCULATOR',
   hotels: 'HOTEL GUIDE',
   dining: 'RESTAURANT GUIDE',
-  station: 'STATION & SFO GUIDE'
+  shuttle: 'HOTEL SHUTTLE GUIDE',
+  parkfly: 'PARK-AND-FLY CALCULATOR',
+  rideshare: 'PARKING VS RIDESHARE',
+  station: 'STATION & SFO GUIDE',
+  tools: 'SFO TRAVEL TOOLS HUB'
 });
 
 function normalize(value, fallback, limit) {

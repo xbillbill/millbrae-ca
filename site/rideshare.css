@@ -1,0 +1,16 @@
+.rideshare-hero { max-width: 1080px; }
+.rideshare-hero .lede { max-width: 830px; }
+.rideshare-calculator-band { background: #dfece9; }
+.official-links { display: grid; gap: 10px; margin-top: 22px; }
+.official-links a { width: fit-content; border-bottom: 1px solid; font-size: 11px; font-weight: 700; }
+.rideshare-results { margin-top: 4px; }
+.calculator-verdict { margin: 12px 0 0; padding: 15px 17px; border-left: 4px solid var(--ink); background: #edf1e8; color: var(--ink); font-size: 12px; font-weight: 700; }
+.calculator-verdict[data-state="rideshare"] { border-color: #5672b8; background: #e9eef9; }
+.calculator-verdict[data-state="parking"] { border-color: #6f8f3b; background: #eef4df; }
+.calculator-verdict[data-state="tie"] { border-color: #e4a642; background: #fff3d9; }
+.rideshare-calculator .rate-inputs { grid-template-columns: repeat(3, 1fr); }
+.faq-list a { font-weight: 700; border-bottom: 1px solid; }
+
+@media (max-width: 760px) {
+  .rideshare-calculator .rate-inputs { grid-template-columns: 1fr; }
+}

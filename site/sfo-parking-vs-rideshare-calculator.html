@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Compare SFO airport parking with Uber or Lyft using editable parking days, live rideshare quotes, tips, discounts, gas, and tolls.">
+  <meta name="theme-color" content="#14352d">
+  <meta property="og:title" content="SFO Parking vs Uber or Lyft Cost Calculator">
+  <meta property="og:description" content="Find the break-even trip length for SFO parking versus round-trip rideshare using your live quotes.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://www.millbrae.ca/sfo-parking-vs-rideshare-calculator.html">
+  <link rel="canonical" href="https://www.millbrae.ca/sfo-parking-vs-rideshare-calculator.html">
+  <title>SFO Parking vs Uber or Lyft Cost Calculator (2026)</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="guide.css">
+  <link rel="stylesheet" href="parking.css">
+  <link rel="stylesheet" href="rideshare.css">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Article","headline":"SFO Parking vs Uber or Lyft Cost Calculator","datePublished":"2026-08-16","dateModified":"2026-08-16","author":{"@type":"Organization","name":"Millbrae Local"},"publisher":{"@type":"Organization","name":"Millbrae Local"},"mainEntityOfPage":"https://www.millbrae.ca/sfo-parking-vs-rideshare-calculator.html","about":["SFO airport parking","Uber to SFO","Lyft to SFO","airport transportation cost"]},{"@type":"WebApplication","name":"SFO Parking vs Uber or Lyft Cost Calculator","url":"https://www.millbrae.ca/sfo-parking-vs-rideshare-calculator.html","applicationCategory":"TravelApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}]}</script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="Millbrae Local home"><span>✳</span> Millbrae Local</a>
+    <nav aria-label="Main navigation">
+      <a href="restaurants-in-millbrae.html">Restaurants</a>
+      <a href="hotels-near-sfo-millbrae.html">Hotels</a>
+      <a href="millbrae-station-sfo-guide.html" aria-current="page">SFO guide</a>
+      <a href="advertise.html">Advertise</a>
+    </nav>
+    <a class="button button-small" href="#calculator">Compare your quotes</a>
+  </header>
+
+  <main>
+    <article>
+      <header class="guide-hero rideshare-hero wrap">
+        <p class="eyebrow">Millbrae travel desk · SFO rate checked August 16, 2026</p>
+        <h1>SFO parking vs Uber or Lyft: do the round-trip math.</h1>
+        <p class="lede">Parking gets more expensive with every day. Rideshare changes with distance, demand, and timing. Enter the two fares shown in your app and find the exact trip length where the cheaper option flips.</p>
+        <div class="quick-links" aria-label="Calculator sections">
+          <a href="#calculator">Calculator</a><a href="#method">What to include</a><a href="#sponsor">Partner position</a><a href="#faq">FAQ</a>
+        </div>
+        <p class="editorial-note"><strong>Independent calculator:</strong> No parking or rideshare company paid to appear. The $27 SFO Long-Term default comes from SFO; the $45 rideshare fares are clearly labeled examples, not live quotes. Millbrae Local receives no booking commission.</p>
+      </header>
+
+      <section id="calculator" class="calculator-band rideshare-calculator-band">
+        <div class="wrap calculator-layout">
+          <div class="calculator-copy">
+            <p class="eyebrow">Editable cost comparison</p>
+            <h2>Use the prices on your screen.</h2>
+            <p>Check both directions because airport pickup, traffic, and surge pricing can make the return ride different. Include any parking promotion and the real cost of driving to SFO.</p>
+            <div class="calculator-warning"><strong>Illustrative defaults:</strong> Replace both $45 rideshare examples with current app quotes. Quote totals usually include platform and airport fees but not an optional tip—confirm before entering a tip percentage.</div>
+            <div class="official-links"><a href="https://www.flysfo.com/passengers/parking/long-term" target="_blank" rel="noopener">Check official SFO parking →</a><a href="https://www.flysfo.com/passengers/ground-transportation" target="_blank" rel="noopener">Check SFO pickup guidance →</a></div>
+          </div>
+          <form class="parking-calculator rideshare-calculator" data-rideshare-calculator>
+            <div class="input-grid">
+              <label>Parking periods (24 hours)<input name="parkingDays" type="number" min="1" max="60" step="1" value="5" inputmode="numeric"></label>
+              <label>SFO parking / 24 hours<input name="parkingRate" type="number" min="0" max="500" step="0.01" value="27.00" inputmode="decimal"></label>
+              <label>Ride to SFO quote<input name="outboundFare" type="number" min="0" max="1000" step="0.01" value="45.00" inputmode="decimal"></label>
+              <label>Ride home from SFO quote<input name="returnFare" type="number" min="0" max="1000" step="0.01" value="45.00" inputmode="decimal"></label>
+            </div>
+            <details>
+              <summary>Edit discounts, driving costs, and tip</summary>
+              <div class="input-grid rate-inputs">
+                <label>Parking reservation discount<input name="parkingDiscount" type="number" min="0" max="10000" step="0.01" value="0" inputmode="decimal"></label>
+                <label>Round-trip gas + tolls<input name="drivingExtras" type="number" min="0" max="1000" step="0.01" value="12.00" inputmode="decimal"></label>
+                <label>Rideshare tip percentage<input name="tipPercent" type="number" min="0" max="100" step="1" value="15" inputmode="decimal"></label>
+              </div>
+            </details>
+            <div class="result-grid rideshare-results" aria-live="polite">
+              <div><span>Drive + park</span><output data-result="parking">$147.00</output><small>Parking after discount + driving costs</small></div>
+              <div><span>Round-trip rideshare</span><output data-result="rideshare">$103.50</output><small>Both quotes + entered tip</small></div>
+              <div><span>Current difference</span><output data-result="difference">$43.50</output><small data-result-label>Rideshare costs less</small></div>
+              <div><span>Parking-day break-even</span><output data-result="breakEven">3.4 days</output><small data-break-even-label>Rideshare starts winning on day 4</small></div>
+            </div>
+            <p class="calculator-verdict" data-rideshare-verdict role="status" data-state="rideshare">Rideshare costs $43.50 less for this trip.</p>
+            <p class="calculation-note" data-rideshare-summary>5 parking periods at $27.00; $90.00 in ride quotes before tip.</p>
+          </form>
+        </div>
+      </section>
+
+      <section id="method" class="parking-band">
+        <div class="wrap tradeoff-layout">
+          <div><p class="eyebrow">Make it a fair comparison</p><h2>Six inputs can change the winner.</h2></div>
+          <div class="tradeoff-list">
+            <div><strong>Both ride directions</strong><p>Use a separate quote for departure and return; demand can differ sharply.</p></div>
+            <div><strong>Tip treatment</strong><p>Do not add a tip twice. Enter zero if your quoted total already includes everything you plan to pay.</p></div>
+            <div><strong>Parking clock</strong><p>SFO Long-Term charges by elapsed parking periods. A partial extra period can affect the final bill.</p></div>
+            <div><strong>Reservation savings</strong><p>Subtract only a discount shown for your exact parking dates and product.</p></div>
+            <div><strong>Driving costs</strong><p>Add gas and tolls you avoid by leaving the car at home; do not invent a depreciation cost you would ignore in practice.</p></div>
+            <div><strong>Convenience</strong><p>Price cannot capture luggage, child seats, accessibility, pickup waits, or the value of having your own car on return.</p></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="sponsor" class="guide-section wrap parking-sponsor-section">
+        <div class="guide-main">
+          <p class="eyebrow">For parking and airport-transfer operators</p>
+          <h2>Put a live offer beside the decision.</h2>
+          <p>A founding feature can show a clearly labeled parking discount, transfer offer, or direct reservation link. The calculator stays independent and every assumption remains editable.</p>
+          <div class="answer-grid">
+            <div><strong>Founding feature</strong><p>One prominent placement and direct booking call to action for $99/month.</p><a href="advertise.html">Review the launch plan →</a></div>
+            <div><strong>Category exclusive</strong><p>One relevant category sponsor with a custom offer for $249/month.</p><a href="advertise.html">Check current inventory →</a></div>
+          </div>
+        </div>
+        <aside class="sponsor-slot">
+          <p class="tag">OPEN FOUNDING POSITION</p>
+          <h3>A parking or airport-transfer offer could appear here.</h3>
+          <p>Reach SFO travelers while they are choosing between a reservation and a ride.</p>
+          <a class="button" href="advertise.html">Preview this placement →</a>
+          <small>No business currently sponsors this calculator.</small>
+        </aside>
+      </section>
+
+      <section id="faq" class="guide-section wrap faq-section">
+        <div><p class="eyebrow">Calculator help</p><h2>Common questions.</h2></div>
+        <div class="faq-list">
+          <details open><summary>How does the break-even day work?</summary><p>It is the trip length where drive-and-park and round-trip rideshare cost the same. The calculator also shows the first whole parking day when rideshare becomes cheaper.</p></details>
+          <details><summary>Does the rideshare quote include SFO fees?</summary><p>Use the final fare estimate shown in your app for each direction. Check the quote details rather than adding an airport fee separately, then add only the tip you actually expect to pay.</p></details>
+          <details><summary>Why is the parking default $27?</summary><p>SFO currently lists a $27 maximum per 24 hours for Long-Term Parking, including taxes and fees. Replace it with the live prebooked rate or another lot's final daily cost.</p></details>
+          <details><summary>Can I compare BART or an off-airport lot?</summary><p>Yes. Use the <a href="sfo-airport-parking-millbrae.html">Millbrae and SFO parking calculator</a> first, then put the relevant parking total into this comparison by editing the daily rate, discount, and driving costs.</p></details>
+          <details><summary>What if I also need a hotel?</summary><p>Use the <a href="sfo-park-and-fly-hotel-calculator.html">SFO Park and Fly calculator</a> to compare a hotel package with a room plus separate parking and transportation.</p></details>
+        </div>
+      </section>
+    </article>
+  </main>
+
+  <footer class="site-footer wrap"><span>© 2026 Millbrae Local</span><span>Independent calculator · Verify live parking and rideshare quotes</span><span><a href="advertise.html">Advertise</a></span></footer>
+  <script type="module" src="rideshare-calculator.js"></script>
+</body>
+</html>

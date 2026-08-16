@@ -70,6 +70,10 @@ const parkFlyFile = 'sfo-park-and-fly-hotel-calculator.html';
 const inboundParkFlyLinks = [...pages.entries()].filter(([file, html]) => file !== parkFlyFile && html.includes(`href="${parkFlyFile}`));
 if (inboundParkFlyLinks.length < 3) fail(parkFlyFile, `expected at least 3 internal entry points, found ${inboundParkFlyLinks.length}`);
 
+const rideshareFile = 'sfo-parking-vs-rideshare-calculator.html';
+const inboundRideshareLinks = [...pages.entries()].filter(([file, html]) => file !== rideshareFile && html.includes(`href="${rideshareFile}`));
+if (inboundRideshareLinks.length < 3) fail(rideshareFile, `expected at least 3 internal entry points, found ${inboundRideshareLinks.length}`);
+
 if (failures.length) {
   console.error(`Site validation failed (${failures.length}):`);
   failures.forEach((failure) => console.error(`- ${failure}`));

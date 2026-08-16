@@ -123,6 +123,12 @@ const advertiseHtml = pages.get('advertise.html') || '';
 if (!advertiseHtml.includes('data-sponsor-fit-tool')) fail('advertise.html', 'missing sponsor-fit recommender');
 if (!advertiseHtml.includes('data-sponsor-preview-tool')) fail('advertise.html', 'missing sponsor preview');
 
+const parkingHtml = pages.get('sfo-airport-parking-millbrae.html') || '';
+const durationTotals = new Map([[1, '$27.00'], [3, '$81.00'], [5, '$135.00'], [7, '$189.00'], [10, '$270.00'], [14, '$378.00']]);
+for (const [days, total] of durationTotals) {
+  if (!parkingHtml.includes(`data-parking-days="${days}" data-sfo-total="${total}"`)) fail('sfo-airport-parking-millbrae.html', `missing ${days}-day SFO total ${total}`);
+}
+
 if (failures.length) {
   console.error(`Site validation failed (${failures.length}):`);
   failures.forEach((failure) => console.error(`- ${failure}`));

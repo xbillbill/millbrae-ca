@@ -124,6 +124,9 @@ if (!advertiseHtml.includes('data-sponsor-fit-tool')) fail('advertise.html', 'mi
 if (!advertiseHtml.includes('data-sponsor-preview-tool')) fail('advertise.html', 'missing sponsor preview');
 
 const parkingHtml = pages.get('sfo-airport-parking-millbrae.html') || '';
+if (!parkingHtml.includes('<title>SFO Parking Cost: 3, 5, 7 &amp; 14 Days + Calculator (2026)</title>')) fail('sfo-airport-parking-millbrae.html', 'missing exact-duration search title');
+if (!parkingHtml.includes('<h1>How much does SFO parking cost?</h1>')) fail('sfo-airport-parking-millbrae.html', 'missing direct cost question heading');
+if (!parkingHtml.includes('"@type":"WebApplication","name":"SFO Parking Cost Calculator"')) fail('sfo-airport-parking-millbrae.html', 'missing calculator structured data');
 const durationTotals = new Map([[1, '$27.00'], [3, '$81.00'], [5, '$135.00'], [7, '$189.00'], [10, '$270.00'], [14, '$378.00']]);
 for (const [days, total] of durationTotals) {
   if (!parkingHtml.includes(`data-parking-days="${days}" data-sfo-total="${total}"`)) fail('sfo-airport-parking-millbrae.html', `missing ${days}-day SFO total ${total}`);

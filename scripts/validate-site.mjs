@@ -13,6 +13,7 @@ const fail = (file, message) => failures.push(`${file}: ${message}`);
 const matches = (text, pattern) => [...text.matchAll(pattern)];
 
 for (const [file, html] of pages) {
+  if (!html.includes('analytics.js?v=20260821')) fail(file, 'missing analytics instrumentation');
   const titles = matches(html, /<title>[^<]+<\/title>/gi);
   const descriptions = matches(html, /<meta\s+name="description"\s+content="[^"]+">/gi);
   const canonicals = matches(html, /<link\s+rel="canonical"\s+href="https:\/\/www\.millbrae\.ca\/[^"]*">/gi);

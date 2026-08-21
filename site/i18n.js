@@ -249,7 +249,7 @@ function normalize(value) {
 
 function normalizeChineseCityName(value, locale) {
   if (locale !== 'zh-CN') return value;
-  return value.replace(/米尔布雷|米爾布雷/g, ZH_CITY_NAME);
+  return value.replace(/米尔布雷|米爾布雷|Millbrae/g, ZH_CITY_NAME);
 }
 
 function translateTextNodes(root, locale) {
@@ -269,6 +269,7 @@ function translateTextNodes(root, locale) {
     const translated = locale === 'en' ? source : (dictionary[key] || cache[key]);
     const localized = translated ? normalizeChineseCityName(translated, locale) : translated;
     if (localized) node.nodeValue = source.replace(key, localized);
+    else if (locale === 'zh-CN') node.nodeValue = normalizeChineseCityName(source, locale);
     else if (locale === 'en') node.nodeValue = source;
   }
 }

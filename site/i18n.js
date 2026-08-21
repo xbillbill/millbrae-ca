@@ -1,12 +1,13 @@
 const LOCALE_KEY = 'millbrae-locale';
+const ZH_CITY_NAME = '密尔布雷';
 const sourceByNode = new WeakMap();
 const sourceTitle = document.title;
 const pendingTranslations = new Set();
 
 const translations = {
   'zh-CN': {
-    'Millbrae, California Restaurants, BART & SFO Guide | Millbrae Local': '米尔布雷，加州餐厅、BART 与 SFO 指南 | Millbrae Local',
-    'Millbrae Station to SFO: BART, Parking & Hotels (2026)': '米尔布雷车站到 SFO：BART、停车与酒店（2026）',
+    'Millbrae, California Restaurants, BART & SFO Guide | Millbrae Local': `${ZH_CITY_NAME}，加州餐厅、BART 与 SFO 指南 | Millbrae Local`,
+    'Millbrae Station to SFO: BART, Parking & Hotels (2026)': `${ZH_CITY_NAME}车站到 SFO：BART、停车与酒店（2026）`,
     'Directory': '目录',
     'Restaurants': '餐厅',
     'Hotels': '酒店',
@@ -23,7 +24,7 @@ const translations = {
     'Compare live quotes': '比较实时报价',
     'Compare your quotes': '比较你的报价',
     'Calculate savings': '计算节省金额',
-    'Made for Millbrae, by people who love Millbrae': '为米尔布雷而做，由热爱米尔布雷的人打造',
+    'Made for Millbrae, by people who love Millbrae': `为${ZH_CITY_NAME}而做，由热爱${ZH_CITY_NAME}的人打造`,
     'Your shortcut to a better day in town.': '让你在城里过得更好的一站式捷径。',
     'Find a good meal, a useful service, or your next neighborhood favorite — without scrolling through a dozen tabs.': '寻找美食、实用服务或下一个社区最爱，无需在十几个标签页之间来回切换。',
     'How we curate': '了解我们的策划方式',
@@ -31,7 +32,7 @@ const translations = {
     'Guides are checked against official sources and local business websites; paid placement never changes editorial inclusion.': '指南会与官方来源和本地商家网站核对；付费展示不会改变编辑收录。',
     'Explore the guide': '探索指南',
     'Own a local business? List it free →': '经营本地商家？免费发布 →',
-    'TODAY IN MILLBRAE': '今天的米尔布雷',
+    'TODAY IN MILLBRAE': `今天的${ZH_CITY_NAME}`,
     'A little city with': '一座小城，拥有',
     'excellent timing.': '出色的出行节奏。',
     'Local time': '当地时间',
@@ -39,7 +40,7 @@ const translations = {
     'Start here': '从这里开始',
     'What are you looking for?': '你在寻找什么？',
     'Curated shortcuts for locals, visitors, and people passing through.': '为居民、访客和过境旅客整理的实用捷径。',
-    'Eat in Millbrae': '在米尔布雷用餐',
+    'Eat in Millbrae': `在${ZH_CITY_NAME}用餐`,
     'Breakfast, dumplings, and dinner': '早餐、饺子和晚餐',
     'Local business directory': '本地商家目录',
     'Community-submitted listings': '社区提交的信息',
@@ -64,14 +65,14 @@ const translations = {
     'List your business free →': '免费发布商家信息 →',
     'About this guide': '关于本指南',
     'Read our placement policy →': '阅读展示政策 →',
-    'Live at Millbrae Station': '米尔布雷车站实时信息',
+    'Live at Millbrae Station': `${ZH_CITY_NAME}车站实时信息`,
     'Check the next train before you go.': '出发前查看下一班列车。',
     'BART and Caltrain estimates refresh automatically. Use the official boards for alerts and disruption details.': 'BART 和 Caltrain 预计到站时间会自动刷新。服务提醒和中断详情请查看官方信息板。',
     'BART · LIVE ESTIMATES': 'BART · 实时预计',
-    'Millbrae BART': '米尔布雷 BART',
-    'Next departures from Millbrae': '从米尔布雷出发的下一班车',
+    'Millbrae BART': `${ZH_CITY_NAME} BART`,
+    'Next departures from Millbrae': `从${ZH_CITY_NAME}出发的下一班车`,
     'CALTRAIN · LIVE ARRIVALS': 'CALTRAIN · 实时到站',
-    'Millbrae Caltrain': '米尔布雷 Caltrain',
+    'Millbrae Caltrain': `${ZH_CITY_NAME} Caltrain`,
     'Live arrivals for both directions': '双向实时到站信息',
     'Official BART board ↗': 'BART 官方信息板 ↗',
     'Official Caltrain boards ↗': 'Caltrain 官方信息板 ↗',
@@ -99,9 +100,9 @@ const translations = {
     'Before booking': '预订前',
     'Calculator help': '计算器帮助',
     'Five terms can reverse the result.': '五项条款可能改变结果。',
-    'Millbrae travel desk · Checked August 16, 2026': '米尔布雷出行台 · 已于 2026 年 8 月 16 日核查',
-    'Millbrae travel desk · Offers checked August 16, 2026': '米尔布雷出行台 · 优惠已于 2026 年 8 月 16 日核查',
-    'Millbrae travel desk · SFO rate checked August 16, 2026': '米尔布雷出行台 · SFO 费率已于 2026 年 8 月 16 日核查',
+    'Millbrae travel desk · Checked August 16, 2026': `${ZH_CITY_NAME}出行台 · 已于 2026 年 8 月 16 日核查`,
+    'Millbrae travel desk · Offers checked August 16, 2026': `${ZH_CITY_NAME}出行台 · 优惠已于 2026 年 8 月 16 日核查`,
+    'Millbrae travel desk · SFO rate checked August 16, 2026': `${ZH_CITY_NAME}出行台 · SFO 费率已于 2026 年 8 月 16 日核查`,
     'Quick answer': '快速答案',
     'Live departures': '实时出发信息',
     'The quick answer': '快速答案',
@@ -117,7 +118,7 @@ const translations = {
     'No business currently sponsors this guide.': '目前没有商家赞助本指南。',
     'Before booking': '预订前',
     'Verify live service before travel': '出行前确认实时服务',
-    'Independent local guide · Not affiliated with the City of Millbrae': '独立本地指南 · 与米尔布雷市政府无关联',
+    'Independent local guide · Not affiliated with the City of Millbrae': `独立本地指南 · 与${ZH_CITY_NAME}市政府无关联`,
     'English': '英语',
     '中文': '中文',
     'Español': '西班牙语'

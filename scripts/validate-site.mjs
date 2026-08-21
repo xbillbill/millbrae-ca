@@ -145,6 +145,13 @@ if (!listingFormHtml.includes('name="accurateAndLawful"')) fail('list-your-busin
 if (/mailto:/i.test(listingFormHtml)) fail('list-your-business.html', 'self-service flow must not depend on email');
 if (/type="email"/i.test(listingFormHtml)) fail('list-your-business.html', 'self-service flow must not collect email');
 
+const homeHtml = pages.get('index.html') || '';
+for (const requiredLocalSignal of ['Millbrae, California', 'Bay Area', 'addressCountry":"US', 'data-millbrae-time', 'href="#about"']) {
+  if (!homeHtml.includes(requiredLocalSignal)) fail('index.html', `missing homepage local/trust signal: ${requiredLocalSignal}`);
+}
+if (!homeHtml.includes('src="homepage.js"')) fail('index.html', 'missing Millbrae local-time controller');
+if (!homeHtml.includes('$27/day')) fail('index.html', 'missing SFO Long-Term homepage micro-data');
+
 const awsConfig = readFileSync(join(root, 'aws-config.js'), 'utf8');
 for (const setting of ['enabled', 'apiBaseUrl', 'googleClientId']) {
   if (!awsConfig.includes(setting)) fail('aws-config.js', `missing ${setting} configuration`);

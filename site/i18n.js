@@ -360,9 +360,16 @@ function normalizeHeader() {
   }
 }
 
+function localeFromUrl() {
+  const requested = new URLSearchParams(window.location.search).get('lang')
+    || new URLSearchParams(window.location.search).get('locale');
+  if (requested === 'zh') return 'zh-CN';
+  return ['en', 'zh-CN', 'es'].includes(requested) ? requested : '';
+}
+
 normalizeHeader();
 addSelector();
-applyLocale(localStorage.getItem(LOCALE_KEY) || 'en');
+applyLocale(localeFromUrl() || localStorage.getItem(LOCALE_KEY) || 'en');
 
 new MutationObserver((records) => {
   if ((localStorage.getItem(LOCALE_KEY) || 'en') === 'en') return;

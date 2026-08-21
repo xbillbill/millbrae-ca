@@ -146,7 +146,7 @@ if (/mailto:/i.test(listingFormHtml)) fail('list-your-business.html', 'self-serv
 if (/type="email"/i.test(listingFormHtml)) fail('list-your-business.html', 'self-service flow must not collect email');
 
 const homeHtml = pages.get('index.html') || '';
-for (const requiredLocalSignal of ['Millbrae, California', 'Bay Area', 'addressCountry":"US', 'data-millbrae-time', 'href="#about"']) {
+for (const requiredLocalSignal of ['Millbrae, California', 'Bay Area', 'addressCountry":"US', 'data-millbrae-time', 'independent editor', 'href="#about"']) {
   if (!homeHtml.includes(requiredLocalSignal)) fail('index.html', `missing homepage local/trust signal: ${requiredLocalSignal}`);
 }
 if (!homeHtml.includes('src="homepage.js"')) fail('index.html', 'missing Millbrae local-time controller');

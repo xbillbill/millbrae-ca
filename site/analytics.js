@@ -1,6 +1,7 @@
 // Privacy-safe behavior analytics for Millbrae Local.
 // No form values, identity tokens, or personal identifiers are sent.
 const CLARITY_PROJECT_ID = 'y5p3epdxnr';
+const CLOUDFLARE_ANALYTICS_TOKEN = 'df3ca436f8a84b30af5a85de11ec2023';
 
 window.clarity = window.clarity || function (...args) {
   (window.clarity.q = window.clarity.q || []).push(args);
@@ -10,6 +11,12 @@ const script = document.createElement('script');
 script.async = true;
 script.src = `https://www.clarity.ms/tag/${CLARITY_PROJECT_ID}`;
 document.head.append(script);
+
+const cloudflareScript = document.createElement('script');
+cloudflareScript.type = 'module';
+cloudflareScript.src = 'https://static.cloudflareinsights.com/beacon.min.js';
+cloudflareScript.dataset.cfBeacon = JSON.stringify({ token: CLOUDFLARE_ANALYTICS_TOKEN });
+document.head.append(cloudflareScript);
 
 function eventNameForLink(link) {
   const href = link.getAttribute('href') || '';

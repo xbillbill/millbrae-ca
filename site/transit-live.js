@@ -7,6 +7,20 @@ const bartUpdated = document.querySelector('[data-transit-updated]');
 const caltrainList = document.querySelector('[data-caltrain-departures]');
 const caltrainStatus = document.querySelector('[data-caltrain-status]');
 const caltrainUpdated = document.querySelector('[data-caltrain-updated]');
+const transitClock = document.querySelector('[data-transit-clock]');
+
+const clockFormatter = new Intl.DateTimeFormat('en-US', {
+  timeZone: 'America/Los_Angeles',
+  hour: 'numeric',
+  minute: '2-digit',
+  second: '2-digit',
+  hour12: true,
+  timeZoneName: 'short'
+});
+
+function updateTransitClock() {
+  if (transitClock) transitClock.textContent = clockFormatter.format(new Date());
+}
 
 function addText(parent, tag, className, value) {
   const element = document.createElement(tag);
@@ -80,4 +94,6 @@ async function refresh() {
 }
 
 refresh();
+updateTransitClock();
+window.setInterval(updateTransitClock, 1_000);
 window.setInterval(refresh, 60_000);

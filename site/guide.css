@@ -30,6 +30,10 @@
 .transit-live-section .section-heading { align-items: end; }
 .transit-live-section .eyebrow { color: #ffe595; }
 .transit-live-section .section-note { color: #d9eeeb; }
+.transit-heading-side { max-width: 300px; }
+.transit-clock { display: flex; align-items: baseline; justify-content: space-between; gap: 14px; margin: 0 0 12px; padding: 11px 13px; background: rgba(0,0,0,.18); border: 1px solid rgba(255,255,255,.24); border-radius: 8px; color: white; }
+.transit-clock span { font-size: 10px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+.transit-clock strong { font: 700 18px/1 'DM Sans',sans-serif; letter-spacing: .04em; white-space: nowrap; }
 .transit-live-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
 .transit-card { background: var(--paper); color: var(--ink); padding: 26px; border-radius: 14px; box-shadow: 0 7px 20px rgba(0,0,0,.12); }
 .transit-card-heading { display: flex; justify-content: space-between; align-items: start; gap: 16px; }
@@ -73,6 +77,7 @@
   .guide-hero { padding: 55px 0; }
   .guide-section, .compare-section, .faq-section { grid-template-columns: 1fr; gap: 35px; padding: 60px 0; }
   .transit-live-section { padding: 60px 0; }
+  .transit-heading-side { max-width: none; margin-top: 20px; }
   .transit-live-grid { grid-template-columns: 1fr; }
   .answer-grid, .hotel-grid { grid-template-columns: 1fr; }
   .answer-grid p, .hotel-grid article>p:not(.tag) { min-height: auto; }

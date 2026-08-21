@@ -68,7 +68,7 @@
 
       <section id="live-transit" class="transit-live-section">
         <div class="wrap">
-          <div class="section-heading"><div><p class="eyebrow">Live at Millbrae Station</p><h2>Check the next train before you go.</h2></div><p class="section-note">BART estimates refresh automatically. Caltrain’s official station boards open with current arrival predictions and alerts.</p></div>
+          <div class="section-heading"><div><p class="eyebrow">Live at Millbrae Station</p><h2>Check the next train before you go.</h2></div><p class="section-note">BART and Caltrain estimates refresh automatically. Use the official boards for alerts and disruption details.</p></div>
           <div class="transit-live-grid">
             <article class="transit-card bart-card" data-transit-board>
               <div class="transit-card-heading"><div><p class="tag">BART · LIVE ESTIMATES</p><h3>Millbrae BART</h3></div><span class="live-dot" aria-hidden="true"></span></div>
@@ -78,9 +78,9 @@
             </article>
             <article class="transit-card caltrain-card">
               <div class="transit-card-heading"><div><p class="tag">CALTRAIN · OFFICIAL LIVE BOARDS</p><h3>Millbrae Caltrain</h3></div><span class="live-dot" aria-hidden="true"></span></div>
-              <p>Open the direction you need for current arrival predictions, train alerts, and service status.</p>
-              <div class="caltrain-links"><a href="https://www.caltrain.com/station/70061" target="_blank" rel="noopener"><strong>Northbound</strong><span>Millbrae → San Francisco ↗</span></a><a href="https://www.caltrain.com/station/70062" target="_blank" rel="noopener"><strong>Southbound</strong><span>Millbrae → San Jose ↗</span></a></div>
-              <div class="transit-card-footer"><small>Official Caltrain data, opened directly</small><a href="https://www.caltrain.com/stops" target="_blank" rel="noopener">All Caltrain stops ↗</a></div>
+              <p data-caltrain-status role="status" aria-live="polite">Loading Caltrain departures…</p>
+              <div class="departure-list" data-caltrain-departures></div>
+              <div class="transit-card-footer"><small data-caltrain-updated>Waiting for the live feed</small><a href="https://www.caltrain.com/stops" target="_blank" rel="noopener">Official Caltrain boards ↗</a></div>
             </article>
           </div>
           <p class="transit-disclaimer">Times are estimates, not guarantees. Check the official board again before boarding, especially during service disruptions.</p>

@@ -87,7 +87,7 @@ const inboundParkFlyLinks = [...pages.entries()].filter(([file, html]) => file !
 if (inboundParkFlyLinks.length < 3) fail(parkFlyFile, `expected at least 3 internal entry points, found ${inboundParkFlyLinks.length}`);
 
 const stationGuideHtml = pages.get('millbrae-station-sfo-guide.html') || '';
-for (const requiredTransitSignal of ['id="live-transit"', 'data-transit-board', 'transit-live.js', 'https://www.caltrain.com/station/70061', 'https://www.caltrain.com/station/70062']) {
+for (const requiredTransitSignal of ['id="live-transit"', 'data-transit-board', 'data-caltrain-departures', 'transit-live.js', 'https://www.caltrain.com/stops']) {
   if (!stationGuideHtml.includes(requiredTransitSignal)) fail('millbrae-station-sfo-guide.html', `missing live transit signal: ${requiredTransitSignal}`);
 }
 

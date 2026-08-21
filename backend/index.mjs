@@ -8,6 +8,7 @@ const documentClient = DynamoDBDocumentClient.from(new DynamoDBClient({}), {
 });
 const tableName = process.env.TABLE_NAME;
 const googleClientId = process.env.GOOGLE_CLIENT_ID;
+const caltrainApiKey = process.env.CALTRAIN_API_KEY;
 const issuers = new Set(['accounts.google.com', 'https://accounts.google.com']);
 const dailyUpdateLimit = Number(process.env.DAILY_UPDATE_LIMIT || 10);
 let jwksCache = null;
@@ -140,6 +141,41 @@ async function getBartDepartures() {
   return normalizeBartResponse(await response.json());
 }
 
+function normalizeCaltrainResponse(data, direction) {
+  const visits = asArray(data?.ServiceDelivery?.StopMonitoringDelivery?.MonitoredStopVisit);
+  return visits.map((visit) => {
+    const journey = visit.MonitoredVehicleJourney || {};
+    const call = journey.MonitoredCall || {};
+    return {
+      direction,
+      destination: call.DestinationDisplay || journey.DestinationName || 'Caltrain',
+      line: journey.LineRef || '',
+      expectedArrivalTime: call.ExpectedArrivalTime || call.AimedArrivalTime || '',
+      expectedDepartureTime: call.ExpectedDepartureTime || call.AimedDepartureTime || '',
+      vehicle: journey.VehicleRef || ''
+    };
+  });
+}
+
+async function getCaltrainDepartures() {
+  if (!caltrainApiKey) throw new Error('Caltrain live data is not configured');
+  const stops = [
+    { stopCode: '70061', direction: 'Northbound' },
+    { stopCode: '70062', direction: 'Southbound' }
+  ];
+  const feeds = await Promise.all(stops.map(async ({ stopCode, direction }) => {
+    const url = new URL('https://api.511.org/transit/StopMonitoring');
+    url.searchParams.set('api_key', caltrainApiKey);
+    url.searchParams.set('agency', 'CT');
+    url.searchParams.set('stopcode', stopCode);
+    url.searchParams.set('format', 'json');
+    const response = await fetch(url, { signal: AbortSignal.timeout(2500) });
+    if (!response.ok) throw new Error('Caltrain live data unavailable');
+    return normalizeCaltrainResponse(await response.json(), direction);
+  }));
+  return { station: 'Millbrae', departures: feeds.flat() };
+}
+
 function parseBody(event) {
   if (!event.body) return {};
   const raw = event.isBase64Encoded ? Buffer.from(event.body, 'base64').toString('utf8') : event.body;
@@ -161,6 +197,10 @@ export async function handler(event) {
 
     if (method === 'GET' && path === '/transit/bart') {
       return json(200, { ...await getBartDepartures(), updatedAt: new Date().toISOString() }, { 'cache-control': 'public, max-age=30, stale-while-revalidate=60' });
+    }
+
+    if (method === 'GET' && path === '/transit/caltrain') {
+      return json(200, { ...await getCaltrainDepartures(), updatedAt: new Date().toISOString() }, { 'cache-control': 'public, max-age=30, stale-while-revalidate=60' });
     }
 
     if (method === 'GET' && path === '/me') {

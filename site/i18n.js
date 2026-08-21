@@ -1,6 +1,7 @@
 const LOCALE_KEY = 'millbrae-locale';
 const sourceByNode = new WeakMap();
 const sourceTitle = document.title;
+const pendingTranslations = new Set();
 
 const translations = {
   'zh-CN': {
@@ -247,6 +248,7 @@ function normalize(value) {
 
 function translateTextNodes(root, locale) {
   const dictionary = translations[locale] || {};
+  const cache = readTranslationCache(locale);
   const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
   const nodes = [];
   while (walker.nextNode()) nodes.push(walker.currentNode);
@@ -258,16 +260,64 @@ function translateTextNodes(root, locale) {
     const source = sourceByNode.get(node);
     const key = normalize(source);
     if (!key) continue;
-    const translated = locale === 'en' ? source : dictionary[key];
+    const translated = locale === 'en' ? source : (dictionary[key] || cache[key]);
     if (translated) node.nodeValue = source.replace(key, translated);
     else if (locale === 'en') node.nodeValue = source;
   }
+}
+
+function readTranslationCache(locale) {
+  try { return JSON.parse(localStorage.getItem(`millbrae-translations-${locale}`) || '{}'); } catch { return {}; }
+}
+
+function writeTranslationCache(locale, cache) {
+  try { localStorage.setItem(`millbrae-translations-${locale}`, JSON.stringify(cache)); } catch { /* storage is optional */ }
+}
+
+async function translateMissingCopy(locale) {
+  if (locale === 'en') return;
+  const dictionary = translations[locale] || {};
+  const cache = readTranslationCache(locale);
+  const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+  const missing = new Set();
+  while (walker.nextNode()) {
+    const node = walker.currentNode;
+    const parent = node.parentElement;
+    if (!parent || /^(SCRIPT|STYLE|NOSCRIPT|SELECT|OPTION|INPUT|TEXTAREA)$/.test(parent.tagName) || parent.closest('[data-i18n-ignore]')) continue;
+    const source = sourceByNode.get(node) || node.nodeValue;
+    const key = normalize(source);
+    if (key.length > 3 && !dictionary[key] && !cache[key] && !pendingTranslations.has(key)) missing.add(key);
+  }
+  const keys = [...missing];
+  for (let index = 0; index < keys.length; index += 8) {
+    await Promise.all(keys.slice(index, index + 8).map(async (key) => {
+      pendingTranslations.add(key);
+      try {
+        const url = new URL('https://translate.googleapis.com/translate_a/single');
+        url.searchParams.set('client', 'gtx');
+        url.searchParams.set('sl', 'en');
+        url.searchParams.set('tl', locale === 'zh-CN' ? 'zh-CN' : 'es');
+        url.searchParams.set('dt', 't');
+        url.searchParams.set('q', key);
+        const response = await fetch(url);
+        const data = await response.json();
+        const translated = data?.[0]?.map((part) => part?.[0] || '').join('').trim();
+        if (translated) cache[key] = translated;
+      } catch { /* bundled translations remain available offline */ }
+      pendingTranslations.delete(key);
+    }));
+  }
+  if (localStorage.getItem(LOCALE_KEY) !== locale) return;
+  writeTranslationCache(locale, cache);
+  translateTextNodes(document.body, locale);
+  if (sourceTitle && !dictionary[normalize(sourceTitle)] && cache[normalize(sourceTitle)]) document.title = cache[normalize(sourceTitle)];
 }
 
 function applyLocale(locale) {
   const selected = ['en', 'zh-CN', 'es'].includes(locale) ? locale : 'en';
   document.documentElement.lang = selected === 'zh-CN' ? 'zh-CN' : selected;
   translateTextNodes(document.body, selected);
+  void translateMissingCopy(selected);
   document.title = selected === 'en' ? sourceTitle : (translations[selected]?.[normalize(sourceTitle)] || sourceTitle);
   const selector = document.querySelector('[data-language-selector]');
   if (selector) selector.value = selected;

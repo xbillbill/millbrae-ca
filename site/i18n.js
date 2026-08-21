@@ -247,6 +247,11 @@ function normalize(value) {
   return value.replace(/\s+/g, ' ').trim();
 }
 
+function normalizeChineseCityName(value, locale) {
+  if (locale !== 'zh-CN') return value;
+  return value.replace(/米尔布雷|米爾布雷/g, ZH_CITY_NAME);
+}
+
 function translateTextNodes(root, locale) {
   const dictionary = translations[locale] || {};
   const cache = readTranslationCache(locale);
@@ -262,7 +267,8 @@ function translateTextNodes(root, locale) {
     const key = normalize(source);
     if (!key) continue;
     const translated = locale === 'en' ? source : (dictionary[key] || cache[key]);
-    if (translated) node.nodeValue = source.replace(key, translated);
+    const localized = translated ? normalizeChineseCityName(translated, locale) : translated;
+    if (localized) node.nodeValue = source.replace(key, localized);
     else if (locale === 'en') node.nodeValue = source;
   }
 }
@@ -311,7 +317,9 @@ async function translateMissingCopy(locale) {
   if (localStorage.getItem(LOCALE_KEY) !== locale) return;
   writeTranslationCache(locale, cache);
   translateTextNodes(document.body, locale);
-  if (sourceTitle && !dictionary[normalize(sourceTitle)] && cache[normalize(sourceTitle)]) document.title = cache[normalize(sourceTitle)];
+  if (sourceTitle && !dictionary[normalize(sourceTitle)] && cache[normalize(sourceTitle)]) {
+    document.title = normalizeChineseCityName(cache[normalize(sourceTitle)], locale);
+  }
 }
 
 function applyLocale(locale) {
@@ -319,7 +327,8 @@ function applyLocale(locale) {
   document.documentElement.lang = selected === 'zh-CN' ? 'zh-CN' : selected;
   translateTextNodes(document.body, selected);
   void translateMissingCopy(selected);
-  document.title = selected === 'en' ? sourceTitle : (translations[selected]?.[normalize(sourceTitle)] || sourceTitle);
+  const localizedTitle = selected === 'en' ? sourceTitle : (translations[selected]?.[normalize(sourceTitle)] || sourceTitle);
+  document.title = normalizeChineseCityName(localizedTitle, selected);
   const selector = document.querySelector('[data-language-selector]');
   if (selector) selector.value = selected;
   localStorage.setItem(LOCALE_KEY, selected);

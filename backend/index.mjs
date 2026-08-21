@@ -11,8 +11,11 @@ const googleClientId = process.env.GOOGLE_CLIENT_ID;
 const caltrainApiKey = process.env.CALTRAIN_API_KEY;
 const issuers = new Set(['accounts.google.com', 'https://accounts.google.com']);
 const dailyUpdateLimit = Number(process.env.DAILY_UPDATE_LIMIT || 10);
+const caltrainCacheKey = 'TRANSIT#CALTRAIN';
+const caltrainCacheSeconds = 5 * 60;
 let jwksCache = null;
 let directoryCache = null;
+let caltrainMemoryCache = null;
 
 const json = (statusCode, body, headers = {}) => ({
   statusCode,
@@ -159,6 +162,16 @@ function normalizeCaltrainResponse(data, direction) {
 
 async function getCaltrainDepartures() {
   if (!caltrainApiKey) throw new Error('Caltrain live data is not configured');
+  const now = Date.now();
+  if (caltrainMemoryCache?.expiresAt > now) return caltrainMemoryCache.payload;
+  const cached = await documentClient.send(new GetCommand({
+    TableName: tableName,
+    Key: { ownerId: caltrainCacheKey }
+  }));
+  if (cached.Item?.payload && Number(cached.Item.expiresAt || 0) * 1000 > now) {
+    caltrainMemoryCache = { payload: cached.Item.payload, expiresAt: Number(cached.Item.expiresAt) * 1000 };
+    return cached.Item.payload;
+  }
   const stops = [
     { stopCode: '70061', direction: 'Northbound' },
     { stopCode: '70062', direction: 'Southbound' }
@@ -173,7 +186,14 @@ async function getCaltrainDepartures() {
     if (!response.ok) throw new Error('Caltrain live data unavailable');
     return normalizeCaltrainResponse(await response.json(), direction);
   }));
-  return { station: 'Millbrae', departures: feeds.flat() };
+  const payload = { station: 'Millbrae', departures: feeds.flat(), updatedAt: new Date(now).toISOString() };
+  const expiresAt = Math.floor(now / 1000) + caltrainCacheSeconds;
+  await documentClient.send(new PutCommand({
+    TableName: tableName,
+    Item: { ownerId: caltrainCacheKey, entityType: 'transit-cache', payload, expiresAt }
+  }));
+  caltrainMemoryCache = { payload, expiresAt: expiresAt * 1000 };
+  return payload;
 }
 
 function parseBody(event) {
@@ -200,7 +220,7 @@ export async function handler(event) {
     }
 
     if (method === 'GET' && path === '/transit/caltrain') {
-      return json(200, { ...await getCaltrainDepartures(), updatedAt: new Date().toISOString() }, { 'cache-control': 'public, max-age=30, stale-while-revalidate=60' });
+      return json(200, await getCaltrainDepartures(), { 'cache-control': 'public, max-age=60, stale-while-revalidate=300' });
     }
 
     if (method === 'GET' && path === '/me') {

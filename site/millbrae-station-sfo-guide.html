@@ -43,7 +43,7 @@
         <h1>Millbrae Station to SFO: the practical guide.</h1>
         <p class="lede">BART, Caltrain, parking, airport transfers, and nearby hotels—organized around the decision you actually need to make.</p>
         <div class="quick-links" aria-label="Guide sections">
-          <a href="#quick-answer">Quick answer</a><a href="#parking">Parking</a><a href="#hotels">Hotels</a><a href="#faq">FAQ</a>
+          <a href="#quick-answer">Quick answer</a><a href="#live-transit">Live departures</a><a href="#parking">Parking</a><a href="#hotels">Hotels</a><a href="#faq">FAQ</a>
         </div>
       </header>
 
@@ -64,6 +64,27 @@
           <a class="button" href="advertise.html">See the paid rollout →</a>
           <small>Paid placements are always labeled.</small>
         </aside>
+      </section>
+
+      <section id="live-transit" class="transit-live-section">
+        <div class="wrap">
+          <div class="section-heading"><div><p class="eyebrow">Live at Millbrae Station</p><h2>Check the next train before you go.</h2></div><p class="section-note">BART estimates refresh automatically. Caltrain’s official station boards open with current arrival predictions and alerts.</p></div>
+          <div class="transit-live-grid">
+            <article class="transit-card bart-card" data-transit-board>
+              <div class="transit-card-heading"><div><p class="tag">BART · LIVE ESTIMATES</p><h3>Millbrae BART</h3></div><span class="live-dot" aria-hidden="true"></span></div>
+              <p data-transit-status role="status" aria-live="polite">Loading BART departures…</p>
+              <div class="departure-list" data-bart-departures></div>
+              <div class="transit-card-footer"><small data-transit-updated>Waiting for the live feed</small><a href="https://www.bart.gov/schedules/eta" target="_blank" rel="noopener">Official BART board ↗</a></div>
+            </article>
+            <article class="transit-card caltrain-card">
+              <div class="transit-card-heading"><div><p class="tag">CALTRAIN · OFFICIAL LIVE BOARDS</p><h3>Millbrae Caltrain</h3></div><span class="live-dot" aria-hidden="true"></span></div>
+              <p>Open the direction you need for current arrival predictions, train alerts, and service status.</p>
+              <div class="caltrain-links"><a href="https://www.caltrain.com/station/70061" target="_blank" rel="noopener"><strong>Northbound</strong><span>Millbrae → San Francisco ↗</span></a><a href="https://www.caltrain.com/station/70062" target="_blank" rel="noopener"><strong>Southbound</strong><span>Millbrae → San Jose ↗</span></a></div>
+              <div class="transit-card-footer"><small>Official Caltrain data, opened directly</small><a href="https://www.caltrain.com/stops" target="_blank" rel="noopener">All Caltrain stops ↗</a></div>
+            </article>
+          </div>
+          <p class="transit-disclaimer">Times are estimates, not guarantees. Check the official board again before boarding, especially during service disruptions.</p>
+        </div>
       </section>
 
       <section id="parking" class="guide-band">
@@ -126,5 +147,6 @@
   </main>
 
   <footer class="site-footer wrap"><span>© 2026 Millbrae Local</span><span>Independent guide · Verify live transit and prices before travel</span><span><a href="community.html">Directory</a> · <a href="advertise.html">Advertise</a></span></footer>
+  <script type="module" src="transit-live.js?v=20260820"></script>
 </body>
 </html>

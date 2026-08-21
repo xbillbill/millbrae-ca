@@ -108,6 +108,38 @@ async function listDirectory() {
   return listings;
 }
 
+function asArray(value) {
+  return Array.isArray(value) ? value : value ? [value] : [];
+}
+
+function normalizeBartResponse(data) {
+  const station = asArray(data?.root?.station)[0];
+  const departures = [];
+  for (const train of asArray(station?.etd)) {
+    for (const estimate of asArray(train.estimate)) {
+      departures.push({
+        destination: train.destination || 'BART train',
+        direction: estimate.direction || '',
+        minutes: estimate.minutes || '',
+        platform: estimate.platform || '',
+        color: estimate.color || '',
+        delaySeconds: Number(estimate.delay || 0),
+        cancelled: estimate.cancelflag === '1'
+      });
+    }
+  }
+  return { station: station?.name || 'Millbrae', departures };
+}
+
+async function getBartDepartures() {
+  const response = await fetch('http://api.bart.gov/api/etd.aspx?cmd=etd&orig=MLBR&key=MW9S-E7SL-26DU-VV8V&json=y', {
+    headers: { 'user-agent': 'MillbraeLocal/1.0 (+https://www.millbrae.ca/)' },
+    signal: AbortSignal.timeout(2500)
+  });
+  if (!response.ok) throw new Error('BART live data unavailable');
+  return normalizeBartResponse(await response.json());
+}
+
 function parseBody(event) {
   if (!event.body) return {};
   const raw = event.isBase64Encoded ? Buffer.from(event.body, 'base64').toString('utf8') : event.body;
@@ -125,6 +157,10 @@ export async function handler(event) {
   try {
     if (method === 'GET' && path === '/listings') {
       return json(200, { listings: await listDirectory() }, { 'cache-control': 'public, max-age=60, stale-while-revalidate=300' });
+    }
+
+    if (method === 'GET' && path === '/transit/bart') {
+      return json(200, { ...await getBartDepartures(), updatedAt: new Date().toISOString() }, { 'cache-control': 'public, max-age=30, stale-while-revalidate=60' });
     }
 
     if (method === 'GET' && path === '/me') {

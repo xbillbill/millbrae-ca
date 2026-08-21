@@ -86,6 +86,11 @@ const parkFlyFile = 'sfo-park-and-fly-hotel-calculator.html';
 const inboundParkFlyLinks = [...pages.entries()].filter(([file, html]) => file !== parkFlyFile && html.includes(`href="${parkFlyFile}`));
 if (inboundParkFlyLinks.length < 3) fail(parkFlyFile, `expected at least 3 internal entry points, found ${inboundParkFlyLinks.length}`);
 
+const stationGuideHtml = pages.get('millbrae-station-sfo-guide.html') || '';
+for (const requiredTransitSignal of ['id="live-transit"', 'data-transit-board', 'transit-live.js', 'https://www.caltrain.com/station/70061', 'https://www.caltrain.com/station/70062']) {
+  if (!stationGuideHtml.includes(requiredTransitSignal)) fail('millbrae-station-sfo-guide.html', `missing live transit signal: ${requiredTransitSignal}`);
+}
+
 const rideshareFile = 'sfo-parking-vs-rideshare-calculator.html';
 const inboundRideshareLinks = [...pages.entries()].filter(([file, html]) => file !== rideshareFile && html.includes(`href="${rideshareFile}`));
 if (inboundRideshareLinks.length < 3) fail(rideshareFile, `expected at least 3 internal entry points, found ${inboundRideshareLinks.length}`);

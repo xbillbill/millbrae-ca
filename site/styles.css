@@ -26,7 +26,8 @@ a { color: inherit; text-decoration: none; }
   border-bottom: 1px solid var(--line); box-shadow: 0 2px 14px rgba(50,35,25,.05); backdrop-filter: blur(12px);
 }
 .brand { font-weight: 800; letter-spacing: -.035em; font-size: 20px; margin-right: auto; white-space: nowrap; }
-.brand span { display: inline-grid; place-items: center; width: 30px; height: 30px; margin-right: 8px; background: var(--orange); color: white; border-radius: 9px; font-size: 16px; transform: rotate(-4deg); }
+.brand-mark { display: inline-grid; place-items: center; width: 42px; height: 42px; margin-right: 7px; border-radius: 50%; overflow: hidden; vertical-align: middle; background: var(--cream); box-shadow: 0 2px 8px rgba(61,42,31,.12); transform: rotate(-3deg); }
+.brand-mark img { display: block; width: 52px; height: 52px; max-width: none; object-fit: cover; }
 .site-header nav { display: flex; gap: 8px; font-size: 14px; font-weight: 700; }
 .site-header nav a { padding: 9px 11px; border-radius: 8px; }
 .site-header nav a:hover, .site-header nav a[aria-current="page"] { color: var(--red); background: #fff1ed; }

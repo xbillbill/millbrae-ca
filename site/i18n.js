@@ -335,6 +335,21 @@ function addSelector() {
   header.append(label);
 }
 
+function normalizeHeader() {
+  const header = document.querySelector('.site-header');
+  if (!header) return;
+  const brand = header.querySelector('.brand');
+  if (brand) brand.href = 'index.html';
+  const nav = header.querySelector('nav');
+  if (nav) nav.innerHTML = '<a href="community.html">Directory</a><a href="restaurants-in-millbrae.html">Restaurants</a><a href="millbrae-station-sfo-guide.html#live-transit">Live transit</a><a href="sfo-tools.html">SFO tools</a><a href="advertise.html">Advertise</a>';
+  const cta = header.querySelector('.button-small');
+  if (cta) {
+    cta.href = 'list-your-business.html';
+    cta.textContent = 'List your business';
+  }
+}
+
+normalizeHeader();
 addSelector();
 applyLocale(localStorage.getItem(LOCALE_KEY) || 'en');
 

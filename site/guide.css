@@ -45,6 +45,8 @@
 .departure-row { display: grid; grid-template-columns: 1fr auto; gap: 8px; align-items: center; padding: 11px 12px; background: #f7f4ef; border: 1px solid var(--line); border-radius: 8px; }
 .departure-row strong { font-size: 13px; }
 .departure-row span { color: var(--muted); font-size: 11px; }
+.departure-meta { display: grid; justify-items: end; gap: 3px; min-width: 58px; }
+.departure-time { color: var(--ink); white-space: nowrap; }
 .departure-minutes { color: var(--red) !important; font-weight: 800; text-align: right; }
 .caltrain-links { display: grid; gap: 9px; margin: 20px 0; }
 .caltrain-links a { display: flex; justify-content: space-between; gap: 12px; padding: 13px 14px; background: #f7f4ef; border: 1px solid var(--line); border-radius: 8px; color: var(--red); }

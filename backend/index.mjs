@@ -116,15 +116,20 @@ function asArray(value) {
   return Array.isArray(value) ? value : value ? [value] : [];
 }
 
-function normalizeBartResponse(data) {
+function normalizeBartResponse(data, receivedAt = Date.now()) {
   const station = asArray(data?.root?.station)[0];
   const departures = [];
   for (const train of asArray(station?.etd)) {
     for (const estimate of asArray(train.estimate)) {
+      const rawMinutes = estimate.minutes || '';
+      const minutes = Number(rawMinutes);
       departures.push({
         destination: train.destination || 'BART train',
         direction: estimate.direction || '',
-        minutes: estimate.minutes || '',
+        minutes: rawMinutes,
+        departureAt: Number.isFinite(minutes)
+          ? new Date(receivedAt + (minutes * 60_000)).toISOString()
+          : (rawMinutes === 'Leaving' ? new Date(receivedAt).toISOString() : ''),
         platform: estimate.platform || '',
         color: estimate.color || '',
         delaySeconds: Number(estimate.delay || 0),
@@ -141,7 +146,7 @@ async function getBartDepartures() {
     signal: AbortSignal.timeout(2500)
   });
   if (!response.ok) throw new Error('BART live data unavailable');
-  return normalizeBartResponse(await response.json());
+  return normalizeBartResponse(await response.json(), Date.now());
 }
 
 function normalizeCaltrainResponse(data, direction) {

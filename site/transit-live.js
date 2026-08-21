@@ -27,12 +27,41 @@ function addText(parent, tag, className, value) {
   element.className = className;
   element.textContent = value;
   parent.append(element);
+  return element;
 }
 
 function formatMinutes(value) {
   if (value === 'Leaving') return 'Leaving';
   const minutes = Number(value);
   return Number.isFinite(minutes) ? `${minutes} min` : String(value || '—');
+}
+
+function formatDepartureTime(value) {
+  if (!value) return 'Time unavailable';
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return 'Time unavailable';
+  return new Intl.DateTimeFormat('en-US', {
+    hour: 'numeric',
+    minute: '2-digit',
+    timeZone: 'America/Los_Angeles'
+  }).format(date);
+}
+
+function formatMinutesLeft(value, fallback) {
+  if (!value) return formatMinutes(fallback);
+  const departureAt = new Date(value).getTime();
+  if (!Number.isFinite(departureAt)) return formatMinutes(fallback);
+  const minutes = Math.max(0, Math.ceil((departureAt - Date.now()) / 60_000));
+  return minutes === 0 ? 'Due' : `${minutes} min`;
+}
+
+function addDepartureMeta(parent, departureAt, fallbackMinutes) {
+  const meta = document.createElement('div');
+  meta.className = 'departure-meta';
+  addText(meta, 'strong', 'departure-time', formatDepartureTime(departureAt));
+  const minutes = addText(meta, 'span', 'departure-minutes', formatMinutesLeft(departureAt, fallbackMinutes));
+  if (departureAt) minutes.dataset.departureAt = departureAt;
+  parent.append(meta);
 }
 
 function formatCaltrainTime(value) {
@@ -51,7 +80,8 @@ function renderBart(departures) {
     addText(detail, 'strong', '', departure.destination);
     addText(detail, 'span', '', `${departure.direction || 'BART'}${departure.platform ? ` · Platform ${departure.platform}` : ''}`);
     row.append(detail);
-    addText(row, 'span', 'departure-minutes', departure.cancelled ? 'Cancelled' : formatMinutes(departure.minutes));
+    if (departure.cancelled) addText(row, 'span', 'departure-minutes', 'Cancelled');
+    else addDepartureMeta(row, departure.departureAt, departure.minutes);
     bartList.append(row);
   });
 }
@@ -65,8 +95,14 @@ function renderCaltrain(departures) {
     addText(detail, 'strong', '', `${departure.direction} · ${departure.destination}`);
     addText(detail, 'span', '', departure.line || 'Caltrain');
     row.append(detail);
-    addText(row, 'strong', 'departure-minutes', formatCaltrainTime(departure.expectedArrivalTime));
+    addDepartureMeta(row, departure.expectedArrivalTime, '');
     caltrainList.append(row);
+  });
+}
+
+function refreshDepartureCountdowns() {
+  document.querySelectorAll('[data-departure-at]').forEach((element) => {
+    element.textContent = formatMinutesLeft(element.dataset.departureAt, '');
   });
 }
 
@@ -95,5 +131,7 @@ async function refresh() {
 
 refresh();
 updateTransitClock();
+refreshDepartureCountdowns();
 window.setInterval(updateTransitClock, 1_000);
+window.setInterval(refreshDepartureCountdowns, 60_000);
 window.setInterval(refresh, 60_000);

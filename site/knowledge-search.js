@@ -2,6 +2,7 @@ const form = document.querySelector('[data-knowledge-search]');
 const input = document.querySelector('[data-knowledge-search-input]');
 const status = document.querySelector('[data-knowledge-search-status]');
 const cards = [...document.querySelectorAll('.reference-card')];
+const urlQuery = new URLSearchParams(window.location.search).get('q') || '';
 
 const statusCopy = {
   en: { all: (count) => `Showing all ${count} topics.`, match: (count, query) => `${count} topic${count === 1 ? '' : 's'} match “${query}”.`, none: (query) => `No topic matches “${query}”. Try history, parks, schools, transit, or public resources.`, placeholder: 'Try parks, schools, BART, history, water…' },
@@ -10,6 +11,16 @@ const statusCopy = {
 };
 
 if (form && input && status && cards.length) {
+  input.value = urlQuery;
+
+  const syncQuery = () => {
+    const url = new URL(window.location.href);
+    const query = input.value.trim();
+    if (query) url.searchParams.set('q', query);
+    else url.searchParams.delete('q');
+    window.history.replaceState({}, '', url);
+  };
+
   const filter = () => {
     const query = input.value.trim().toLocaleLowerCase();
     const copy = statusCopy[document.documentElement.lang] || statusCopy.en;
@@ -36,6 +47,7 @@ if (form && input && status && cards.length) {
 
   form.addEventListener('submit', (event) => {
     event.preventDefault();
+    syncQuery();
     filter();
   });
   input.addEventListener('input', filter);

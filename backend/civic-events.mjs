@@ -19,7 +19,7 @@ function normalizeEventUrl(value = '') {
 
 function eventDetailUrl(event) {
   const embeddedUrl = String(event.description || '').match(/https?:\/\/www\.ci\.millbrae\.ca\.us\/calendar\.aspx\?EID=\d+/i)?.[0];
-  return normalizeEventUrl(event.url || embeddedUrl);
+  return normalizeEventUrl(embeddedUrl || event.url);
 }
 
 function localTimeToIso(value, timeZone = 'America/Los_Angeles') {

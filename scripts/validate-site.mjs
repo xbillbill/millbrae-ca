@@ -97,6 +97,7 @@ const civicEventsHtml = pages.get('millbrae-civic-events-news.html') || '';
 for (const requiredCivicEventSignal of ['data-civic-events', 'civic-events.js', 'data-civic-news', 'civic-news.js', 'data-civic-agendas', 'civic-agendas.js', 'https://www.ci.millbrae.ca.us/calendar.aspx', 'https://www.ci.millbrae.ca.us/CivicAlerts.aspx', 'https://www.ci.millbrae.ca.us/AgendaCenter', 'https://www.millbraeschooldistrict.org/Calendar', 'https://www.smcl.org/events/']) {
   if (!civicEventsHtml.includes(requiredCivicEventSignal)) fail('millbrae-civic-events-news.html', `missing civic events signal: ${requiredCivicEventSignal}`);
 }
+if (!civicEventsHtml.includes('data-event-search')) fail('millbrae-civic-events-news.html', 'missing live event search control');
 const communityNewsHtml = pages.get('millbrae-community-news.html') || '';
 for (const requiredCommunityNewsSignal of ['data-civic-news', 'civic-news.js', 'https://www.ci.millbrae.ca.us/CivicAlerts.aspx']) {
   if (!communityNewsHtml.includes(requiredCommunityNewsSignal)) fail('millbrae-community-news.html', `missing live community-news signal: ${requiredCommunityNewsSignal}`);

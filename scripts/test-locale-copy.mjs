@@ -25,6 +25,7 @@ const requiredTranslations = [
   ,['Know the city behind the search.', '了解搜索背后的城市。', 'Conoce la ciudad detrás de la búsqueda.']
   ,['A correction needs a checkable trail.', '更正需要一条可核查的证据链。', 'Una corrección necesita un rastro verificable.']
   ,['A few dates that change the picture.', '几个改变城市图景的日期。', 'Algunas fechas que cambian la imagen.']
+  ,['When the question is bigger than one department.', '当问题不只属于一个部门时。', 'Cuando la pregunta abarca más de un departamento.']
 ];
 
 for (const [source, chinese, spanish] of requiredTranslations) {
@@ -35,7 +36,7 @@ for (const [source, chinese, spanish] of requiredTranslations) {
 
 for (const file of pages) {
   const html = readFileSync(join(site, file), 'utf8');
-  if (!html.includes('i18n.js?v=20260918-locale-glossary-v9')) failures.push(`${file}: stale or missing locale cache-bust`);
+  if (!html.includes('i18n.js?v=20260918-locale-glossary-v10')) failures.push(`${file}: stale or missing locale cache-bust`);
 }
 
 if (failures.length) {

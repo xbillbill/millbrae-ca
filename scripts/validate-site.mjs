@@ -106,6 +106,9 @@ const resourcesHtml = pages.get('millbrae-public-resources.html') || '';
 for (const requiredAlertSignal of ['data-civic-alerts', 'civic-alerts.js', 'https://www.ci.millbrae.ca.us/AlertCenter.aspx']) {
   if (!resourcesHtml.includes(requiredAlertSignal)) fail('millbrae-public-resources.html', `missing public alert signal: ${requiredAlertSignal}`);
 }
+for (const requiredResourceRouterSignal of ['LIFE-ADMIN ROUTER', 'https://www.ci.millbrae.ca.us/210/Building-Permit', 'https://www.smcgov.org/hsa/core-service-agencies-emergency-safety-net-assistance', 'https://www.smcgov.org/hsa/financial-assistance', 'https://smcacre.gov/elections']) {
+  if (!resourcesHtml.includes(requiredResourceRouterSignal)) fail('millbrae-public-resources.html', `missing life-admin router signal: ${requiredResourceRouterSignal}`);
+}
 const homepageHtml = pages.get('index.html') || '';
 for (const requiredHomepageEventSignal of ['data-civic-events', 'civic-events.js', 'data-civic-news', 'civic-news.js', 'millbrae-civic-events-news.html']) {
   if (!homepageHtml.includes(requiredHomepageEventSignal)) fail('index.html', `missing homepage events signal: ${requiredHomepageEventSignal}`);

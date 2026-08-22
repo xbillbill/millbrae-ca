@@ -191,7 +191,7 @@ const schoolCommunityInbound = [...pages.entries()].filter(([file, html]) => fil
 if (schoolCommunityInbound.length < 3) fail('millbrae-story-school-community.html', `expected at least 3 internal entry points, found ${schoolCommunityInbound.length}`);
 
 const sourcesHtml = pages.get('millbrae-sources.html') || '';
-for (const requiredCoverageSignal of ['COVERAGE MAP', 'Facts and geography', 'Schools and families', 'Neighborhoods and planning', 'Civic news and events', 'Public resources and alerts', 'Weather and local conditions']) {
+for (const requiredCoverageSignal of ['COVERAGE MAP', 'Facts and geography', 'Schools and families', 'Neighborhoods and planning', 'Civic government and participation', 'Civic news and events', 'Public resources and alerts', 'Weather and local conditions', 'Editorial stories and glossary']) {
   if (!sourcesHtml.includes(requiredCoverageSignal)) fail('millbrae-sources.html', `missing coverage-map subject: ${requiredCoverageSignal}`);
 }
 

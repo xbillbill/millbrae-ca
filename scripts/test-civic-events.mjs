@@ -10,4 +10,6 @@ assert.equal(events[0].category, 'City Events');
 assert.equal(events[0].location, '621 Magnolia Avenue');
 assert.equal(events[0].start, '2026-08-26T02:00:00.000Z');
 assert.equal(events[0].url, 'https://www.ci.millbrae.ca.us/calendar.aspx?EID=1');
+const embeddedUrlFeed = feed.replace('URL:https://www.ci.millbrae.ca.us/calendar.aspx?EID=1', 'DESCRIPTION:Details https://www.ci.millbrae.ca.us/calendar.aspx?EID=42');
+assert.equal(parseIcalendar(embeddedUrlFeed, 'City Events', now)[0].url, 'https://www.ci.millbrae.ca.us/calendar.aspx?EID=42');
 console.log('Civic events parser tests: OK');

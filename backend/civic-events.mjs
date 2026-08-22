@@ -17,6 +17,11 @@ function normalizeEventUrl(value = '') {
   }
 }
 
+function eventDetailUrl(event) {
+  const embeddedUrl = String(event.description || '').match(/https?:\/\/www\.ci\.millbrae\.ca\.us\/calendar\.aspx\?EID=\d+/i)?.[0];
+  return normalizeEventUrl(event.url || embeddedUrl);
+}
+
 function localTimeToIso(value, timeZone = 'America/Los_Angeles') {
   const match = String(value).match(/^(\d{4})(\d{2})(\d{2})(?:T(\d{2})(\d{2})(\d{2}))?/);
   if (!match) return '';
@@ -46,7 +51,7 @@ export function parseIcalendar(text, category, now = Date.now()) {
           start,
           end: current.end ? localTimeToIso(current.end, current.timeZone) : '',
           location: cleanIcsText(current.location || ''),
-          url: normalizeEventUrl(current.url)
+          url: eventDetailUrl(current)
         });
       }
       current = null;
@@ -59,7 +64,7 @@ export function parseIcalendar(text, category, now = Date.now()) {
     const rawValue = line.slice(separator + 1);
     const [name, ...params] = property.split(';');
     const timeZone = params.find((param) => param.startsWith('TZID='))?.slice(5) || 'America/Los_Angeles';
-    const key = { SUMMARY: 'summary', DTSTART: 'start', DTEND: 'end', LOCATION: 'location', URL: 'url', UID: 'uid' }[name];
+    const key = { SUMMARY: 'summary', DESCRIPTION: 'description', DTSTART: 'start', DTEND: 'end', LOCATION: 'location', URL: 'url', UID: 'uid' }[name];
     if (key) { current[key] = unescapeIcs(rawValue); if (name === 'DTSTART' || name === 'DTEND') current.timeZone = timeZone; }
   }
   return events;

@@ -16,6 +16,7 @@ const requiredTranslations = [
   ['Millbrae has a global map.', '${ZH_CITY_NAME}拥有一张全球地图。', 'Millbrae tiene un mapa global.'],
   ['Millbrae Library & Learning Guide | Millbrae Local', '${ZH_CITY_NAME}图书馆与学习指南 | Millbrae Local', 'Guía de la biblioteca y el aprendizaje de Millbrae | Millbrae Local']
   ,['Millbrae Place Glossary | Millbrae Local', '${ZH_CITY_NAME}地点词典 | Millbrae Local', 'Glosario de lugares de Millbrae | Millbrae Local']
+  ,['THE MILLBRAE REFERENCE INDEX', '${ZH_CITY_NAME}参考索引', 'ÍNDICE DE REFERENCIA DE MILLBRAE']
 ];
 
 for (const [source, chinese, spanish] of requiredTranslations) {
@@ -26,7 +27,7 @@ for (const [source, chinese, spanish] of requiredTranslations) {
 
 for (const file of pages) {
   const html = readFileSync(join(site, file), 'utf8');
-  if (!html.includes('i18n.js?v=20260918-locale-glossary')) failures.push(`${file}: stale or missing locale cache-bust`);
+  if (!html.includes('i18n.js?v=20260918-locale-glossary-v2')) failures.push(`${file}: stale or missing locale cache-bust`);
 }
 
 if (failures.length) {

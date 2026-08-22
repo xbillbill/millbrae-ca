@@ -94,9 +94,9 @@ const localizedResultCopy = {
 };
 
 const statusCopy = {
-  en: { all: (count) => `Showing all ${count} topics.`, match: (count, query, guides) => `${count ? `${count} topic${count === 1 ? '' : 's'}` : 'No topic cards'} match “${query}”${guides ? `, plus ${guides} guide page${guides === 1 ? '' : 's'}` : ''}.`, none: (query) => `No topic or guide matches “${query}”. Try history, parks, schools, transit, or public resources.`, placeholder: 'Try parks, schools, BART, history, water…', guides: 'Related guide pages' },
-  'zh-CN': { all: (count) => `显示全部 ${count} 个主题。`, match: (count, query, guides) => `${count ? `${count} 个主题` : '没有主题卡'}匹配“${query}”${guides ? `，另有 ${guides} 个指南页面` : ''}。`, none: (query) => `没有主题或指南匹配“${query}”。可以试试历史、公园、学校、交通或公共资源。`, placeholder: '试试搜索公园、学校、BART、历史、水务……', guides: '相关指南页面' },
-  es: { all: (count) => `Se muestran los ${count} temas.`, match: (count, query, guides) => `${count ? `${count} tema${count === 1 ? '' : 's'}` : 'Ninguna tarjeta temática'} coincide${count === 1 ? '' : 'n'} con “${query}”${guides ? ` y ${guides} página${guides === 1 ? '' : 's'} de guía` : ''}.`, none: (query) => `Ningún tema ni guía coincide con “${query}”. Prueba historia, parques, escuelas, transporte o recursos públicos.`, placeholder: 'Prueba parques, escuelas, BART, historia, agua…', guides: 'Páginas de guía relacionadas' }
+  en: { all: (count) => `Showing all ${count} topics.`, match: (count, query, guides) => `${count} topic${count === 1 ? '' : 's'} match “${query}”${guides ? `, plus ${guides} guide page${guides === 1 ? '' : 's'}` : ''}.`, guideOnly: (count, query) => `No topic cards match “${query}”, but ${count} guide page${count === 1 ? '' : 's'} do.`, none: (query) => `No topic or guide matches “${query}”. Try history, parks, schools, transit, or public resources.`, placeholder: 'Try parks, schools, BART, history, water…', guides: 'Related guide pages' },
+  'zh-CN': { all: (count) => `显示全部 ${count} 个主题。`, match: (count, query, guides) => `${count} 个主题匹配“${query}”${guides ? `，另有 ${guides} 个指南页面` : ''}。`, guideOnly: (count, query) => `没有主题卡匹配“${query}”，但有 ${count} 个指南页面。`, none: (query) => `没有主题或指南匹配“${query}”。可以试试历史、公园、学校、交通或公共资源。`, placeholder: '试试搜索公园、学校、BART、历史、水务……', guides: '相关指南页面' },
+  es: { all: (count) => `Se muestran los ${count} temas.`, match: (count, query, guides) => `${count} tema${count === 1 ? '' : 's'} coincide${count === 1 ? '' : 'n'} con “${query}”${guides ? ` y ${guides} página${guides === 1 ? '' : 's'} de guía` : ''}.`, guideOnly: (count, query) => `Ninguna tarjeta temática coincide con “${query}”, pero sí ${count} página${count === 1 ? '' : 's'} de guía.`, none: (query) => `Ningún tema ni guía coincide con “${query}”. Prueba historia, parques, escuelas, transporte o recursos públicos.`, placeholder: 'Prueba parques, escuelas, BART, historia, agua…', guides: 'Páginas de guía relacionadas' }
 };
 
 const renderGuideResults = (query, copy) => {
@@ -167,7 +167,7 @@ if (form && input && status && cards.length) {
     if (!query) {
       status.textContent = copy.all(cards.length);
     } else if (visible || guideCount) {
-      status.textContent = copy.match(visible, input.value.trim(), guideCount);
+      status.textContent = visible ? copy.match(visible, input.value.trim(), guideCount) : copy.guideOnly(guideCount, input.value.trim());
     } else {
       status.textContent = copy.none(input.value.trim());
     }

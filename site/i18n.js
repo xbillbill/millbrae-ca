@@ -330,6 +330,7 @@ function applyLocale(locale) {
   void translateMissingCopy(selected);
   const localizedTitle = selected === 'en' ? sourceTitle : (translations[selected]?.[normalize(sourceTitle)] || sourceTitle);
   document.title = normalizeChineseCityName(localizedTitle, selected);
+  window.dispatchEvent(new CustomEvent('localechange', { detail: selected }));
   const selector = document.querySelector('[data-language-selector]');
   if (selector) selector.value = selected;
   localStorage.setItem(LOCALE_KEY, selected);

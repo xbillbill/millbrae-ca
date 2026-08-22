@@ -7,6 +7,10 @@ const pendingTranslations = new Set();
 const translations = {
   'zh-CN': {
     'Millbrae, California Restaurants, BART & SFO Guide | Millbrae Local': `${ZH_CITY_NAME}，加州餐厅、BART 与 SFO 指南 | Millbrae Local`,
+    'THE MILLBRAE KNOWLEDGE HUB': `${ZH_CITY_NAME}知识中心`,
+    'Know the city behind the search.': '了解搜索背后的城市。',
+    'A source-backed guide to Millbrae’s history, people, schools, civic life, businesses, transit, weather, and everyday resources.': `一个有来源支持的指南，介绍${ZH_CITY_NAME}的历史、人物、学校、市政生活、商家、交通、天气和日常公共资源。`,
+    'Explore the knowledge hub': '探索知识中心',
     'Millbrae Station to SFO: BART, Parking & Hotels (2026)': `${ZH_CITY_NAME}车站到 SFO：BART、停车与酒店（2026）`,
     'Millbrae at a Glance: Facts & Sources | Millbrae Local': `${ZH_CITY_NAME}概览：事实与来源 | Millbrae Local`,
     'Millbrae at a glance.': `${ZH_CITY_NAME}概览。`,
@@ -202,6 +206,10 @@ const translations = {
   },
   es: {
     'Millbrae, California Restaurants, BART & SFO Guide | Millbrae Local': 'Guía de restaurantes, BART y SFO de Millbrae, California | Millbrae Local',
+    'THE MILLBRAE KNOWLEDGE HUB': 'EL CENTRO DE CONOCIMIENTO DE MILLBRAE',
+    'Know the city behind the search.': 'Conoce la ciudad detrás de la búsqueda.',
+    'A source-backed guide to Millbrae’s history, people, schools, civic life, businesses, transit, weather, and everyday resources.': 'Una guía respaldada por fuentes sobre la historia, las personas, las escuelas, la vida cívica, los negocios, el transporte, el clima y los recursos cotidianos de Millbrae.',
+    'Explore the knowledge hub': 'Explora el centro de conocimiento',
     'Millbrae Station to SFO: BART, Parking & Hotels (2026)': 'De la estación Millbrae a SFO: BART, estacionamiento y hoteles (2026)',
     'Millbrae at a Glance: Facts & Sources | Millbrae Local': 'Millbrae de un vistazo: datos y fuentes | Millbrae Local',
     'Millbrae at a glance.': 'Millbrae de un vistazo.',

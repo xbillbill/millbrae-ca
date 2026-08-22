@@ -21,6 +21,8 @@ const requiredTranslations = [
   ,['One City, Overlapping Maps | Millbrae Local', '一座城市，多张重叠的地图 | Millbrae Local', 'Una ciudad, mapas superpuestos | Millbrae Local']
   ,['The Quiet Infrastructure Behind a Millbrae Day | Millbrae Local', '密尔布雷一天背后的安静基础设施 | Millbrae Local', 'La infraestructura silenciosa detrás de un día en Millbrae | Millbrae Local']
   ,['Schools Remember a City, Too | Millbrae Local', '学校也记得一座城市 | Millbrae Local', 'Las escuelas también recuerdan una ciudad | Millbrae Local']
+  ,['THE MILLBRAE KNOWLEDGE HUB', '${ZH_CITY_NAME}知识中心', 'EL CENTRO DE CONOCIMIENTO DE MILLBRAE']
+  ,['Know the city behind the search.', '了解搜索背后的城市。', 'Conoce la ciudad detrás de la búsqueda.']
 ];
 
 for (const [source, chinese, spanish] of requiredTranslations) {
@@ -31,7 +33,7 @@ for (const [source, chinese, spanish] of requiredTranslations) {
 
 for (const file of pages) {
   const html = readFileSync(join(site, file), 'utf8');
-  if (!html.includes('i18n.js?v=20260918-locale-glossary-v6')) failures.push(`${file}: stale or missing locale cache-bust`);
+  if (!html.includes('i18n.js?v=20260918-locale-glossary-v7')) failures.push(`${file}: stale or missing locale cache-bust`);
 }
 
 if (failures.length) {

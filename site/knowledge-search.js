@@ -7,6 +7,7 @@ const urlQuery = new URLSearchParams(window.location.search).get('q') || '';
 
 const guideIndex = [
   { topic: 'START HERE', title: 'Know Millbrae', description: 'History, civic life, schools, transit, events, and direct answers with sources nearby.', href: 'know-millbrae.html', keywords: 'history city facts timeline incorporation' },
+  { topic: 'REFERENCE', title: 'Millbrae at a glance', description: 'Date-labeled population, geography, housing, language, history, and regional context with the source beside each fact.', href: 'millbrae-facts.html', keywords: 'facts population census geography area households housing language demographics incorporation data statistics' },
   { topic: 'TOPIC INDEX', title: 'Explore Millbrae by topic', description: 'Browse the city through neighborhoods, parks, families, civic life, stories, businesses, and sources.', href: 'explore-millbrae.html', keywords: 'index topics guide' },
   { topic: 'HISTORY & CULTURE', title: 'Millbrae history, culture, and local memory', description: 'Find museums, archives, the library, community media, and cultural organizations that preserve the city’s story.', href: 'millbrae-history-culture.html', keywords: 'museum archive library train depot culture memory' },
   { topic: 'INTEREST STORIES', title: 'Millbrae stories', description: 'Read short explainers about rail, place names, public spaces, schools, SFO, calendars, and local memory.', href: 'millbrae-stories.html', keywords: 'stories people places rail airport' },

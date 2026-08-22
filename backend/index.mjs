@@ -3,6 +3,7 @@ import { DynamoDBClient } from '@aws-sdk/client-dynamodb';
 import { DeleteCommand, DynamoDBDocumentClient, GetCommand, PutCommand, QueryCommand, UpdateCommand } from '@aws-sdk/lib-dynamodb';
 import { ALLOWED_PROVIDERS, validateListing } from './policy.mjs';
 import { parseIcalendar } from './civic-events.mjs';
+import { parseNewsRss } from './civic-news.mjs';
 
 const documentClient = DynamoDBDocumentClient.from(new DynamoDBClient({}), {
   marshallOptions: { removeUndefinedValues: true }
@@ -18,11 +19,13 @@ let jwksCache = null;
 let directoryCache = null;
 let caltrainMemoryCache = null;
 let civicEventsCache = null;
+let civicNewsCache = null;
 
 const civicEventFeeds = Object.freeze([
   { category: 'City Events', url: 'https://www.ci.millbrae.ca.us/common/modules/iCalendar/iCalendar.aspx?catID=26&feed=calendar' },
   { category: 'Community Events', url: 'https://www.ci.millbrae.ca.us/common/modules/iCalendar/iCalendar.aspx?catID=28&feed=calendar' }
 ]);
+const civicNewsFeed = 'https://www.ci.millbrae.ca.us/RSSFeed.aspx?ModID=1&CID=All-newsflash.xml';
 
 const json = (statusCode, body, headers = {}) => ({
   statusCode,
@@ -136,6 +139,17 @@ async function getCivicEvents() {
     .slice(0, 20);
   const payload = { events, updatedAt: new Date(now).toISOString(), source: 'City of Millbrae iCalendar feeds' };
   civicEventsCache = { payload, expiresAt: now + 5 * 60_000 };
+  return payload;
+}
+
+async function getCivicNews() {
+  const now = Date.now();
+  if (civicNewsCache?.expiresAt > now) return civicNewsCache.payload;
+  const response = await fetch(civicNewsFeed, { headers: { 'user-agent': 'MillbraeLocal/1.0 (+https://www.millbrae.ca/)' }, signal: AbortSignal.timeout(2500) });
+  if (!response.ok) throw new Error('City news feed unavailable');
+  const news = parseNewsRss(await response.text(), now).slice(0, 12);
+  const payload = { news, updatedAt: new Date(now).toISOString(), source: 'City of Millbrae News Flash RSS' };
+  civicNewsCache = { payload, expiresAt: now + 5 * 60_000 };
   return payload;
 }
 
@@ -253,6 +267,10 @@ export async function handler(event) {
 
     if (method === 'GET' && path === '/events') {
       return json(200, await getCivicEvents(), { 'cache-control': 'public, max-age=300, stale-while-revalidate=600' });
+    }
+
+    if (method === 'GET' && path === '/news') {
+      return json(200, await getCivicNews(), { 'cache-control': 'public, max-age=300, stale-while-revalidate=600' });
     }
 
     if (method === 'GET' && path === '/me') {

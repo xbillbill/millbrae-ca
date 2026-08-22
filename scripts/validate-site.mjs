@@ -94,11 +94,11 @@ for (const requiredTransitSignal of ['id="live-transit"', 'data-transit-board', 
 }
 
 const civicEventsHtml = pages.get('millbrae-civic-events-news.html') || '';
-for (const requiredCivicEventSignal of ['data-civic-events', 'civic-events.js', 'https://www.ci.millbrae.ca.us/calendar.aspx']) {
+for (const requiredCivicEventSignal of ['data-civic-events', 'civic-events.js', 'data-civic-news', 'civic-news.js', 'https://www.ci.millbrae.ca.us/calendar.aspx', 'https://www.ci.millbrae.ca.us/CivicAlerts.aspx']) {
   if (!civicEventsHtml.includes(requiredCivicEventSignal)) fail('millbrae-civic-events-news.html', `missing civic events signal: ${requiredCivicEventSignal}`);
 }
 const homepageHtml = pages.get('index.html') || '';
-for (const requiredHomepageEventSignal of ['data-civic-events', 'civic-events.js', 'millbrae-civic-events-news.html']) {
+for (const requiredHomepageEventSignal of ['data-civic-events', 'civic-events.js', 'data-civic-news', 'civic-news.js', 'millbrae-civic-events-news.html']) {
   if (!homepageHtml.includes(requiredHomepageEventSignal)) fail('index.html', `missing homepage events signal: ${requiredHomepageEventSignal}`);
 }
 

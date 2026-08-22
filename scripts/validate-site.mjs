@@ -194,6 +194,9 @@ const sourcesHtml = pages.get('millbrae-sources.html') || '';
 for (const requiredCoverageSignal of ['COVERAGE MAP', 'Facts and geography', 'Schools and families', 'Neighborhoods and planning', 'Civic government and participation', 'Civic news and events', 'Public resources and alerts', 'Weather and local conditions', 'Editorial stories and glossary']) {
   if (!sourcesHtml.includes(requiredCoverageSignal)) fail('millbrae-sources.html', `missing coverage-map subject: ${requiredCoverageSignal}`);
 }
+for (const requiredCorrectionSignal of ['CORRECTIONS · SOURCE LEADS', 'A correction needs a checkable trail.', 'Millbrae Local correction protocol', 'list-your-business.html', 'millbrae-community-news.html']) {
+  if (!sourcesHtml.includes(requiredCorrectionSignal)) fail('millbrae-sources.html', `missing correction protocol signal: ${requiredCorrectionSignal}`);
+}
 
 const awsConfig = readFileSync(join(root, 'aws-config.js'), 'utf8');
 for (const setting of ['enabled', 'apiBaseUrl', 'googleClientId']) {

@@ -23,6 +23,7 @@ const requiredTranslations = [
   ,['Schools Remember a City, Too | Millbrae Local', '学校也记得一座城市 | Millbrae Local', 'Las escuelas también recuerdan una ciudad | Millbrae Local']
   ,['THE MILLBRAE KNOWLEDGE HUB', '${ZH_CITY_NAME}知识中心', 'EL CENTRO DE CONOCIMIENTO DE MILLBRAE']
   ,['Know the city behind the search.', '了解搜索背后的城市。', 'Conoce la ciudad detrás de la búsqueda.']
+  ,['A correction needs a checkable trail.', '更正需要一条可核查的证据链。', 'Una corrección necesita un rastro verificable.']
 ];
 
 for (const [source, chinese, spanish] of requiredTranslations) {
@@ -33,7 +34,7 @@ for (const [source, chinese, spanish] of requiredTranslations) {
 
 for (const file of pages) {
   const html = readFileSync(join(site, file), 'utf8');
-  if (!html.includes('i18n.js?v=20260918-locale-glossary-v7')) failures.push(`${file}: stale or missing locale cache-bust`);
+  if (!html.includes('i18n.js?v=20260918-locale-glossary-v8')) failures.push(`${file}: stale or missing locale cache-bust`);
 }
 
 if (failures.length) {

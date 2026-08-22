@@ -8,6 +8,20 @@ const count = document.querySelector('[data-listing-count]');
 const searchInput = document.querySelector('[data-listing-search]');
 const categorySelect = document.querySelector('[data-listing-category]');
 let allListings = [];
+let locale = document.documentElement.lang || 'en';
+
+const copy = {
+  en: { placeholder: 'Name, address, or category', all: 'Community listings are submitted and maintained by verified business representatives.', filtered: (n) => `Showing ${n} matching ${n === 1 ? 'listing' : 'listings'}.`, empty: 'No listings match those filters. Try another name or category.', none: 'No community listings yet. Be the first Millbrae business to add one.', unavailable: 'The directory is temporarily unavailable. Please check back soon.' },
+  'zh-CN': { placeholder: '名称、地址或类别', all: '社区商家信息由经过验证的商家代表提交和维护。', filtered: (n) => `显示 ${n} 条匹配的商家信息。`, empty: '没有商家信息符合筛选条件。请尝试其他名称或类别。', none: '目前还没有社区商家信息。欢迎成为第一个发布信息的密尔布雷商家。', unavailable: '目录暂时无法使用，请稍后再试。' },
+  es: { placeholder: 'Nombre, dirección o categoría', all: 'Los negocios de la comunidad son enviados y mantenidos por representantes verificados.', filtered: (n) => `Se muestran ${n} ${n === 1 ? 'anuncio coincidente' : 'anuncios coincidentes'}.`, empty: 'Ningún anuncio coincide con esos filtros. Prueba otro nombre o categoría.', none: 'Aún no hay anuncios comunitarios. Sé el primer negocio de Millbrae en agregar uno.', unavailable: 'El directorio no está disponible temporalmente. Vuelve a intentarlo pronto.' }
+};
+
+const labels = () => copy[locale] || copy.en;
+function syncLocale() {
+  locale = document.documentElement.lang || 'en';
+  if (searchInput) searchInput.placeholder = labels().placeholder;
+  if (allListings.length) renderFiltered();
+}
 
 for (const [value, label] of LISTING_CATEGORIES) {
   const option = document.createElement('option');
@@ -71,8 +85,8 @@ function renderFiltered() {
   visible.forEach(renderListing);
   count.textContent = `${visible.length} ${visible.length === 1 ? 'listing' : 'listings'}`;
   status.textContent = visible.length
-    ? (visible.length === allListings.length ? 'Community listings are submitted and maintained by verified business representatives.' : `Showing ${visible.length} matching ${visible.length === 1 ? 'listing' : 'listings'}.`)
-    : 'No listings match those filters. Try another name or category.';
+    ? (visible.length === allListings.length ? labels().all : labels().filtered(visible.length))
+    : labels().empty;
 }
 
 async function loadListings() {
@@ -86,9 +100,9 @@ async function loadListings() {
     const { listings = [] } = await apiRequest('/listings');
     allListings = listings.sort((a, b) => a.businessName.localeCompare(b.businessName));
     renderFiltered();
-    if (!allListings.length) status.textContent = 'No community listings yet. Be the first Millbrae business to add one.';
+    if (!allListings.length) status.textContent = labels().none;
   } catch {
-    status.textContent = 'The directory is temporarily unavailable. Please check back soon.';
+    status.textContent = labels().unavailable;
     count.textContent = 'Temporarily unavailable';
   }
 }
@@ -98,5 +112,7 @@ if (searchInput) searchInput.value = params.get('q') || '';
 if (categorySelect) categorySelect.value = params.get('category') || '';
 searchInput?.addEventListener('input', () => { syncUrl(); renderFiltered(); });
 categorySelect?.addEventListener('change', () => { syncUrl(); renderFiltered(); });
+window.addEventListener('localechange', syncLocale);
+syncLocale();
 
 loadListings();

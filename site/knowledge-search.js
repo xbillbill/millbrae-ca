@@ -30,6 +30,38 @@ const guideIndex = [
   { topic: 'SOURCES & METHOD', title: 'Source registry and editorial method', description: 'See which agencies maintain the facts, what refreshes live, and how corrections are handled.', href: 'millbrae-sources.html', keywords: 'sources official agency method correction evidence' }
 ];
 
+const queryAliases = {
+  'zh-CN': { '公园': 'parks places trail', '学校': 'schools families school', '历史': 'history culture story', '交通': 'transit station train', '公共资源': 'public resources services', '新闻': 'news community civic', '活动': 'events calendar civic', '商家': 'businesses directory restaurants', '天气': 'weather current conditions', '来源': 'sources method evidence', '人口': 'population facts census', '社区': 'community neighborhoods' },
+  es: { parque: 'parks places trail', parques: 'parks places trail', escuela: 'schools families school', escuelas: 'schools families school', historia: 'history culture story', transporte: 'transit station train', recursos: 'public resources services', noticias: 'news community civic', eventos: 'events calendar civic', negocios: 'businesses directory restaurants', clima: 'weather current conditions', fuentes: 'sources method evidence', población: 'population facts census', comunidad: 'community neighborhoods' }
+};
+
+const localizedResultCopy = {
+  'zh-CN': {
+    'Know Millbrae': { topic: '从这里开始', title: `了解${'密尔布雷'}`, description: '从历史、城市生活、学校、交通和活动开始了解这座城市。' },
+    'Millbrae at a glance': { topic: '参考资料', title: `${'密尔布雷'}概览`, description: '带有日期的人口、地理、住房、语言、历史和区域背景资料。' },
+    'Explore Millbrae by topic': { topic: '主题索引', title: `按主题探索${'密尔布雷'}`, description: '按社区、公园、家庭、市政生活、故事、商家和来源浏览城市。' },
+    'Millbrae history, culture, and local memory': { topic: '历史与文化', title: `${'密尔布雷'}历史、文化与地方记忆`, description: '了解保存城市故事的博物馆、档案馆、图书馆、社区媒体和文化机构。' },
+    'Millbrae stories': { topic: '兴趣故事', title: `${'密尔布雷'}故事`, description: '阅读关于铁路、地名、公共空间、学校、SFO、日历和地方记忆的短篇解释。' },
+    'Civic life, events, and news': { topic: '市政生活与活动', title: `${'密尔布雷'}市政生活、活动与新闻`, description: '关注官方活动、新闻快讯、议程、学校和图书馆日历及市政更新。' },
+    'Community news guide': { topic: '社区新闻', title: '社区新闻指南', description: '区分市政府公告、公共记录、独立报道、社区媒体、学校更新和提醒。' },
+    'Millbrae public resources': { topic: '公共资源', title: `${'密尔布雷'}公共资源`, description: '查找紧急服务、公共设施、图书馆、交通、市政府联系方式和公共帮助。' },
+    'Schools and families': { topic: '学校与家庭', title: '学校与家庭', description: '连接学区日历、入学、服务、休闲活动、青少年项目和家庭资源。' },
+    'Millbrae Station and SFO guide': { topic: '交通与 SFO', title: `${'密尔布雷'}车站与 SFO 指南`, description: '规划 BART、Caltrain、SamTrans、停车、酒店接驳和实时到站信息。' }
+  },
+  es: {
+    'Know Millbrae': { topic: 'PRIMEROS PASOS', title: 'Conoce Millbrae', description: 'Empieza con la historia, la vida cívica, las escuelas, el transporte y los eventos.' },
+    'Millbrae at a glance': { topic: 'REFERENCIA', title: 'Millbrae de un vistazo', description: 'Datos fechados sobre población, geografía, vivienda, idioma, historia y contexto regional.' },
+    'Explore Millbrae by topic': { topic: 'ÍNDICE TEMÁTICO', title: 'Explora Millbrae por tema', description: 'Explora la ciudad por vecindarios, parques, familias, vida cívica, historias, negocios y fuentes.' },
+    'Millbrae history, culture, and local memory': { topic: 'HISTORIA Y CULTURA', title: 'Historia, cultura y memoria local de Millbrae', description: 'Encuentra museos, archivos, biblioteca, medios comunitarios y organizaciones culturales.' },
+    'Millbrae stories': { topic: 'HISTORIAS', title: 'Historias de Millbrae', description: 'Lee explicaciones sobre trenes, nombres, espacios públicos, escuelas, SFO, calendarios y memoria local.' },
+    'Civic life, events, and news': { topic: 'VIDA CÍVICA Y EVENTOS', title: 'Vida cívica, eventos y noticias de Millbrae', description: 'Sigue eventos oficiales, noticias, agendas, calendarios escolares y actualizaciones cívicas.' },
+    'Community news guide': { topic: 'NOTICIAS COMUNITARIAS', title: 'Guía de noticias comunitarias', description: 'Distingue anuncios oficiales, registros públicos, reportajes, medios comunitarios y alertas.' },
+    'Millbrae public resources': { topic: 'RECURSOS PÚBLICOS', title: 'Recursos públicos de Millbrae', description: 'Encuentra emergencias, obras públicas, biblioteca, transporte, contactos y ayuda pública.' },
+    'Schools and families': { topic: 'ESCUELAS Y FAMILIAS', title: 'Escuelas y familias', description: 'Conecta calendarios escolares, inscripción, servicios, recreación, juventud y recursos familiares.' },
+    'Millbrae Station and SFO guide': { topic: 'TRANSPORTE Y SFO', title: 'Guía de la estación Millbrae y SFO', description: 'Planifica BART, Caltrain, SamTrans, estacionamiento, hoteles y salidas en vivo.' }
+  }
+};
+
 const statusCopy = {
   en: { all: (count) => `Showing all ${count} topics.`, match: (count, query, guides) => `${count ? `${count} topic${count === 1 ? '' : 's'}` : 'No topic cards'} match “${query}”${guides ? `, plus ${guides} guide page${guides === 1 ? '' : 's'}` : ''}.`, none: (query) => `No topic or guide matches “${query}”. Try history, parks, schools, transit, or public resources.`, placeholder: 'Try parks, schools, BART, history, water…', guides: 'Related guide pages' },
   'zh-CN': { all: (count) => `显示全部 ${count} 个主题。`, match: (count, query, guides) => `${count ? `${count} 个主题` : '没有主题卡'}匹配“${query}”${guides ? `，另有 ${guides} 个指南页面` : ''}。`, none: (query) => `没有主题或指南匹配“${query}”。可以试试历史、公园、学校、交通或公共资源。`, placeholder: '试试搜索公园、学校、BART、历史、水务……', guides: '相关指南页面' },
@@ -43,7 +75,12 @@ const renderGuideResults = (query, copy) => {
     results.hidden = true;
     return 0;
   }
-  const matches = guideIndex.filter((guide) => `${guide.topic} ${guide.title} ${guide.description} ${guide.keywords}`.toLocaleLowerCase().includes(query));
+  const aliases = queryAliases[document.documentElement.lang]?.[query] || '';
+  const terms = [query, ...aliases.split(/\s+/)].filter(Boolean).map((term) => term.toLocaleLowerCase());
+  const matches = guideIndex.filter((guide) => {
+    const searchText = `${guide.topic} ${guide.title} ${guide.description} ${guide.keywords}`.toLocaleLowerCase();
+    return terms.some((term) => searchText.includes(term));
+  });
   if (!matches.length) {
     results.hidden = true;
     return 0;
@@ -55,18 +92,19 @@ const renderGuideResults = (query, copy) => {
   const list = document.createElement('div');
   list.className = 'knowledge-search-result-list';
   for (const guide of matches) {
+    const localized = localizedResultCopy[document.documentElement.lang]?.[guide.title] || guide;
     const article = document.createElement('article');
     article.className = 'knowledge-search-result';
     const tag = document.createElement('p');
     tag.className = 'tag';
-    tag.textContent = guide.topic;
+    tag.textContent = localized.topic;
     const title = document.createElement('h4');
     const link = document.createElement('a');
     link.href = guide.href;
-    link.textContent = guide.title;
+    link.textContent = localized.title;
     title.append(link);
     const description = document.createElement('p');
-    description.textContent = guide.description;
+    description.textContent = localized.description;
     article.append(tag, title, description);
     list.append(article);
   }

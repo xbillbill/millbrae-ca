@@ -182,7 +182,7 @@ if (!homeHtml.includes('$27/day')) fail('index.html', 'missing SFO Long-Term hom
 
 const storiesHtml = pages.get('millbrae-stories.html') || '';
 if ((storiesHtml.match(/class="story-card"/g) || []).length !== 11) fail('millbrae-stories.html', 'story archive count must match its eleven-story heading');
-for (const requiredStory of ['millbrae-story-businesses.html', 'millbrae-story-neighborhoods.html', 'millbrae-story-public-resources.html', 'millbrae-story-school-community.html']) {
+for (const requiredStory of ['millbrae-story-public-space.html', 'millbrae-story-businesses.html', 'millbrae-story-neighborhoods.html', 'millbrae-story-public-resources.html', 'millbrae-story-school-community.html']) {
   if (!storiesHtml.includes(`href="${requiredStory}"`)) fail('millbrae-stories.html', `missing story archive link ${requiredStory}`);
 }
 if (storiesHtml.includes('Next research threads include school-community history, neighborhood memory')) fail('millbrae-stories.html', 'story archive contains stale neighborhood future-work copy');

@@ -9,6 +9,10 @@ const translations = {
     'Millbrae, California Restaurants, BART & SFO Guide | Millbrae Local': `${ZH_CITY_NAME}，加州餐厅、BART 与 SFO 指南 | Millbrae Local`,
     'Millbrae Station to SFO: BART, Parking & Hotels (2026)': `${ZH_CITY_NAME}车站到 SFO：BART、停车与酒店（2026）`,
     'Directory': '目录',
+    'Know Millbrae': `了解${ZH_CITY_NAME}`,
+    'Explore topics': '按主题探索',
+    'Search': '搜索',
+    'Search the Millbrae knowledge map': `搜索${ZH_CITY_NAME}知识地图`,
     'Restaurants': '餐厅',
     'Hotels': '酒店',
     'SFO tools': 'SFO 工具',
@@ -127,6 +131,10 @@ const translations = {
     'Millbrae, California Restaurants, BART & SFO Guide | Millbrae Local': 'Guía de restaurantes, BART y SFO de Millbrae, California | Millbrae Local',
     'Millbrae Station to SFO: BART, Parking & Hotels (2026)': 'De la estación Millbrae a SFO: BART, estacionamiento y hoteles (2026)',
     'Directory': 'Directorio',
+    'Know Millbrae': 'Conoce Millbrae',
+    'Explore topics': 'Explorar temas',
+    'Search': 'Buscar',
+    'Search the Millbrae knowledge map': 'Buscar en el mapa de conocimiento de Millbrae',
     'Restaurants': 'Restaurantes',
     'Hotels': 'Hoteles',
     'SFO tools': 'Herramientas SFO',
@@ -353,7 +361,7 @@ function normalizeHeader() {
   const brand = header.querySelector('.brand');
   if (brand) brand.href = 'index.html';
   const nav = header.querySelector('nav');
-  if (nav) nav.innerHTML = '<a href="community.html">Directory</a><a href="restaurants-in-millbrae.html">Restaurants</a><a href="millbrae-station-sfo-guide.html#live-transit">Live transit</a><a href="sfo-tools.html">SFO tools</a><a href="advertise.html">Advertise</a>';
+  if (nav) nav.innerHTML = '<a href="know-millbrae.html">Know Millbrae</a><a href="explore-millbrae.html">Explore topics</a><a href="community.html">Directory</a><a href="restaurants-in-millbrae.html">Restaurants</a><a href="millbrae-station-sfo-guide.html#live-transit">Live transit</a><a href="sfo-tools.html">SFO tools</a>';
   const cta = header.querySelector('.button-small');
   if (cta) {
     cta.href = 'list-your-business.html';

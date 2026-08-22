@@ -180,6 +180,13 @@ for (const requiredLocalSignal of ['Millbrae, California', 'Bay Area', 'addressC
 if (!homeHtml.includes('src="homepage.js')) fail('index.html', 'missing Millbrae local-time controller');
 if (!homeHtml.includes('$27/day')) fail('index.html', 'missing SFO Long-Term homepage micro-data');
 
+const storiesHtml = pages.get('millbrae-stories.html') || '';
+if ((storiesHtml.match(/class="story-card"/g) || []).length !== 10) fail('millbrae-stories.html', 'story archive count must match its ten-story heading');
+for (const requiredStory of ['millbrae-story-businesses.html', 'millbrae-story-neighborhoods.html', 'millbrae-story-public-resources.html']) {
+  if (!storiesHtml.includes(`href="${requiredStory}"`)) fail('millbrae-stories.html', `missing story archive link ${requiredStory}`);
+}
+if (storiesHtml.includes('Next research threads include school-community history, neighborhood memory')) fail('millbrae-stories.html', 'story archive contains stale neighborhood future-work copy');
+
 const awsConfig = readFileSync(join(root, 'aws-config.js'), 'utf8');
 for (const setting of ['enabled', 'apiBaseUrl', 'googleClientId']) {
   if (!awsConfig.includes(setting)) fail('aws-config.js', `missing ${setting} configuration`);

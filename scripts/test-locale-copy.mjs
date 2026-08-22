@@ -17,17 +17,18 @@ const requiredTranslations = [
   ['Millbrae Library & Learning Guide | Millbrae Local', '${ZH_CITY_NAME}图书馆与学习指南 | Millbrae Local', 'Guía de la biblioteca y el aprendizaje de Millbrae | Millbrae Local']
   ,['Millbrae Place Glossary | Millbrae Local', '${ZH_CITY_NAME}地点词典 | Millbrae Local', 'Glosario de lugares de Millbrae | Millbrae Local']
   ,['THE MILLBRAE REFERENCE INDEX', '${ZH_CITY_NAME}参考索引', 'ÍNDICE DE REFERENCIA DE MILLBRAE']
+  ,['Local Businesses Are Part of Millbrae\'s Map | Millbrae Local', '${ZH_CITY_NAME}本地商家也是城市地图的一部分 | Millbrae Local', 'Los negocios locales son parte del mapa de Millbrae | Millbrae Local']
 ];
 
 for (const [source, chinese, spanish] of requiredTranslations) {
-  if (!localeSource.includes(`'${source}'`)) failures.push(`missing source key: ${source}`);
+  if (!localeSource.includes(`'${source}'`) && !localeSource.includes(`"${source}"`)) failures.push(`missing source key: ${source}`);
   if (!localeSource.includes(`'${chinese}'`) && !localeSource.includes(`\`${chinese}\``)) failures.push(`missing Chinese translation: ${chinese}`);
   if (!localeSource.includes(`'${spanish}'`)) failures.push(`missing Spanish translation: ${spanish}`);
 }
 
 for (const file of pages) {
   const html = readFileSync(join(site, file), 'utf8');
-  if (!html.includes('i18n.js?v=20260918-locale-glossary-v2')) failures.push(`${file}: stale or missing locale cache-bust`);
+  if (!html.includes('i18n.js?v=20260918-locale-glossary-v3')) failures.push(`${file}: stale or missing locale cache-bust`);
 }
 
 if (failures.length) {

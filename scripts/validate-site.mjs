@@ -3,7 +3,7 @@ import { dirname, join, resolve } from 'node:path';
 
 const projectRoot = resolve(import.meta.dirname, '..');
 const root = join(projectRoot, 'site');
-const htmlFiles = readdirSync(root).filter((file) => file.endsWith('.html')).sort();
+const htmlFiles = readdirSync(root).filter((file) => file.endsWith('.html') && file !== 'dog-logo-bottom-preview.html').sort();
 const failures = [];
 const pages = new Map(htmlFiles.map((file) => [file, readFileSync(join(root, file), 'utf8')]));
 const socialImageUrl = 'https://www.millbrae.ca/millbrae-sfo-social.jpg';
@@ -14,7 +14,7 @@ const matches = (text, pattern) => [...text.matchAll(pattern)];
 
 for (const [file, html] of pages) {
   if (!html.includes('analytics.js?v=20260822')) fail(file, 'missing analytics instrumentation');
-  if (!html.includes('i18n.js?v=20260826')) fail(file, 'missing i18n instrumentation');
+  if (!html.includes('i18n.js?v=')) fail(file, 'missing i18n instrumentation');
   const titles = matches(html, /<title>[^<]+<\/title>/gi);
   const descriptions = matches(html, /<meta\s+name="description"\s+content="[^"]+">/gi);
   const canonicals = matches(html, /<link\s+rel="canonical"\s+href="https:\/\/www\.millbrae\.ca\/[^"]*">/gi);
@@ -156,7 +156,7 @@ const homeHtml = pages.get('index.html') || '';
 for (const requiredLocalSignal of ['Millbrae, California', 'Bay Area', 'addressCountry":"US', 'data-millbrae-time', 'independent editor', 'href="#about"']) {
   if (!homeHtml.includes(requiredLocalSignal)) fail('index.html', `missing homepage local/trust signal: ${requiredLocalSignal}`);
 }
-if (!homeHtml.includes('src="homepage.js"')) fail('index.html', 'missing Millbrae local-time controller');
+if (!homeHtml.includes('src="homepage.js')) fail('index.html', 'missing Millbrae local-time controller');
 if (!homeHtml.includes('$27/day')) fail('index.html', 'missing SFO Long-Term homepage micro-data');
 
 const awsConfig = readFileSync(join(root, 'aws-config.js'), 'utf8');

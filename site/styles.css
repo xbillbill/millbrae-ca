@@ -69,6 +69,7 @@ a { color: inherit; text-decoration: none; }
 .section-note { max-width: 300px; color: var(--muted); font-size: 13px; margin: 0; }
 .category-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
 .category { display: flex; align-items: center; gap: 17px; padding: 24px 20px; background: var(--paper); border: 1px solid var(--line); border-radius: 13px; box-shadow: 0 4px 16px rgba(61,42,31,.05); transition: .2s; }
+.category-know { background: #e9f0e8; }
 .category:hover { border-color: var(--orange); transform: translateY(-4px); box-shadow: var(--shadow); }
 .category-icon { display: grid; place-items: center; width: 46px; height: 46px; border-radius: 12px; background: var(--lime); font-size: 22px; }
 .category:nth-child(2) .category-icon { background: #ffd9ca; color: var(--red); }
@@ -143,6 +144,19 @@ a { color: inherit; text-decoration: none; }
 .about-inner>p:not(.eyebrow) { margin: 0; color: #d8d2cd; font-size: 13px; }
 .about-inner strong { color: white; }
 .about-inner .text-link { color: #ffe595; border-color: #8d776f; white-space: nowrap; }
+.knowledge-intro { background: #f4c94f; }
+.knowledge-intro-inner { display: flex; align-items: center; justify-content: space-between; gap: 32px; }
+.knowledge-intro h2 { max-width: 520px; }
+.knowledge-intro p:not(.eyebrow) { max-width: 650px; margin-bottom: 0; }
+.knowledge-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+.knowledge-card { padding: 24px; background: var(--paper); border: 1px solid var(--line); border-radius: 13px; box-shadow: 0 5px 18px rgba(61,42,31,.05); }
+.knowledge-card h3 { margin: 10px 0; }
+.knowledge-card p { color: var(--muted); }
+.knowledge-card a { color: var(--red); font-weight: 800; font-size: 13px; }
+.knowledge-timeline { display: grid; gap: 12px; margin: 24px 0; }
+.knowledge-timeline article { display: grid; grid-template-columns: 110px 1fr; gap: 16px; padding: 16px 0; border-top: 1px solid var(--line); }
+.knowledge-timeline article strong { color: var(--red); }
+.knowledge-timeline article p { margin: 0; }
 
 @media (max-width: 760px) {
   .wrap { width: min(100% - 32px, 1120px); }
@@ -157,6 +171,10 @@ a { color: inherit; text-decoration: none; }
   .section-heading { display: block; }
   .section-note { margin-top: 15px; }
   .category-grid, .spot-grid { grid-template-columns: 1fr; }
+  .knowledge-intro-inner { display: block; }
+  .knowledge-intro .button { margin-top: 24px; }
+  .knowledge-grid { grid-template-columns: 1fr; }
+  .knowledge-timeline article { grid-template-columns: 1fr; gap: 4px; }
   .list-panel { grid-template-columns: 1fr; gap: 35px; padding: 36px 25px; border-radius: 15px; box-shadow: 7px 8px 0 var(--lime); }
   .list-panel h2 { font-size: 42px; }
   .about-inner { grid-template-columns: 1fr; gap: 16px; }

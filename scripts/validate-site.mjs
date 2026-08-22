@@ -184,6 +184,11 @@ if (!homeHtml.includes('src="homepage.js')) fail('index.html', 'missing Millbrae
 for (const requiredHomepageSearchSignal of ['id="knowledge-search"', 'action="explore-millbrae.html"', 'name="q"', 'Find the right source in one search.']) {
   if (!homeHtml.includes(requiredHomepageSearchSignal)) fail('index.html', `missing homepage knowledge search signal: ${requiredHomepageSearchSignal}`);
 }
+const knowledgeSearchSource = readFileSync(join(root, 'knowledge-search.js'), 'utf8');
+const exploreHtml = pages.get('explore-millbrae.html') || '';
+for (const requiredSearchSignal of ['knowledge-search.js?v=20260918-search-glossary-v7', "'住房'", "'投票'", "vivienda", "elecciones", 'permits', 'CalFresh']) {
+  if (!knowledgeSearchSource.includes(requiredSearchSignal) && !exploreHtml.includes(requiredSearchSignal)) fail('knowledge-search.js', `missing localized search signal: ${requiredSearchSignal}`);
+}
 if (!homeHtml.includes('$27/day')) fail('index.html', 'missing SFO Long-Term homepage micro-data');
 
 const storiesHtml = pages.get('millbrae-stories.html') || '';

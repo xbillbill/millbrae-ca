@@ -160,6 +160,9 @@ if (!advertiseHtml.includes('href="list-your-business.html"')) fail('advertise.h
 const directoryHtml = pages.get('community.html') || '';
 if (!directoryHtml.includes('data-listing-grid')) fail('community.html', 'missing dynamic listing directory');
 if (!directoryHtml.includes('src="community-listings.js')) fail('community.html', 'missing directory controller');
+for (const requiredDirectorySearchSignal of ['data-listing-search', 'data-listing-category', 'data-directory-filters']) {
+  if (!directoryHtml.includes(requiredDirectorySearchSignal)) fail('community.html', `missing directory search signal: ${requiredDirectorySearchSignal}`);
+}
 
 const listingFormHtml = pages.get('list-your-business.html') || '';
 if (!listingFormHtml.includes('data-provider-buttons')) fail('list-your-business.html', 'missing social sign-in controls');

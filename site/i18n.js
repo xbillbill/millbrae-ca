@@ -11,6 +11,7 @@ const translations = {
     'Directory': '目录',
     'Know Millbrae': `了解${ZH_CITY_NAME}`,
     'Explore topics': '按主题探索',
+    'Sources': '来源',
     'Search': '搜索',
     'Search the Millbrae knowledge map': `搜索${ZH_CITY_NAME}知识地图`,
     'Restaurants': '餐厅',
@@ -133,6 +134,7 @@ const translations = {
     'Directory': 'Directorio',
     'Know Millbrae': 'Conoce Millbrae',
     'Explore topics': 'Explorar temas',
+    'Sources': 'Fuentes',
     'Search': 'Buscar',
     'Search the Millbrae knowledge map': 'Buscar en el mapa de conocimiento de Millbrae',
     'Restaurants': 'Restaurantes',
@@ -361,7 +363,7 @@ function normalizeHeader() {
   const brand = header.querySelector('.brand');
   if (brand) brand.href = 'index.html';
   const nav = header.querySelector('nav');
-  if (nav) nav.innerHTML = '<a href="know-millbrae.html">Know Millbrae</a><a href="explore-millbrae.html">Explore topics</a><a href="community.html">Directory</a><a href="restaurants-in-millbrae.html">Restaurants</a><a href="millbrae-station-sfo-guide.html#live-transit">Live transit</a><a href="sfo-tools.html">SFO tools</a>';
+  if (nav) nav.innerHTML = '<a href="know-millbrae.html">Know Millbrae</a><a href="explore-millbrae.html">Explore topics</a><a href="millbrae-sources.html">Sources</a><a href="community.html">Directory</a><a href="restaurants-in-millbrae.html">Restaurants</a><a href="millbrae-station-sfo-guide.html#live-transit">Live transit</a><a href="sfo-tools.html">SFO tools</a>';
   const cta = header.querySelector('.button-small');
   if (cta) {
     cta.href = 'list-your-business.html';

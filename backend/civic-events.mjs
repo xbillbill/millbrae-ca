@@ -2,6 +2,21 @@ function unescapeIcs(value = '') {
   return value.replace(/\\n/g, '\n').replace(/\\,/g, ',').replace(/\\;/g, ';').replace(/\\\\/g, '\\').trim();
 }
 
+function cleanIcsText(value = '') {
+  return unescapeIcs(value).replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
+}
+
+function normalizeEventUrl(value = '') {
+  try {
+    const url = new URL(value, 'https://www.ci.millbrae.ca.us');
+    return url.protocol === 'https:' && url.hostname === 'www.ci.millbrae.ca.us'
+      ? url.href
+      : 'https://www.ci.millbrae.ca.us/calendar.aspx';
+  } catch {
+    return 'https://www.ci.millbrae.ca.us/calendar.aspx';
+  }
+}
+
 function localTimeToIso(value, timeZone = 'America/Los_Angeles') {
   const match = String(value).match(/^(\d{4})(\d{2})(\d{2})(?:T(\d{2})(\d{2})(\d{2}))?/);
   if (!match) return '';
@@ -27,11 +42,11 @@ export function parseIcalendar(text, category, now = Date.now()) {
         if (Number.isFinite(startMs) && startMs >= now - 86_400_000) events.push({
           id: current.uid || `${category}-${start}-${current.summary}`,
           category,
-          title: current.summary,
+          title: cleanIcsText(current.summary),
           start,
           end: current.end ? localTimeToIso(current.end, current.timeZone) : '',
-          location: current.location || '',
-          url: current.url || 'https://www.ci.millbrae.ca.us/calendar.aspx'
+          location: cleanIcsText(current.location || ''),
+          url: normalizeEventUrl(current.url)
         });
       }
       current = null;

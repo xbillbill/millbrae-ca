@@ -194,6 +194,10 @@ const sourcesHtml = pages.get('millbrae-sources.html') || '';
 for (const requiredCoverageSignal of ['COVERAGE MAP', 'Facts and geography', 'Schools and families', 'Neighborhoods and planning', 'Civic government and participation', 'Civic news and events', 'Public resources and alerts', 'Weather and local conditions', 'Editorial stories and glossary']) {
   if (!sourcesHtml.includes(requiredCoverageSignal)) fail('millbrae-sources.html', `missing coverage-map subject: ${requiredCoverageSignal}`);
 }
+const historyHtml = pages.get('millbrae-history-culture.html') || '';
+for (const requiredHistorySignal of ['A COMPACT TIMELINE', 'aria-label="Millbrae history timeline"', 'https://www.caltrain.com/about-caltrain/caltrain-history/historic-stations/millbrae-1978', 'https://www.bart.gov/sites/default/files/docs/FINALMillbrae_Statn_Acc_Circ_Plan07262016.pdf']) {
+  if (!historyHtml.includes(requiredHistorySignal)) fail('millbrae-history-culture.html', `missing history timeline signal: ${requiredHistorySignal}`);
+}
 for (const requiredCorrectionSignal of ['CORRECTIONS · SOURCE LEADS', 'A correction needs a checkable trail.', 'Millbrae Local correction protocol', 'list-your-business.html', 'millbrae-community-news.html']) {
   if (!sourcesHtml.includes(requiredCorrectionSignal)) fail('millbrae-sources.html', `missing correction protocol signal: ${requiredCorrectionSignal}`);
 }

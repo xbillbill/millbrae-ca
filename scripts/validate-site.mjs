@@ -94,7 +94,7 @@ for (const requiredTransitSignal of ['id="live-transit"', 'data-transit-board', 
 }
 
 const civicEventsHtml = pages.get('millbrae-civic-events-news.html') || '';
-for (const requiredCivicEventSignal of ['data-civic-events', 'civic-events.js', 'data-civic-news', 'civic-news.js', 'https://www.ci.millbrae.ca.us/calendar.aspx', 'https://www.ci.millbrae.ca.us/CivicAlerts.aspx']) {
+for (const requiredCivicEventSignal of ['data-civic-events', 'civic-events.js', 'data-civic-news', 'civic-news.js', 'data-civic-agendas', 'civic-agendas.js', 'https://www.ci.millbrae.ca.us/calendar.aspx', 'https://www.ci.millbrae.ca.us/CivicAlerts.aspx', 'https://www.ci.millbrae.ca.us/AgendaCenter']) {
   if (!civicEventsHtml.includes(requiredCivicEventSignal)) fail('millbrae-civic-events-news.html', `missing civic events signal: ${requiredCivicEventSignal}`);
 }
 const homepageHtml = pages.get('index.html') || '';

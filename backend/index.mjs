@@ -20,12 +20,14 @@ let directoryCache = null;
 let caltrainMemoryCache = null;
 let civicEventsCache = null;
 let civicNewsCache = null;
+let civicAgendaCache = null;
 
 const civicEventFeeds = Object.freeze([
   { category: 'City Events', url: 'https://www.ci.millbrae.ca.us/common/modules/iCalendar/iCalendar.aspx?catID=26&feed=calendar' },
   { category: 'Community Events', url: 'https://www.ci.millbrae.ca.us/common/modules/iCalendar/iCalendar.aspx?catID=28&feed=calendar' }
 ]);
 const civicNewsFeed = 'https://www.ci.millbrae.ca.us/RSSFeed.aspx?ModID=1&CID=All-newsflash.xml';
+const civicAgendaFeed = 'https://www.ci.millbrae.ca.us/RSSFeed.aspx?ModID=65&CID=All-0';
 
 const json = (statusCode, body, headers = {}) => ({
   statusCode,
@@ -153,6 +155,17 @@ async function getCivicNews() {
   return payload;
 }
 
+async function getCivicAgendas() {
+  const now = Date.now();
+  if (civicAgendaCache?.expiresAt > now) return civicAgendaCache.payload;
+  const response = await fetch(civicAgendaFeed, { headers: { 'user-agent': 'MillbraeLocal/1.0 (+https://www.millbrae.ca/)' }, signal: AbortSignal.timeout(2500) });
+  if (!response.ok) throw new Error('City agenda feed unavailable');
+  const agendas = parseNewsRss(await response.text(), now).slice(0, 12);
+  const payload = { agendas, updatedAt: new Date(now).toISOString(), source: 'City of Millbrae Agenda Center RSS' };
+  civicAgendaCache = { payload, expiresAt: now + 5 * 60_000 };
+  return payload;
+}
+
 function normalizeBartResponse(data, receivedAt = Date.now()) {
   const station = asArray(data?.root?.station)[0];
   const departures = [];
@@ -271,6 +284,10 @@ export async function handler(event) {
 
     if (method === 'GET' && path === '/news') {
       return json(200, await getCivicNews(), { 'cache-control': 'public, max-age=300, stale-while-revalidate=600' });
+    }
+
+    if (method === 'GET' && path === '/agendas') {
+      return json(200, await getCivicAgendas(), { 'cache-control': 'public, max-age=300, stale-while-revalidate=600' });
     }
 
     if (method === 'GET' && path === '/me') {

@@ -3,6 +3,7 @@ import { apiRequest } from './aws-client.js';
 const roots = [...document.querySelectorAll('[data-civic-alerts]')];
 const fallback = 'https://www.ci.millbrae.ca.us/AlertCenter.aspx';
 let latestPayload = null;
+let locale = document.documentElement.lang || 'en';
 
 const escapeHtml = (value) => String(value ?? '').replace(/[&<>"']/g, (character) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[character]));
 const safeUrl = (value) => { try { const url = new URL(value || fallback); return url.protocol === 'https:' && url.hostname === 'www.ci.millbrae.ca.us' ? url.href : fallback; } catch { return fallback; } };
@@ -33,12 +34,11 @@ function render(payload, locale, root) {
 
 async function load() {
   if (!roots.length) return;
-  let locale = document.documentElement.lang || 'en';
   roots.forEach((root) => { root.innerHTML = `<p class="news-status">${escapeHtml(copy(locale).loading)}</p>`; });
   try { latestPayload = await apiRequest('/alerts'); roots.forEach((root) => render(latestPayload, locale, root)); }
   catch { roots.forEach((root) => { root.innerHTML = `<p class="news-status">${escapeHtml(copy(locale).unavailable)} <a href="${fallback}" target="_blank" rel="noopener">${escapeHtml(copy(locale).view)}</a></p>`; }); }
-  window.addEventListener('localechange', (event) => { locale = event.detail; if (latestPayload) roots.forEach((root) => render(latestPayload, locale, root)); });
 }
 
+window.addEventListener('localechange', (event) => { locale = event.detail; if (latestPayload) roots.forEach((root) => render(latestPayload, locale, root)); });
 load();
 setInterval(load, 5 * 60 * 1000);

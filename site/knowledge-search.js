@@ -46,7 +46,18 @@ const localizedResultCopy = {
     'Community news guide': { topic: '社区新闻', title: '社区新闻指南', description: '区分市政府公告、公共记录、独立报道、社区媒体、学校更新和提醒。' },
     'Millbrae public resources': { topic: '公共资源', title: `${'密尔布雷'}公共资源`, description: '查找紧急服务、公共设施、图书馆、交通、市政府联系方式和公共帮助。' },
     'Schools and families': { topic: '学校与家庭', title: '学校与家庭', description: '连接学区日历、入学、服务、休闲活动、青少年项目和家庭资源。' },
-    'Millbrae Station and SFO guide': { topic: '交通与 SFO', title: `${'密尔布雷'}车站与 SFO 指南`, description: '规划 BART、Caltrain、SamTrans、停车、酒店接驳和实时到站信息。' }
+    'Millbrae Station and SFO guide': { topic: '交通与 SFO', title: `${'密尔布雷'}车站与 SFO 指南`, description: '规划 BART、Caltrain、SamTrans、停车、酒店接驳和实时到站信息。' },
+    'One station, many scales': { topic: '兴趣故事', title: '一座车站，多种尺度', description: '了解车站如何连接本地街道、区域铁路、县级公交和 SFO。' },
+    'What Millbrae remembers': { topic: '兴趣故事', title: `${'密尔布雷'}记得什么`, description: '从地名、土地授予、Mills 庄园、铁路、车站到建市，了解城市的历史故事。' },
+    'The school day is a community map': { topic: '兴趣故事', title: '上学日是一张社区地图', description: '了解学校、家庭日常、学区边界、休闲活动和图书馆如何连接起来。' },
+    'Public space is part of Millbrae’s memory': { topic: '兴趣故事', title: `${'密尔布雷'}公共空间也是城市记忆`, description: '了解公园、Spur Trail、休闲活动、文化活动和公共空间的市政意义。' },
+    'Millbrae has a global map': { topic: '兴趣故事', title: `${'密尔布雷'}拥有一张全球地图`, description: '了解姐妹城市、友好城市、文化交流以及维护这些关系的市政机构。' },
+    'How Millbrae government works': { topic: '城市政府', title: `${'密尔布雷'}政府如何运作`, description: '了解市议会—城市经理制度、部门、委员会、记录和公共参与路径。' },
+    'Planning and growth': { topic: '规划与发展', title: '规划与发展', description: '了解总体规划、车站区域、商业中心、住房、交通和项目审查路径。' },
+    'Millbrae neighborhoods': { topic: '社区', title: `${'密尔布雷'}社区`, description: '使用正式地图和地点标志了解市中心、车站、公园、学校区域和 Bayside 边缘。' },
+    'Parks and places': { topic: '公园与地点', title: '公园与地点', description: '查找城市公园、休闲活动、Spur Trail、区域公园、公共设施和日常使用的地方。' },
+    'Millbrae businesses and directory': { topic: '企业', title: `${'密尔布雷'}商家与目录`, description: '查找官方资源、社区提交信息、编辑指南和付费展示，并保留清晰标签。' },
+    'Source registry and editorial method': { topic: '来源与方法', title: '来源登记与编辑方法', description: '了解哪些机构维护事实、哪些内容实时更新，以及如何处理更正。' }
   },
   es: {
     'Know Millbrae': { topic: 'PRIMEROS PASOS', title: 'Conoce Millbrae', description: 'Empieza con la historia, la vida cívica, las escuelas, el transporte y los eventos.' },
@@ -58,7 +69,18 @@ const localizedResultCopy = {
     'Community news guide': { topic: 'NOTICIAS COMUNITARIAS', title: 'Guía de noticias comunitarias', description: 'Distingue anuncios oficiales, registros públicos, reportajes, medios comunitarios y alertas.' },
     'Millbrae public resources': { topic: 'RECURSOS PÚBLICOS', title: 'Recursos públicos de Millbrae', description: 'Encuentra emergencias, obras públicas, biblioteca, transporte, contactos y ayuda pública.' },
     'Schools and families': { topic: 'ESCUELAS Y FAMILIAS', title: 'Escuelas y familias', description: 'Conecta calendarios escolares, inscripción, servicios, recreación, juventud y recursos familiares.' },
-    'Millbrae Station and SFO guide': { topic: 'TRANSPORTE Y SFO', title: 'Guía de la estación Millbrae y SFO', description: 'Planifica BART, Caltrain, SamTrans, estacionamiento, hoteles y salidas en vivo.' }
+    'Millbrae Station and SFO guide': { topic: 'TRANSPORTE Y SFO', title: 'Guía de la estación Millbrae y SFO', description: 'Planifica BART, Caltrain, SamTrans, estacionamiento, hoteles y salidas en vivo.' },
+    'One station, many scales': { topic: 'HISTORIAS', title: 'Una estación, muchas escalas', description: 'Cómo la estación conecta calles locales, trenes regionales, autobuses del condado y SFO.' },
+    'What Millbrae remembers': { topic: 'HISTORIAS', title: 'Lo que Millbrae recuerda', description: 'Una historia sobre el nombre, la concesión de tierras, Mills, el ferrocarril, el depósito y la incorporación.' },
+    'The school day is a community map': { topic: 'HISTORIAS', title: 'El día escolar es un mapa comunitario', description: 'Cómo las escuelas, familias, límites, recreación y bibliotecas forman una rutina conectada.' },
+    'Public space is part of Millbrae’s memory': { topic: 'HISTORIAS', title: 'El espacio público es parte de la memoria de Millbrae', description: 'Parques, Spur Trail, recreación, cultura y el significado cívico de los espacios públicos.' },
+    'Millbrae has a global map': { topic: 'HISTORIAS', title: 'Millbrae tiene un mapa global', description: 'Ciudades hermanas, ciudades de amistad, intercambio cultural y los organismos cívicos que mantienen esas relaciones.' },
+    'How Millbrae government works': { topic: 'GOBIERNO MUNICIPAL', title: 'Cómo funciona el gobierno de Millbrae', description: 'La estructura de Consejo–Administrador, departamentos, comisiones, registros y participación pública.' },
+    'Planning and growth': { topic: 'PLANIFICACIÓN Y CRECIMIENTO', title: 'Planificación y crecimiento', description: 'Plan General, área de la estación, centro, vivienda, movilidad y revisión de proyectos.' },
+    'Millbrae neighborhoods': { topic: 'VECINDARIOS', title: 'Vecindarios de Millbrae', description: 'Mapas formales y lugares de referencia para conocer el centro, la estación, parques, escuelas y Bayside.' },
+    'Parks and places': { topic: 'PARQUES Y LUGARES', title: 'Parques y lugares', description: 'Parques, recreación, Spur Trail, espacios regionales, instalaciones públicas y lugares cotidianos.' },
+    'Millbrae businesses and directory': { topic: 'NEGOCIOS', title: 'Negocios y directorio de Millbrae', description: 'Lugares locales con etiquetas claras para recursos oficiales, anuncios comunitarios, guías editoriales y publicidad.' },
+    'Source registry and editorial method': { topic: 'FUENTES Y MÉTODO', title: 'Registro de fuentes y método editorial', description: 'Qué agencias mantienen los datos, qué se actualiza en vivo y cómo se gestionan las correcciones.' }
   }
 };
 

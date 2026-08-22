@@ -1,6 +1,6 @@
 import { apiRequest } from './aws-client.js';
 
-const root = document.querySelector('[data-civic-events]');
+const roots = [...document.querySelectorAll('[data-civic-events]')];
 const fallback = 'https://www.ci.millbrae.ca.us/calendar.aspx';
 let latestPayload = null;
 
@@ -21,22 +21,23 @@ function formatDate(value, locale) {
   return new Intl.DateTimeFormat(locale === 'zh-CN' ? 'zh-CN' : locale === 'es' ? 'es-US' : 'en-US', { dateStyle: 'medium', timeStyle: 'short', timeZone: 'America/Los_Angeles' }).format(date);
 }
 
-function render(payload, locale) {
+function render(payload, locale, root) {
   const labels = copy(locale);
   if (!payload?.events?.length) {
     root.innerHTML = `<p class="event-status">${escapeHtml(labels.empty)} <a href="${fallback}" target="_blank" rel="noopener">${escapeHtml(labels.view)}</a></p>`;
     return;
   }
-  root.innerHTML = payload.events.slice(0, 6).map((event) => `<article class="event-card"><p class="tag">${escapeHtml(event.category)}</p><h3>${escapeHtml(event.title)}</h3><p class="event-time">${escapeHtml(formatDate(event.start, locale))}</p>${event.location ? `<p class="event-location">${escapeHtml(event.location)}</p>` : ''}<a href="${escapeHtml(safeUrl(event.url))}" target="_blank" rel="noopener">${escapeHtml(labels.view)}</a></article>`).join('');
+  const limit = Number(root.dataset.eventLimit || 6);
+  root.innerHTML = payload.events.slice(0, limit).map((event) => `<article class="event-card"><p class="tag">${escapeHtml(event.category)}</p><h3>${escapeHtml(event.title)}</h3><p class="event-time">${escapeHtml(formatDate(event.start, locale))}</p>${event.location ? `<p class="event-location">${escapeHtml(event.location)}</p>` : ''}<a href="${escapeHtml(safeUrl(event.url))}" target="_blank" rel="noopener">${escapeHtml(labels.view)}</a></article>`).join('');
 }
 
 async function load() {
-  if (!root) return;
+  if (!roots.length) return;
   let locale = document.documentElement.lang || 'en';
-  root.innerHTML = `<p class="event-status">${copy(locale).loading}</p>`;
-  try { latestPayload = await apiRequest('/events'); render(latestPayload, locale); }
-  catch { root.innerHTML = `<p class="event-status">${escapeHtml(copy(locale).unavailable)} <a href="${fallback}" target="_blank" rel="noopener">${escapeHtml(copy(locale).view)}</a></p>`; }
-  window.addEventListener('localechange', (event) => { locale = event.detail; if (latestPayload) render(latestPayload, locale); });
+  roots.forEach((root) => { root.innerHTML = `<p class="event-status">${escapeHtml(copy(locale).loading)}</p>`; });
+  try { latestPayload = await apiRequest('/events'); roots.forEach((root) => render(latestPayload, locale, root)); }
+  catch { roots.forEach((root) => { root.innerHTML = `<p class="event-status">${escapeHtml(copy(locale).unavailable)} <a href="${fallback}" target="_blank" rel="noopener">${escapeHtml(copy(locale).view)}</a></p>`; }); }
+  window.addEventListener('localechange', (event) => { locale = event.detail; if (latestPayload) roots.forEach((root) => render(latestPayload, locale, root)); });
 }
 
 load();

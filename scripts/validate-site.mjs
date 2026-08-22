@@ -97,6 +97,10 @@ const civicEventsHtml = pages.get('millbrae-civic-events-news.html') || '';
 for (const requiredCivicEventSignal of ['data-civic-events', 'civic-events.js', 'https://www.ci.millbrae.ca.us/calendar.aspx']) {
   if (!civicEventsHtml.includes(requiredCivicEventSignal)) fail('millbrae-civic-events-news.html', `missing civic events signal: ${requiredCivicEventSignal}`);
 }
+const homepageHtml = pages.get('index.html') || '';
+for (const requiredHomepageEventSignal of ['data-civic-events', 'civic-events.js', 'millbrae-civic-events-news.html']) {
+  if (!homepageHtml.includes(requiredHomepageEventSignal)) fail('index.html', `missing homepage events signal: ${requiredHomepageEventSignal}`);
+}
 
 const rideshareFile = 'sfo-parking-vs-rideshare-calculator.html';
 const inboundRideshareLinks = [...pages.entries()].filter(([file, html]) => file !== rideshareFile && html.includes(`href="${rideshareFile}`));

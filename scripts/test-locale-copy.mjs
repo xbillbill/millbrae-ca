@@ -24,7 +24,7 @@ for (const [source, chinese, spanish] of requiredTranslations) {
 
 for (const file of pages) {
   const html = readFileSync(join(site, file), 'utf8');
-  if (!html.includes('i18n.js?v=20260918-locale-knowledge-core')) failures.push(`${file}: stale or missing locale cache-bust`);
+  if (!html.includes('i18n.js?v=20260918-locale-civic-guide')) failures.push(`${file}: stale or missing locale cache-bust`);
 }
 
 if (failures.length) {

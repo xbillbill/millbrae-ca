@@ -171,6 +171,11 @@ a { color: inherit; text-decoration: none; }
 .guide-steps li::before { counter-increment: guide-step; content: counter(guide-step); display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: var(--yellow); color: var(--ink); font-weight: 800; }
 .guide-steps strong, .guide-steps span { display: block; }
 .guide-steps span { color: var(--muted); margin-top: 3px; }
+.reference-table { margin-top: 24px; border: 1px solid var(--line); border-radius: 13px; overflow: hidden; }
+.reference-row { display: grid; grid-template-columns: 1fr 1fr 1.35fr; gap: 16px; padding: 15px 17px; border-top: 1px solid var(--line); }
+.reference-row:first-child { border-top: 0; }
+.reference-row span { color: var(--muted); }
+.reference-head { background: var(--ink); color: white; border-top: 0; }
 
 @media (max-width: 760px) {
   .wrap { width: min(100% - 32px, 1120px); }
@@ -190,6 +195,7 @@ a { color: inherit; text-decoration: none; }
   .reference-grid { grid-template-columns: 1fr; }
   .knowledge-grid { grid-template-columns: 1fr; }
   .knowledge-timeline article { grid-template-columns: 1fr; gap: 4px; }
+  .reference-row { grid-template-columns: 1fr; gap: 4px; }
   .list-panel { grid-template-columns: 1fr; gap: 35px; padding: 36px 25px; border-radius: 15px; box-shadow: 7px 8px 0 var(--lime); }
   .list-panel h2 { font-size: 42px; }
   .about-inner { grid-template-columns: 1fr; gap: 16px; }

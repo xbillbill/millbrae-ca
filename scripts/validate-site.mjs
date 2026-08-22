@@ -186,6 +186,7 @@ for (const requiredStory of ['millbrae-story-public-space.html', 'millbrae-story
   if (!storiesHtml.includes(`href="${requiredStory}"`)) fail('millbrae-stories.html', `missing story archive link ${requiredStory}`);
 }
 if (storiesHtml.includes('Next research threads include school-community history, neighborhood memory')) fail('millbrae-stories.html', 'story archive contains stale neighborhood future-work copy');
+if (!storiesHtml.includes('history, rail, neighborhoods, schools, businesses, public resources, culture')) fail('millbrae-stories.html', 'story archive metadata does not describe current coverage');
 const schoolCommunityInbound = [...pages.entries()].filter(([file, html]) => file !== 'millbrae-story-school-community.html' && html.includes('href="millbrae-story-school-community.html"'));
 if (schoolCommunityInbound.length < 3) fail('millbrae-story-school-community.html', `expected at least 3 internal entry points, found ${schoolCommunityInbound.length}`);
 

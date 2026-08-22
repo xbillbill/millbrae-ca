@@ -18,6 +18,7 @@ const requiredTranslations = [
   ,['Millbrae Place Glossary | Millbrae Local', '${ZH_CITY_NAME}地点词典 | Millbrae Local', 'Glosario de lugares de Millbrae | Millbrae Local']
   ,['THE MILLBRAE REFERENCE INDEX', '${ZH_CITY_NAME}参考索引', 'ÍNDICE DE REFERENCIA DE MILLBRAE']
   ,['Local Businesses Are Part of Millbrae\'s Map | Millbrae Local', '${ZH_CITY_NAME}本地商家也是城市地图的一部分 | Millbrae Local', 'Los negocios locales son parte del mapa de Millbrae | Millbrae Local']
+  ,['One City, Overlapping Maps | Millbrae Local', '一座城市，多张重叠的地图 | Millbrae Local', 'Una ciudad, mapas superpuestos | Millbrae Local']
 ];
 
 for (const [source, chinese, spanish] of requiredTranslations) {

@@ -187,6 +187,11 @@ for (const requiredStory of ['millbrae-story-public-space.html', 'millbrae-story
 }
 if (storiesHtml.includes('Next research threads include school-community history, neighborhood memory')) fail('millbrae-stories.html', 'story archive contains stale neighborhood future-work copy');
 
+const sourcesHtml = pages.get('millbrae-sources.html') || '';
+for (const requiredCoverageSignal of ['COVERAGE MAP', 'Facts and geography', 'Schools and families', 'Neighborhoods and planning', 'Civic news and events', 'Public resources and alerts', 'Weather and local conditions']) {
+  if (!sourcesHtml.includes(requiredCoverageSignal)) fail('millbrae-sources.html', `missing coverage-map subject: ${requiredCoverageSignal}`);
+}
+
 const awsConfig = readFileSync(join(root, 'aws-config.js'), 'utf8');
 for (const setting of ['enabled', 'apiBaseUrl', 'googleClientId']) {
   if (!awsConfig.includes(setting)) fail('aws-config.js', `missing ${setting} configuration`);

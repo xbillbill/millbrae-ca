@@ -93,6 +93,11 @@ for (const requiredTransitSignal of ['id="live-transit"', 'data-transit-board', 
   if (!stationGuideHtml.includes(requiredTransitSignal)) fail('millbrae-station-sfo-guide.html', `missing live transit signal: ${requiredTransitSignal}`);
 }
 
+const civicEventsHtml = pages.get('millbrae-civic-events-news.html') || '';
+for (const requiredCivicEventSignal of ['data-civic-events', 'civic-events.js', 'https://www.ci.millbrae.ca.us/calendar.aspx']) {
+  if (!civicEventsHtml.includes(requiredCivicEventSignal)) fail('millbrae-civic-events-news.html', `missing civic events signal: ${requiredCivicEventSignal}`);
+}
+
 const rideshareFile = 'sfo-parking-vs-rideshare-calculator.html';
 const inboundRideshareLinks = [...pages.entries()].filter(([file, html]) => file !== rideshareFile && html.includes(`href="${rideshareFile}`));
 if (inboundRideshareLinks.length < 3) fail(rideshareFile, `expected at least 3 internal entry points, found ${inboundRideshareLinks.length}`);

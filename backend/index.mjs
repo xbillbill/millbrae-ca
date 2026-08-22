@@ -2,6 +2,7 @@ import { createPublicKey, verify as verifySignature } from 'node:crypto';
 import { DynamoDBClient } from '@aws-sdk/client-dynamodb';
 import { DeleteCommand, DynamoDBDocumentClient, GetCommand, PutCommand, QueryCommand, UpdateCommand } from '@aws-sdk/lib-dynamodb';
 import { ALLOWED_PROVIDERS, validateListing } from './policy.mjs';
+import { parseIcalendar } from './civic-events.mjs';
 
 const documentClient = DynamoDBDocumentClient.from(new DynamoDBClient({}), {
   marshallOptions: { removeUndefinedValues: true }
@@ -16,6 +17,12 @@ const caltrainCacheSeconds = 5 * 60;
 let jwksCache = null;
 let directoryCache = null;
 let caltrainMemoryCache = null;
+let civicEventsCache = null;
+
+const civicEventFeeds = Object.freeze([
+  { category: 'City Events', url: 'https://www.ci.millbrae.ca.us/common/modules/iCalendar/iCalendar.aspx?catID=26&feed=calendar' },
+  { category: 'Community Events', url: 'https://www.ci.millbrae.ca.us/common/modules/iCalendar/iCalendar.aspx?catID=28&feed=calendar' }
+]);
 
 const json = (statusCode, body, headers = {}) => ({
   statusCode,
@@ -114,6 +121,22 @@ async function listDirectory() {
 
 function asArray(value) {
   return Array.isArray(value) ? value : value ? [value] : [];
+}
+
+async function getCivicEvents() {
+  const now = Date.now();
+  if (civicEventsCache?.expiresAt > now) return civicEventsCache.payload;
+  const feeds = await Promise.all(civicEventFeeds.map(async ({ category, url }) => {
+    const response = await fetch(url, { headers: { 'user-agent': 'MillbraeLocal/1.0 (+https://www.millbrae.ca/)' }, signal: AbortSignal.timeout(2500) });
+    if (!response.ok) throw new Error(`${category} feed unavailable`);
+    return parseIcalendar(await response.text(), category, now);
+  }));
+  const events = [...new Map(feeds.flat().map((event) => [event.id, event])).values()]
+    .sort((left, right) => Date.parse(left.start) - Date.parse(right.start))
+    .slice(0, 20);
+  const payload = { events, updatedAt: new Date(now).toISOString(), source: 'City of Millbrae iCalendar feeds' };
+  civicEventsCache = { payload, expiresAt: now + 5 * 60_000 };
+  return payload;
 }
 
 function normalizeBartResponse(data, receivedAt = Date.now()) {
@@ -226,6 +249,10 @@ export async function handler(event) {
 
     if (method === 'GET' && path === '/transit/caltrain') {
       return json(200, await getCaltrainDepartures(), { 'cache-control': 'public, max-age=60, stale-while-revalidate=300' });
+    }
+
+    if (method === 'GET' && path === '/events') {
+      return json(200, await getCivicEvents(), { 'cache-control': 'public, max-age=300, stale-while-revalidate=600' });
     }
 
     if (method === 'GET' && path === '/me') {

@@ -26,13 +26,14 @@ const guideIndex = [
   { topic: 'PARKS & PLACES', title: 'Parks and places', description: 'Find City parks, recreation, the Spur Trail, regional parks, public facilities, and the places people use every day.', href: 'millbrae-parks-places.html', keywords: 'parks trail recreation playground Junipero Serra Crystal Springs' },
   { topic: 'BUSINESSES', title: 'Millbrae businesses and directory', description: 'Find local places with clear labels for official resources, community listings, editorial guides, and paid placement.', href: 'millbrae-businesses.html', keywords: 'business restaurant directory food shopping services' },
   { topic: 'PUBLIC RESOURCES', title: 'Millbrae public resources', description: 'Find emergency paths, utilities, public works, library, transit, city contacts, and public help.', href: 'millbrae-public-resources.html', keywords: 'police fire emergency utility water garbage library public works' },
+  { topic: 'LIBRARY & LEARNING', title: 'Millbrae Library and learning guide', description: 'Find the library, makerspace, digital help, language programs, family learning, and the sources behind current services.', href: 'millbrae-library-learning.html', keywords: 'library makerspace books learning digital help language programs WiFi school family seniors' },
   { topic: 'LIVE WEATHER', title: 'Today in Millbrae', description: 'See current Millbrae weather, local time, and the live conditions shown on the homepage.', href: 'index.html#top', keywords: 'weather temperature forecast rain wind current conditions time' },
   { topic: 'TRANSIT & SFO', title: 'Millbrae Station and SFO guide', description: 'Plan BART, Caltrain, SamTrans, parking, hotel connections, and live departures near SFO.', href: 'millbrae-station-sfo-guide.html', keywords: 'BART Caltrain SamTrans station airport parking hotel shuttle train' },
   { topic: 'SOURCES & METHOD', title: 'Source registry and editorial method', description: 'See which agencies maintain the facts, what refreshes live, and how corrections are handled.', href: 'millbrae-sources.html', keywords: 'sources official agency method correction evidence' }
 ];
 
 const queryAliases = {
-  'zh-CN': { '公园': 'parks places trail', '学校': 'schools families school', '历史': 'history culture story', '交通': 'transit station train', '公共资源': 'public resources services', '新闻': 'news community civic', '活动': 'events calendar civic', '商家': 'businesses directory restaurants', '天气': 'weather current conditions', '来源': 'sources method evidence', '人口': 'population facts census', '社区': 'community neighborhoods', '参与': 'participation civic commission meeting' },
+  'zh-CN': { '公园': 'parks places trail', '学校': 'schools families school', '历史': 'history culture story', '交通': 'transit station train', '公共资源': 'public resources services', '新闻': 'news community civic', '活动': 'events calendar civic', '商家': 'businesses directory restaurants', '天气': 'weather current conditions', '来源': 'sources method evidence', '人口': 'population facts census', '社区': 'community neighborhoods', '参与': 'participation civic commission meeting', '图书馆': 'library learning makerspace', '学习': 'library learning school education' },
   es: { parque: 'parks places trail', parques: 'parks places trail', escuela: 'schools families school', escuelas: 'schools families school', historia: 'history culture story', transporte: 'transit station train', recursos: 'public resources services', noticias: 'news community civic', eventos: 'events calendar civic', negocios: 'businesses directory restaurants', clima: 'weather current conditions', fuentes: 'sources method evidence', población: 'population facts census', comunidad: 'community neighborhoods' }
 };
 
@@ -47,6 +48,7 @@ const localizedResultCopy = {
     'How to participate in Millbrae civic life': { topic: '市政参与', title: '如何参与密尔布雷市政生活', description: '为会议、议程、记录、服务请求、委员会、青少年、老年人和社区项目找到正确入口。' },
     'Community news guide': { topic: '社区新闻', title: '社区新闻指南', description: '区分市政府公告、公共记录、独立报道、社区媒体、学校更新和提醒。' },
     'Millbrae public resources': { topic: '公共资源', title: `${'密尔布雷'}公共资源`, description: '查找紧急服务、公共设施、图书馆、交通、市政府联系方式和公共帮助。' },
+    'Millbrae Library and learning guide': { topic: '图书馆与学习', title: `${'密尔布雷'}图书馆与学习指南`, description: '查找图书馆、创客空间、数字帮助、语言项目、家庭学习和当前服务来源。' },
     'Schools and families': { topic: '学校与家庭', title: '学校与家庭', description: '连接学区日历、入学、服务、休闲活动、青少年项目和家庭资源。' },
     'Millbrae Station and SFO guide': { topic: '交通与 SFO', title: `${'密尔布雷'}车站与 SFO 指南`, description: '规划 BART、Caltrain、SamTrans、停车、酒店接驳和实时到站信息。' },
     'One station, many scales': { topic: '兴趣故事', title: '一座车站，多种尺度', description: '了解车站如何连接本地街道、区域铁路、县级公交和 SFO。' },
@@ -71,6 +73,7 @@ const localizedResultCopy = {
     'How to participate in Millbrae civic life': { topic: 'PARTICIPACIÓN CÍVICA', title: 'Cómo participar en la vida cívica de Millbrae', description: 'Encuentra la puerta correcta para reuniones, agendas, registros, solicitudes, comisiones, juventud, mayores y programas comunitarios.' },
     'Community news guide': { topic: 'NOTICIAS COMUNITARIAS', title: 'Guía de noticias comunitarias', description: 'Distingue anuncios oficiales, registros públicos, reportajes, medios comunitarios y alertas.' },
     'Millbrae public resources': { topic: 'RECURSOS PÚBLICOS', title: 'Recursos públicos de Millbrae', description: 'Encuentra emergencias, obras públicas, biblioteca, transporte, contactos y ayuda pública.' },
+    'Millbrae Library and learning guide': { topic: 'BIBLIOTECA Y APRENDIZAJE', title: 'Guía de la biblioteca y el aprendizaje de Millbrae', description: 'Encuentra biblioteca, makerspace, ayuda digital, programas de idiomas, aprendizaje familiar y fuentes actuales.' },
     'Schools and families': { topic: 'ESCUELAS Y FAMILIAS', title: 'Escuelas y familias', description: 'Conecta calendarios escolares, inscripción, servicios, recreación, juventud y recursos familiares.' },
     'Millbrae Station and SFO guide': { topic: 'TRANSPORTE Y SFO', title: 'Guía de la estación Millbrae y SFO', description: 'Planifica BART, Caltrain, SamTrans, estacionamiento, hoteles y salidas en vivo.' },
     'One station, many scales': { topic: 'HISTORIAS', title: 'Una estación, muchas escalas', description: 'Cómo la estación conecta calles locales, trenes regionales, autobuses del condado y SFO.' },
